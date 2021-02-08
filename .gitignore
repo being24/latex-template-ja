@@ -28,6 +28,7 @@
 *.fls
 *.pdf
 !/figures/*.pdf
+.vscode
 
 # Ignore node_modules
 node_modules/

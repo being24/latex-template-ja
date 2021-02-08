@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-18.04
     container:
       # もし独自のDockerイメージを変更したい場合、ここを変更する
-      image: pddg/latex:2.0.0
+      image: being241/docker-alpine-texlive-ja:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -32,7 +32,7 @@ jobs:
 
       # 実際のビルドは `bin/build.sh` を実行している
       - name: Build
-        run: ./bin/build.sh
+        run: latexmk -C main.tex && latexmk main.tex && latexmk -c main.tex
 
       # 生成したPDFをGitHub Actionsにアップロードする
       - name: Upload artifact

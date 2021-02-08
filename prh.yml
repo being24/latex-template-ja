@@ -1,0 +1,7 @@
+version: 1
+rules:
+  - expected: GitHub
+  - expected: ．
+    pattern: /[。｡]/g
+  - expected: ，
+    pattern: /[、､]/g

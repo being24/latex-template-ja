@@ -1,0 +1,24 @@
+options:
+  max-time: 3
+clone:
+  depth: 1
+definitions:
+  steps:
+    - step: &build-deploy
+        name: Build PDF by latexmk
+        script:
+          - bash bin/build.sh
+        artifacts:
+          - main.log
+          - main.pdf
+        after-script:
+          - bash bin/upload_bitbucket.sh
+image: pddg/latex:1.2.0
+pipelines:
+  branches:
+    master:
+      - step: *build-deploy
+  tags:
+    v*:
+      - step: *build-deploy
+

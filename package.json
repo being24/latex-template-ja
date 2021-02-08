@@ -1,0 +1,15 @@
+{
+    "name": "thesis-template-master",
+    "scripts": {
+        "lint": "textlint */*.tex",
+        "fix": "textlint --fix */*.tex",
+        "lint-style": "textlint -f checkstyle */*.tex"
+    },
+    "dependencies": {
+        "textlint": "^11.5.0",
+        "textlint-filter-rule-allowlist": "^2.0.1",
+        "textlint-filter-rule-comments": "^1.2.2",
+        "textlint-plugin-latex2e": "^1.0.3",
+        "textlint-rule-preset-ja-technical-writing": "^4.0.1"
+    }
+}

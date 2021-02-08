@@ -1,0 +1,46 @@
+%! TEX root = ../main.tex
+\documentclass[main]{subfiles}
+
+\begin{document}
+
+\section{サンプル}
+
+\subsection{特定のルールを無視する}
+
+以下の様に記述することで，ある行からある行までの間で特定のルールを無視できます．
+
+% textlint-disable
+\begin{lstlisting}[caption=textlint-filter-rule-commentsの使用方法,language=tex,breaklines=true]
+    % textlint-disable ja-technical-writing/sentence-length
+    これはとても長い長ーーーーーーーい文章なので、
+    本来ならlintのルールに引っかかってしまいますが、
+    このようにコメントを付加することでこの一文だけは
+    lintの対象から除外されるので、特定のルールに
+    どうしても引っかかってしまう・しかし修正することは
+    難しい場合にご活用下さい
+    % textlint-ensable ja-technical-writing/sentence-length
+\end{lstlisting}
+% textlint-enable
+
+複数のルールを無視したい場合は，ルール名をカンマで区切って書きます．
+
+\subsection{新規分割ファイルの追加}
+
+LaTeX Workshopのためにマジックコメントを追加する必要があります．具体的には\lstlistingname\ref{code:newpage}のように記述します．
+
+% textlint-disable
+\begin{lstlisting}[caption=新章の追加テンプレート,language=tex,label=code:newpage]
+    %! TEX root = ../main.tex
+    \documentclass[main]{subfiles}
+
+    \begin{document}
+
+    \section{新セクション}
+
+    これはサンプルの文章です
+
+    \end{document}
+\end{lstlisting}
+% textlint-enable
+
+\end{document}

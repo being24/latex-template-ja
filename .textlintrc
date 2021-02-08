@@ -1,0 +1,61 @@
+{
+    "plugins": [
+        "latex2e"
+    ],
+    "filters": {
+        "comments": true,
+        "allowlist": {
+            "allow": [
+                "github.com",
+                "github.com/github/"
+            ]
+        }
+    },
+    "rules": {
+        "preset-ja-technical-writing": {
+            "no-invalid-control-character": true,
+            "no-unmatched-pair": true,
+            "sentence-length": {
+                "max": 120
+            },
+            "no-nfd": true,
+            "no-doubled-joshi": {
+                "min_interval": 1,
+                "strict": false,
+                "allow": ["も", "や", "にも"],
+                "separatorCharacters": [
+                    "．", "。"
+                ],
+                "commaCharacters": [
+                    "、", "，"
+                ]
+            },
+            "no-doubled-conjunction": true,
+            "no-doubled-conjunctive-particle-ga": true,
+            "no-dropping-the-ra": true,
+            "no-double-negative-ja": true,
+            "ja-unnatural-alphabet": true,
+            "ja-no-redundant-expression": true,
+            "ja-no-abusage": true,
+            "ja-no-successive-word": true,
+            "ja-no-weak-phrase": true,
+            "ja-no-mixed-period": {
+                "periodMark": "．",
+                "allowPeriodMarks": [],
+                "allowEmojiAtEnd": false,
+                "forceAppendPeriod": true
+            },
+            "no-mix-dearu-desumasu": {
+                "preferInHeader": "である",
+                "preferInBody": "です",
+                "preferInList": "である",
+                "strict": true
+            }
+        },
+        "prh": {
+            "rulePaths": [
+                "./prh.yml"
+            ]
+        }
+    }
+}

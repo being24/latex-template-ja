@@ -1,0 +1,40 @@
+\documentclass{jsarticle}
+
+\usepackage{subfiles}
+\usepackage{listings}
+\usepackage{jlisting}
+\usepackage{color}
+\usepackage[dvipdfmx]{graphicx}
+
+\title{ {\LaTeX} 自動ビルド・校正レビュー機能付きテンプレート}
+\author{pddg}
+\date{\today}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\lstset{
+    frame=single,
+    numbers=left,
+    tabsize=4,
+    basicstyle=\ttfamily,
+    numberstyle=\scriptsize,
+    commentstyle={\small\ttfamily \color[gray]{.5}},
+}
+
+\begin{document}
+\maketitle
+
+\subfile{sections/abstract}
+
+\newpage
+
+\subfile{sections/usage}
+
+\newpage
+
+\subfile{sections/sample}
+
+\newpage
+
+\subfile{sections/faq}
+
+\end{document}

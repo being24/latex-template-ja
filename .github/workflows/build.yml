@@ -1,0 +1,85 @@
+# PDFのビルドを行うworkflow
+name: build
+
+# masterブランチへのpush、またはvから始まるタグに対して実行
+# 例えばv1.0.0など
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "v*"
+
+env:
+  # MakefileでDockerを使う機能を無効にする
+  USE_DOCKER: no
+  # 生成するファイルの名前。
+  ARTIFACT_NAME: main.pdf
+
+# 実行されるジョブの定義
+jobs:
+  # PDFのビルドジョブ
+  build:
+    runs-on: ubuntu-18.04
+    container:
+      # もし独自のDockerイメージを変更したい場合、ここを変更する
+      image: pddg/latex:2.0.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      # 実際のビルドは `bin/build.sh` を実行している
+      - name: Build
+        run: ./bin/build.sh
+
+      # 生成したPDFをGitHub Actionsにアップロードする
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdf
+          # アップロードするファイルを変更する場合、以下を変える
+          path: ./${{ env.ARTIFACT_NAME }}
+
+  # GitHubのReleaseを作成するジョブ
+  # v1.0.0のようなタグがpushされた時のみ実行
+  release:
+    needs: build
+    runs-on: ubuntu-18.04
+    steps:
+      # ビルドジョブでアップロードしたPDFをここでダウンロード
+      - name: Download artifact
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/download-artifact@v2
+        with:
+          name: pdf
+
+      # Releaseを作成する
+      # https://github.com/YOURNAME/YOURREPO/releases に 'Release タグ名' で作成
+      - name: Create release
+        if: startsWith(github.ref, 'refs/tags/')
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      # 作成したReleaseにPDFをアップロードする
+      # ↑で作成したリリースにmain.pdfをアップロードしている
+      - name: Upload release asset
+        if: startsWith(github.ref, 'refs/tags/')
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          # アップロードするファイルを変更する場合、以下を変える
+          asset_path: ./${{ env.ARTIFACT_NAME }}
+          asset_name: ${{ env.ARTIFACT_NAME }}
+          asset_content_type: application/pdf

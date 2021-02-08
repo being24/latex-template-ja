@@ -32,7 +32,7 @@ jobs:
 
       # 実際のビルドは `bin/build.sh` を実行している
       - name: Build
-        run: latexmk -C main.tex && latexmk main.tex && latexmk -c main.tex
+        run: ./bin/build.sh
 
       # 生成したPDFをGitHub Actionsにアップロードする
       - name: Upload artifact

@@ -4,5 +4,5 @@ if [ ! -z "$GITHUB_ACTIONS" ]; then
     cp /.latexmkrc $HOME/
 fi
 
-make pdf
+latexmk -C main.tex && latexmk main.tex && latexmk -c main.tex
 

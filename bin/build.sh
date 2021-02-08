@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Hello, World!"
+
 if [ ! -z "$GITHUB_ACTIONS" ]; then
     cp /.latexmkrc $HOME/
 fi

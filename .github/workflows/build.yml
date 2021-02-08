@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-18.04
     container:
       # もし独自のDockerイメージを変更したい場合、ここを変更する
-      image: being241/docker-alpine-texlive-ja:latest
+      image: being241/latex-docker:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2

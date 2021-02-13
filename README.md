@@ -34,4 +34,9 @@ CC0
 
 ## Author
 
-Shoma Kokuryo
+Being
+
+## Todo
+
+<https://github.com/azu/textlint-rule-spellcheck-tech-word>
+こいつを入れる

@@ -10,6 +10,6 @@
         "textlint-filter-rule-allowlist": "^4.0.0",
         "textlint-filter-rule-comments": "^1.2.2",
         "textlint-plugin-latex2e": "^1.1.4",
-        "textlint-rule-preset-ja-technical-writing": "^6.0.0"
+        "textlint-rule-preset-ja-technical-writing": "^7.0.0"
     }
 }

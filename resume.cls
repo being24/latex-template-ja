@@ -2,7 +2,7 @@
 
 \LoadClass[a4paper, two column, 9pt]{jsarticle}	%A4, 2段, 字の大きさ
 \pagestyle{empty}	%ページ数
-\textheight 257 mm	%本文の長さ，下マージン=297-textheight-topmargin
+\textheight 280 mm	%本文の長さ，下マージン=297-textheight-topmargin
 \textwidth 180 mm	%横幅
 \setlength{\hoffset}{-1.0in}	%横オフセット
 \setlength{\voffset}{-1.0in}	%縦オフセット

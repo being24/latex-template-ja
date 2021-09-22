@@ -4,8 +4,8 @@
 \pagestyle{empty}	%ページ数
 \textheight 280 mm	%本文の長さ，下マージン=297-textheight-topmargin
 \textwidth 180 mm	%横幅
-\setlength{\hoffset}{-0.1in}	%横オフセット
-\setlength{\voffset}{-1.0in}	%縦オフセット
+\setlength{\hoffset}{-2.54mm}	%横オフセット
+\setlength{\voffset}{-30mm}	%縦オフセット
 \setlength{\oddsidemargin}{0mm}	%左余白幅
 \setlength{\evensidemargin}{0mm}
 \setlength{\topmargin}{20.0mm}	%上マージン

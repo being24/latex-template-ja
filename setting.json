@@ -1,0 +1,11 @@
+"latex-workshop.latex.recipes": [
+    {
+        "name": "compile",
+        "tools": [
+            "ptex2pdf",
+            "pbibtex",
+            "ptex2pdf",
+            "ptex2pdf"
+        ]
+    }
+],

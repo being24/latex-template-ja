@@ -1,0 +1,51 @@
+%! TEX root = ../main.tex
+\documentclass[main]{subfiles}
+
+\begin{document}
+
+\section{概要}
+
+\subsection{このテンプレートの目的}
+
+これは日本語論文を書く上で．
+
+\begin{itemize}
+    \item LaTeXの環境構築
+    \item 誤字・表記揺れの修正．
+\end{itemize}
+
+のような本質的でない部分に時間をかけず，論文の内容に集中するためのものです．
+
+\subsection{対象となるユーザ}
+理工系の卒業論文・修士論文を書く人を対象としています（一部設定をカスタマイズすることでそれ以外の分野でもお使い頂けます）．
+また，GitおよびGitHubを使用してバージョン管理することで真価を発揮するため，Gitの使用は前提となります．
+
+
+これはどんなTeXソースでもビルド出来るようにすることは目標としていないため，．
+
+\begin{itemize}
+    \item デフォルトのままで完璧に上手くやって欲しい
+    \item 自分でカスタマイズはしたくない．
+\end{itemize}
+
+というユーザにはあまり向かない可能性があります．
+
+\subsection{提供する機能一覧}
+
+ホストOSへインストールされているLaTeXおよび，TeX LiveをインストールしたDockerコンテナを使用し，下記の操作をサポートしています．
+
+\begin{itemize}
+    \item latexmkを使用したPDFのビルド（\code{make pdf}）
+    \item TeXソースの変更検知時に自動ビルド（\code{make watch}）
+    \item 生成物の破棄（\code{make clean}）
+\end{itemize}
+
+また，GitHub Actionsを用いて下記の操作をサポートします．
+
+\begin{itemize}
+    \item masterブランチへのpush時に自動ビルド・生成PDFをアップロード
+    \item Pull Request作成時にルールベースでの校正，および，レビューでの指摘
+    \item タグをpushするたびにGitHub Releasesへ自動でPDFをアップロード．
+\end{itemize}
+
+\end{document}

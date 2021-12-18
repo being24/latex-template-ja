@@ -1,8 +1,8 @@
-\documentclass{jsarticle}
+\documentclass[a4paper,11pt, uplatex]{jsreport}
 
 \usepackage{subfiles}
 \usepackage{listings}
-\usepackage{jlisting}
+\usepackage{plistings}
 \usepackage{color}
 \usepackage[dvipdfmx]{graphicx}
 
@@ -23,4 +23,17 @@
 \begin{document}
 \maketitle
 
+\subfile{sections/abstract}
+\newpage
+
+\subfile{sections/usage}
+\newpage
+
+\subfile{sections/sample}
+\newpage
+
+\subfile{sections/faq}
+
+% \bibliography{references}
+% \bibliographystyle{junsrt}
 \end{document}

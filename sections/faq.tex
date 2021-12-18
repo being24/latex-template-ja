@@ -1,0 +1,33 @@
+%! TEX root = ../main.tex
+\documentclass[main]{subfiles}
+
+\begin{document}
+
+\section{FAQ}
+
+\subsection{利用するDockerイメージを差し替えたい}
+
+Dockerイメージは以下の箇所で利用されています．
+
+\begin{itemize}
+    \item .vscode/settings.json
+    \item .GitHub/workflows/build.yml
+\end{itemize}
+
+上記のファイルに記述されている\code{pddg/latex:2.0.0}の部分を
+任意のイメージ名に書き換えて下さい．
+
+\subsection{Lintが終わらない・タイムアウトする}
+
+このテンプレートのGitHub ActionsワークフローではLintが時間を使い切らないように，タイムアウトが10分に設定されています．
+大規模なTeXソースではこの時間中に収まらない可能性もあります．
+
+\subsection{VSCodeで保存するとエラーが出てプレビューできない}
+
+TeXソースのシンタックスエラーの疑いがあります．ログをよく読んでください．
+
+\subsection{VSCodeのPDF Viewerでsynctexが有効にならない}
+
+なぜか時々発生するのを確認していますがトリガーは不明です．
+
+\end{document}

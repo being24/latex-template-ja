@@ -6,8 +6,11 @@
 \usepackage{color}
 \usepackage[dvipdfmx]{graphicx}
 
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+
 \title{ {\LaTeX} 自動ビルド・校正レビュー機能付きテンプレート}
-\author{pddg}
+\author{being24}
 \date{\today}
 
 \newcommand{\code}[1]{\texttt{#1}}
@@ -33,7 +36,8 @@
 \newpage
 
 \subfile{sections/faq}
+\newpage
 
-% \bibliography{references}
-% \bibliographystyle{junsrt}
+\printbibliography[title=参考文献]
+
 \end{document}

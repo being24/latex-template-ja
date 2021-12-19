@@ -1,42 +1,45 @@
-"latex-workshop.latex.tools": [
-    {
-        "name": "ptex2pdf",
-        "command": "docker",
-        "args": [
-            "run",
-            "--rm",
-            "-v",
-            "%DIR%:/workdir",
-            "ghcr.io/being24/latex-docker",
-            "ptex2pdf",
-            "-l",
-            "-u",
-            "/workdir/%DOCFILE_EXT%"
-        ]
-    },
-    {
-        "name": "pbibtex",
-        "command": "docker",
-        "args": [
-            "run",
-            "--rm",
-            "-v",
-            "%DIR%:/workdir",
-            "ghcr.io/being24/latex-docker",
-            "pbibtex",
-            "%DOCFILE%",
-            "-kanji=utf8"
-        ],
-    },
-],
-"latex-workshop.latex.recipes": [
-    {
-        "name": "compile",
-        "tools": [
-            "ptex2pdf",
-            "pbibtex",
-            "ptex2pdf",
-            "ptex2pdf"
-        ]
-    }
-],
+
+    "latex-workshop.latex.tools": [
+        {
+            "name": "ptex2pdf",
+            "command": "docker",
+            "args": [
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workdir",
+                "ghcr.io/being24/latex-docker",
+                "ptex2pdf",
+                "-synctex=1",
+                "-halt-on-error",
+                "-l",
+                "-u",
+                "/workdir/%DOCFILE_EXT%"
+            ]
+        },
+        {
+            "name": "pbibtex",
+            "command": "docker",
+            "args": [
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workdir",
+                "ghcr.io/being24/latex-docker",
+                "pbibtex",
+                "%DOCFILE%",
+                "-kanji=utf8"
+            ],
+        },
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "compile",
+            "tools": [
+                "ptex2pdf",
+                //"pbibtex",
+                "ptex2pdf",
+                "ptex2pdf"
+            ]
+        }
+    ],

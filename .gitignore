@@ -1,6 +1,5 @@
 .DS_Store
 
-
 *.aux
 *.glo
 *.idx
@@ -29,6 +28,7 @@
 *.pdf
 !/figures/*.pdf
 .vscode
+*.bcf
 
 # Ignore node_modules
 node_modules/

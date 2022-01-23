@@ -8,6 +8,8 @@
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{url}
 \usepackage{siunitx}
+\usepackage{enumerate}
+\usepackage{paralist}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}
 
@@ -24,6 +26,12 @@
     numberstyle=\scriptsize,
     commentstyle={\small\ttfamily \color[gray]{.5}},
 }
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{4}
+
+\renewcommand{\figurename}{\normalsize Fig.}%\small
+\renewcommand{\tablename}{\normalsize Table.}
 
 \begin{document}
 \maketitle

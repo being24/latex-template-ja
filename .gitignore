@@ -25,10 +25,10 @@
 *.synctex.gz
 *.fdb_latexmk
 *.fls
-*.pdf
-!/figures/*.pdf
 .vscode
 *.bcf
+*.xml
 
 # Ignore node_modules
 node_modules/
+main.bcf

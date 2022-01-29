@@ -34,10 +34,13 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath}
+\usepackage{times}
 \usepackage{siunitx}
 \usepackage{subfiles}
 \usepackage{color}
 \usepackage{indentfirst}
+
+
 
 
 \setstretch{0.8}

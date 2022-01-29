@@ -25,8 +25,6 @@
 \usepackage{bm}
 \usepackage{url}
 \usepackage{enumerate}
-\usepackage{comment}
-\usepackage{listings}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[dvipdfmx]{color}
 \usepackage{titlesec}
@@ -34,18 +32,21 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath}
-\usepackage{times}
 \usepackage{siunitx}
+\usepackage{times}
 \usepackage{subfiles}
 \usepackage{color}
 \usepackage{indentfirst}
-
-
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{references.bib}
+\captionsetup{compatibility=false}
 
 
 \setstretch{0.8}
 
 \captionsetup[subfigure]{labelformat=simple}
+\captionsetup{compatibility=false}
+
 \makeatletter
 \renewcommand{\figurename}{\normalsize Fig.}%\small
 \renewcommand{\tablename}{\normalsize Table.}

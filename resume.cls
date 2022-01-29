@@ -1,6 +1,6 @@
 \ProvidesClass{resume}[2020/02/27 resume]
 
-\LoadClass[a4paper, two column, 9pt]{jsarticle}	%A4, 2段, 字の大きさ
+\LoadClass[a4paper, two column, 9pt, uplatex]{jsarticle}	%A4, 2段, 字の大きさ
 \pagestyle{empty}	%ページ数
 \textheight 280 mm	%本文の長さ，下マージン=297-textheight-topmargin
 \textwidth 180 mm	%横幅
@@ -26,7 +26,7 @@
 \usepackage{url}
 \usepackage{enumerate}
 \usepackage{comment}
-\usepackage{listings,jlisting}
+\usepackage{listings}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[dvipdfmx]{color}
 \usepackage{titlesec}

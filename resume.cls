@@ -36,7 +36,7 @@
 \usepackage{times}
 \usepackage{subfiles}
 \usepackage{color}
-% \usepackage{indentfirst}
+\usepackage{indentfirst}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}
 \captionsetup{compatibility=false}

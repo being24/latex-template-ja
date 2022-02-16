@@ -19,7 +19,7 @@
 \usepackage{secdot}	%sectionの数字の後のドット
 \usepackage[dvipdfmx]{graphicx}	%グラフ挿入
 \usepackage{setspace}
-\usepackage{caption}
+\usepackage[labelsep=space]{caption}
 \usepackage{subcaption}
 \usepackage{here}
 \usepackage{bm}

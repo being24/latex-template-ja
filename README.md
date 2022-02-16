@@ -1,30 +1,30 @@
-# A Template for Writing Japanese Thesis
+# 日本語論文をLaTeXで書いて、textlintをするためのテンプレート
 
 <https://poyo.hatenablog.jp/entry/2020/12/05/110000>
 
-## Feature
+## 機能
 
-* Build tex source without LaTeX setup
-  - Use Docker instead
-* Automated build on cloud
-  - GitHub Actions
-  - BitBucket Pipelines
+* 個人環境にLaTeX workshopを構築せず、dockerでビルドします
+* GitHub Actionsを使用してtextlintを実行します
+* github上にreleaseします
+* レジュメや論文用のテンプレートを持ちますが、あくまで個人の環境用に構築したものです
 
-## Environment
+## 環境
 
 * macOS 10.14 or later
 * Ubuntu 18.04 LTS or later
 * Windows 10
 
-And Docker is required.
+Docker環境が必要ですが、多少弄ればCloud LaTeX等でも使用できます
 
 * Docker Desktop for Mac 2.1 or later
 * Docker 18.06 or later
 * Docker Desktop for Windows
 
-This repository will use TeX Live 2020 on Ubuntu 20.04 LTS. See https://github.com/pddg/latex-docker to get more detail.
+Ubuntu 20.04 LTS上の TeX Live 2021を使用します  
+ビルド用のdocker imageは<https://github.com/being24/latex-docker>を参照してください
 
-VSCode is recommended tool to edit TeX sources.
+また、VSCodeが必要です
 
 ![demo](figures/screenshot.png)
 
@@ -36,7 +36,22 @@ CC0
 
 Being
 
-## Todo
+## config
 
-<https://github.com/azu/textlint-rule-spellcheck-tech-word>
-こいつを入れる
+VSCode上での設定例は[settings.json](/settings.json)を参照してください
+
+## テンプレートについて
+
+できるだけモダナイズを意識して作成したテンプレートですが、LaTeXに詳しいわけではないので誤りがあった場合は教えていただけると幸いです
+
+jlistingの代わりにmintedを使用し、参考文献はbiblatexを使用します
+
+### resume.cls
+
+[resume.cls](/resume.cls)は2段組みのレジュメを作成するためのクラスファイルです  
+使用方法は[例](/example/resume_template.tex)を参照してください
+
+### report.cls
+
+[report.cls](/report.cls)は2段組みのレジュメを作成するためのクラスファイルです  
+使用方法は[例](/example/report_template.tex)を参照してください

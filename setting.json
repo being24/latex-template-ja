@@ -22,7 +22,6 @@
         }
     ],
     "latex-workshop.latex.autoBuild.run": "onSave",
-    //"latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.view.pdf.viewer": "browser",
     "latex-workshop.intellisense.package.enabled": true,
     "latex-workshop.latex.autoClean.run": "onBuilt",

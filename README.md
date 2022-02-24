@@ -53,5 +53,5 @@ jlistingの代わりにmintedを使用し、参考文献はbiblatexを使用し�
 
 ### report.cls
 
-[report.cls](/report.cls)は2段組みのレジュメを作成するためのクラスファイルです  
+[report.cls](/report.cls)は論文を作成するためのクラスファイルです  
 使用方法は[例](/example/report_template.tex)を参照してください

@@ -19,6 +19,8 @@
 \usepackage[subrefformat=parens]{subcaption}
 \usepackage[dvipdfmx]{hyperref}
 \usepackage{pxjahyper}
+\usepackage{framed}
+\usepackage[dvipdfmx]{pdfpages}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}
 \captionsetup{compatibility=false}

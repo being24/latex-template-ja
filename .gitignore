@@ -25,10 +25,11 @@
 *.synctex.gz
 *.fdb_latexmk
 *.fls
-.vscode
 *.bcf
 *.xml
 *.pdf
+.vscode/
+!.vscode/settings.json
 
 # Ignore node_modules
 node_modules/

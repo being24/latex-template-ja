@@ -1,0 +1,41 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "docker",
+            "args": [
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workdir",
+                "ghcr.io/being24/latex-docker",
+                "latexmk",
+                "/workdir/%DOCFILE_EXT%"
+            ]
+        },
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "compile",
+            "tools": [
+                "latexmk",
+            ]
+        }
+    ],
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.watch.delay": 1000,
+    "latex-workshop.view.pdf.viewer": "browser",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.dvi",
+        "*.fdb_latexmk",
+        "*.fls",
+        "*.toc",
+        "*.bcf",
+        "*.log",
+        "*/*.log"
+    ]
+}

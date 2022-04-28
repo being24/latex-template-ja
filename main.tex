@@ -1,62 +1,19 @@
-\documentclass[a4paper,11pt, uplatex]{jsreport}
+\documentclass{resume}
 
-\usepackage{subfiles}
-\usepackage{listings}
-\usepackage{plistings}
-\usepackage{color}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage{url}
-\usepackage{siunitx}
-\usepackage{enumerate}
-\usepackage{paralist}
-\usepackage{amsmath,amssymb}
-\usepackage{mathtools}
-\usepackage{times}
-\usepackage[newfloat]{minted}
-\usepackage[hang,small,bf,labelsep=space]{caption}
-\usepackage[subrefformat=parens]{subcaption}
-\usepackage[backend=biber,style=ieee]{biblatex}
-\addbibresource{references.bib}
-\captionsetup{compatibility=false}
-\title{ {\LaTeX} 自動ビルド・校正レビュー機能付きテンプレート}
-\author{being24}
-\date{\today}
-
-\newcommand{\code}[1]{\texttt{#1}}
-\lstset{
-    frame=single,
-    numbers=left,
-    tabsize=4,
-    basicstyle=\ttfamily,
-    numberstyle=\scriptsize,
-    commentstyle={\small\ttfamily \color[gray]{.5}},
+\title{
+	\gt{title}\\
 }
 
-\setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{4}
+\author{
+	\gt{○○大学 ○○学科 ○○専攻 学籍番号 名前}\\
+}
 
-\renewcommand{\figurename}{\normalsize Fig.}%\small
-\renewcommand{\tablename}{\normalsize Table.}
+\date{}
 
 \begin{document}
-\subfile{sections/title}
-\newpage
+\maketitle
 
-\tableofcontents
-\clearpage
-
-\subfile{sections/abstract}
-\newpage
-
-\subfile{sections/usage}
-\newpage
-
-\subfile{sections/sample}
-\newpage
-
-\subfile{sections/faq}
-\newpage
-
-\printbibliography[title=参考文献]
+% ここに本文をかく
+% subfileを使う想定です
 
 \end{document}

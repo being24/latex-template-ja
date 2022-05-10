@@ -1,7 +1,5 @@
 # 日本語論文をLaTeXで書いて、textlintをするためのテンプレート
 
-<https://poyo.hatenablog.jp/entry/2020/12/05/110000>
-
 ## 機能
 
 * 個人環境にLaTeX workshopを構築せず、dockerでビルドします
@@ -15,14 +13,14 @@
 * Ubuntu 18.04 LTS or later
 * Windows 10
 
-Docker環境が必要ですが、多少弄ればCloud LaTeX等でも使用できます
+Docker環境が必要ですが、clsファイルについては多少弄ればCloud LaTeX等でも使用できます
 
 * Docker Desktop for Mac 2.1 or later
 * Docker 18.06 or later
 * Docker Desktop for Windows
 
-Ubuntu 20.04 LTS上の TeX Live 2021を使用します  
-ビルド用のdocker imageは<https://github.com/being24/latex-docker>を参照してください
+Ubuntu 20.04 LTS上の TeX Live 2022を使用します  
+ビルド用のdocker imageは[こちらのリポジトリ](https://github.com/being24/latex-docker)を参照してください
 
 また、VSCodeが必要です
 
@@ -67,3 +65,7 @@ VSCodeであればこの設定を読み込んでくれるため、設定を変�
 ```sh
 git diff 前のID 後のID --diff-filter=ACMR ':(exclude)figures/' > ./diff.diff
 ```
+
+## 参考URL
+
+<https://poyo.hatenablog.jp/entry/2020/12/05/110000>

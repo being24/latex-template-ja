@@ -22,7 +22,7 @@
             ]
         },
     ],
-    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.latex.watch.delay": 1000,
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoClean.run": "onBuilt",
@@ -46,7 +46,10 @@
         "%DIR%:/workdir",
         "ghcr.io/being24/latex-docker",
         "latexindent",
-        "/workdir/%DOCFILE_EXT%",
-        "--overwrite"
+        "/workdir/%DOCFILE_EXT%", // ここを治す
+        "-c=${workspaceFolder}/backups", // ここを治す
+        "-l",
+        "-w",
+        //"-s"
     ],
 }

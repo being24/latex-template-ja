@@ -36,3 +36,7 @@ node_modules/
 main.bcf
 
 _minted-main/
+
+__latexindent_temp.tex
+*.bak
+*.bak[0-9]

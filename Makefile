@@ -1,6 +1,6 @@
 MAIN_SRC=main
 USE_DOCKER?=yes
-DOCKER_IMAGE=pddg/latex:2.0.0
+DOCKER_IMAGE=ghcr.io/being24/latex-docker
 
 # TeX sources
 STY_SRCS=$(wildcard ./*.sty)

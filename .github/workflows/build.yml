@@ -20,15 +20,13 @@ env:
 jobs:
   # PDFのビルドジョブ
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     container:
       # もし独自のDockerイメージを変更したい場合、ここを変更する
       image: ghcr.io/being24/latex-docker:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
 
       # 実際のビルドは `bin/build.sh` を実行している
       - name: Build
@@ -45,12 +43,15 @@ jobs:
   # GitHubのReleaseを作成するジョブ
   # v1.0.0のようなタグがpushされた時のみ実行
   release:
+    if: startsWith(github.ref, 'refs/tags/')
     needs: build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       # ビルドジョブでアップロードしたPDFをここでダウンロード
       - name: Download artifact
-        if: startsWith(github.ref, 'refs/tags/')
         uses: actions/download-artifact@v3
         with:
           name: pdf
@@ -58,28 +59,8 @@ jobs:
       # Releaseを作成する
       # https://github.com/YOURNAME/YOURREPO/releases に 'Release タグ名' で作成
       - name: Create release
-        if: startsWith(github.ref, 'refs/tags/')
-        id: create_release
-        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      # 作成したReleaseにPDFをアップロードする
-      # ↑で作成したリリースにmain.pdfをアップロードしている
-      - name: Upload release asset
-        if: startsWith(github.ref, 'refs/tags/')
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          # アップロードするファイルを変更する場合、以下を変える
-          asset_path: ./${{ env.ARTIFACT_NAME }}
-          asset_name: ${{ env.ARTIFACT_NAME }}
-          asset_content_type: application/pdf
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/##g")
+          gh release create ${VERSION} -t "${VERSION}" ./${{ env.ARTIFACT_NAME }}

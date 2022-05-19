@@ -35,8 +35,8 @@
         "*.fls",
         "*.toc",
         "*.bcf",
-        "*.log",
-        "*/*.log"
+        //"*.log",
+        //"*/*.log"
     ],
     "latex-workshop.latexindent.path": "docker",
     "latex-workshop.latexindent.args": [
@@ -45,11 +45,7 @@
         "-v",
         "%DIR%:/workdir",
         "ghcr.io/being24/latex-docker",
-        "latexindent",
-        "/workdir/%DOCFILE_EXT%", // ここを治す
-        "-c=${workspaceFolder}/backups", // ここを治す
-        "-l",
-        "-w",
-        //"-s"
+        "sh",
+        "/workdir/linter.sh",
     ],
 }

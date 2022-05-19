@@ -13,12 +13,31 @@
                 "/workdir/%DOCFILE_EXT%"
             ]
         },
+        {
+            "name": "diff",
+            "command": "docker",
+            "args": [
+                "run",
+                "--rm",
+                "-v",
+                "%DIR%:/workdir",
+                "ghcr.io/being24/latex-docker",
+                "sh",
+                "/workdir/diff.sh"
+            ]
+        },
     ],
     "latex-workshop.latex.recipes": [
         {
             "name": "compile",
             "tools": [
                 "latexmk",
+            ]
+        },
+        {
+            "name": "create_diff",
+            "tools": [
+                "diff",
             ]
         },
     ],
@@ -30,6 +49,28 @@
         "*.aux",
         "*.bbl",
         "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.synctex.gz",
+        "_minted*",
+        "*.nav",
+        "*.snm",
+        "*.vrb",
+        "*.run.xml",
         "*.dvi",
         "*.fdb_latexmk",
         "*.fls",

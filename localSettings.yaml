@@ -26,7 +26,7 @@ onlyOneBackUp: 0
 #
 # If maxNumberOfBackUps is set to 0 (or less) then infinitely
 # many backups are possible, unless onlyOneBackUp is switched on
-maxNumberOfBackUps: 3
+maxNumberOfBackUps: 1
 
 # some users may wish to cycle through back up files.
 #
@@ -573,17 +573,11 @@ replacements:
     lookForThis: 1
     # Be sure to set it last
     # Combine 2 or more "half-width spaces" into 1
-  - substitution: s/\h+/ /g
+  - this: "。"
+    that: "．"
     lookForThis: 1
-    when: before
-  # Insert 1 half-width space before and after "+"
-  - substitution: s/(?<!\+|\-)\h{0,}\+\h{0,}(?!\+|\-)/ \+ /g
-    lookForThis: 1
-  # Insert 1 half-width space before and after "-"
-  - substitution: s/(?<!\+|\-)\h{0,}\-\h{0,}(?!\+|\-)/ \- /g
-    lookForThis: 1
-  # Insert half-width space before the "\" in any command
-  - substitution: s/\h{0,}\\(?!=\{)(\w)/ \\$2/g
+  - this: "、"
+    that: "，"
     lookForThis: 1
 
 # fineTuning allows you to tweak the internal pattern matching that

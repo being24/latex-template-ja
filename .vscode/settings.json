@@ -23,7 +23,7 @@
                 "%DIR%:/workdir",
                 "ghcr.io/being24/latex-docker",
                 "sh",
-                "/workdir/diff.sh"
+                "/workdir/bin/diff.sh"
             ]
         },
     ],
@@ -87,6 +87,6 @@
         "%DIR%:/workdir",
         "ghcr.io/being24/latex-docker",
         "sh",
-        "/workdir/linter.sh",
+        "/workdir/bin/linter.sh",
     ],
 }

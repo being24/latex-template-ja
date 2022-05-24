@@ -3,5 +3,4 @@ result=''
 for file in $FILES;do
     result=$result$file' '
 done
-echo $result
 latexindent $result -c=/workdir/backups -l -w -s -rv

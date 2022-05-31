@@ -1,4 +1,5 @@
 #!/bin/bash
+
 git config --global --add safe.directory /workdir
 # 一つ前のコミットとこのコミットの差分
 latexdiff-vc -e utf8 -t CFONT --git --flatten --force -r HEAD main.tex

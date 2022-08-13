@@ -33,7 +33,7 @@ jobs:
           node-version: "14.x"
 
       - name: Restore cache if available
-        uses: actions/cache@v3.0.6
+        uses: actions/cache@v3.0.7
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -42,7 +42,7 @@ jobs:
 
       - name: Restore reviewdog if available
         id: reviewdogcache
-        uses: actions/cache@v3.0.6
+        uses: actions/cache@v3.0.7
         with:
           path: ~/bin
           key: ${{ runner.os }}-${{ env.REVIEWDOG_VER }}

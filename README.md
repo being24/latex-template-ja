@@ -9,9 +9,9 @@
 
 ## 環境
 
+* Windows 10 or later
 * macOS 10.14 or later
 * Ubuntu 18.04 LTS or later
-* Windows 10
 
 Docker環境が必要ですが、clsファイルについては多少弄ればCloud LaTeX等でも使用できます
 
@@ -25,6 +25,10 @@ Ubuntu 20.04 LTS上の TeX Live 2022を使用します
 また、VSCodeが必要です
 
 ![demo](figures/screenshot.png)
+
+## 使い方
+
+使い方やFAQはこの[記事](https://zenn.dev/being/articles/how-to-use-my-latex)にまとめています
 
 ## License
 
@@ -59,12 +63,6 @@ jlistingの代わりにmintedを使用し、参考文献はbiblatexを使用し�
 
 使用しやすい設定を参考程度ですが上げておきます。  
 VSCodeであればこの設定を読み込んでくれるため、設定を変更する必要はありません
-
-## gitのcommit間のdiffを出力する
-
-```sh
-git diff 前のID 後のID --diff-filter=ACMR ':(exclude)figures/' > ./diff.diff
-```
 
 ## 参考URL
 

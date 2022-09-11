@@ -63,7 +63,6 @@
         "*.gls",
         "*.ist",
         "*.fls",
-        "*.log",
         "*.fdb_latexmk",
         "*.synctex.gz",
         "_minted*",

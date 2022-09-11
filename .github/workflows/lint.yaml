@@ -28,12 +28,12 @@ jobs:
           fetch-depth: 1
 
       - name: Setup node environment
-        uses: actions/setup-node@v3.3.0
+        uses: actions/setup-node@v3.4.1
         with:
           node-version: "14.x"
 
       - name: Restore cache if available
-        uses: actions/cache@v3.0.4
+        uses: actions/cache@v3.0.8
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -42,7 +42,7 @@ jobs:
 
       - name: Restore reviewdog if available
         id: reviewdogcache
-        uses: actions/cache@v3.0.4
+        uses: actions/cache@v3.0.8
         with:
           path: ~/bin
           key: ${{ runner.os }}-${{ env.REVIEWDOG_VER }}

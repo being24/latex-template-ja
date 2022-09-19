@@ -17,7 +17,6 @@
 \columnsep 10 mm	%段の間の長さ
 
 \usepackage{secdot}	%sectionの数字の後のドット
-\usepackage[dvipdfmx]{graphicx}	%グラフ挿入
 \usepackage{setspace}
 \usepackage[labelsep=space]{caption}
 \usepackage{subcaption}

@@ -7,13 +7,15 @@ definitions:
     - step: &build-deploy
         name: Build PDF by latexmk
         script:
-          - bash bin/build.sh
+          - USE_DOCKER=no bash bin/build.sh
         artifacts:
           - main.log
           - main.pdf
         after-script:
           - bash bin/upload_bitbucket.sh
-image: pddg/latex:1.2.0
+        services:
+          - docker
+image: ghcr.io/being24/latex-docker:latest
 pipelines:
   branches:
     master:
@@ -21,4 +23,3 @@ pipelines:
   tags:
     v*:
       - step: *build-deploy
-

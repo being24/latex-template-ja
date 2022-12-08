@@ -1,4 +1,4 @@
-\ProvidesClass{resume}[2020/02/27 resume]
+\ProvidesClass{classes/resume}[2020/02/27 resume]
 
 \LoadClass[a4paper, two column, 9pt, uplatex]{jsarticle}	%A4, 2段, 字の大きさ
 \pagestyle{empty}	%ページ数

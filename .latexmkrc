@@ -8,4 +8,4 @@ $makeindex = 'mendex %O -o %D %S';
 $biber = 'biber --bblencoding=utf8 -u -U --output_safechars';
 
 $pdf_mode = 3;
-$max_repeat = 5;
+$max_repeat = 10;

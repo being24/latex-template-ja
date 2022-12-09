@@ -1,6 +1,6 @@
 \ProvidesClass{classes/report}[2021/02/16 report]
 
-\LoadClass[a4paper,11pt, uplatex]{jsreport}
+\LoadClass[a4paper,11pt,nomag,uplatex]{jsreport}
 
 \usepackage{subfiles}
 \usepackage{listings}
@@ -24,6 +24,7 @@
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}
 \captionsetup{compatibility=false}
+
 
 \newcommand{\code}[1]{\texttt{#1}}
 

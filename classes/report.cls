@@ -20,6 +20,8 @@
 \usepackage[dvipdfmx]{hyperref}
 \usepackage{pxjahyper}
 \usepackage{framed}
+\usepackage{type1cm}
+\usepackage{geometry}
 \usepackage[dvipdfmx]{pdfpages}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}

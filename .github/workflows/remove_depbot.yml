@@ -25,3 +25,9 @@ jobs:
       # remove files not needed for user instance of template
       - name: Remove unneeded files
         run: rm -f .github\dependabot.yml
+
+      # save changed files
+      - name: Commit changed files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Setup repo"

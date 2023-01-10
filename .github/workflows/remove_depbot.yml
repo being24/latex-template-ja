@@ -1,3 +1,4 @@
+# https://github.com/ad-m/github-push-action/issues/96#issuecomment-889984928
 name: first-time-setup
 run-name: first time setup of repo
 
@@ -16,6 +17,7 @@ jobs:
     if: github.run_number == 1
 
     runs-on: ubuntu-latest
+    permissions: read-all|write-all
 
     steps:
       # get main branch repo contents

@@ -17,7 +17,7 @@ jobs:
     if: github.run_number == 1
 
     runs-on: ubuntu-latest
-    permissions: read-all|write-all
+    permissions: write-all
 
     steps:
       # get main branch repo contents

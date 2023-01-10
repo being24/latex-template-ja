@@ -24,7 +24,7 @@ jobs:
 
       # remove files not needed for user instance of template
       - name: Remove unneeded files
-        run: rm -f .github\dependabot.yml
+        run: rm -f .github/dependabot.yml
 
       # save changed files
       - name: Commit changed files

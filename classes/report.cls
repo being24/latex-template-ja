@@ -7,7 +7,8 @@
 \usepackage{plistings}
 \usepackage{color}
 \usepackage[dvipdfmx]{graphicx}
-\usepackage{url}
+\usepackage[hyphens]{url}
+\urlstyle{same}
 \usepackage{siunitx}
 \usepackage{enumerate}
 \usepackage{paralist}

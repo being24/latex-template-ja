@@ -22,7 +22,8 @@
 \usepackage{subcaption}
 \usepackage{here}
 \usepackage{bm}
-\usepackage{url}
+\usepackage[hyphens]{url}
+\urlstyle{same}
 \usepackage{enumerate}
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[dvipdfmx]{color}

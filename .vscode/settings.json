@@ -2,27 +2,15 @@
     "latex-workshop.latex.tools": [
         {
             "name": "latexmk",
-            "command": "docker",
+            "command": "latexmk",
             "args": [
-                "run",
-                "--rm",
-                "-v",
-                "%DIR%:/workdir",
-                "ghcr.io/being24/latex-docker",
-                "latexmk",
-                "/workdir/%DOCFILE_EXT%"
+                "%DOCFILE_EXT%"
             ]
         },
         {
             "name": "diff",
-            "command": "docker",
+            "command": "sh",
             "args": [
-                "run",
-                "--rm",
-                "-v",
-                "%DIR%:/workdir",
-                "ghcr.io/being24/latex-docker",
-                "sh",
                 "/workdir/bin/diff.sh"
             ]
         },
@@ -78,14 +66,8 @@
         //"*.log",
         //"*/*.log"
     ],
-    "latex-workshop.latexindent.path": "docker",
+    "latex-workshop.latexindent.path": "sh",
     "latex-workshop.latexindent.args": [
-        "run",
-        "--rm",
-        "-v",
-        "%DIR%:/workdir",
-        "ghcr.io/being24/latex-docker",
-        "sh",
         "/workdir/bin/linter.sh",
     ],
 }

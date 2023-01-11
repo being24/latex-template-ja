@@ -70,4 +70,5 @@
     "latex-workshop.latexindent.args": [
         "/workdir/bin/linter.sh",
     ],
+    "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?．。，、（）「」［］｛｝《》てにをはがのともへでや",
 }

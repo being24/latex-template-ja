@@ -28,9 +28,9 @@
 *.bcf
 *.xml
 *.pdf
-.vscode/
 !.vscode/settings.json
 !.vscode/extensions.json
+.vscode/
 
 # Ignore node_modules
 node_modules/

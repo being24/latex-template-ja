@@ -1,6 +1,6 @@
 \ProvidesClass{classes/report}[2021/02/16 report]
 
-\LoadClass[a4paper,11pt,nomag,uplatex]{jsreport}
+\LoadClass[a4paper,11pt,uplatex]{jsreport}
 
 \usepackage{subfiles}
 \usepackage{listings}

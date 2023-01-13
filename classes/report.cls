@@ -1,6 +1,8 @@
 \ProvidesClass{classes/report}[2021/02/16 report]
 
-\LoadClass[a4paper,11pt,uplatex]{jsreport}
+\LoadClass[a4paper, 11pt, uplatex, dvipdfmx]{jsreport}
+\RequirePackage{plautopatch}
+\plautopatchdisable{eso-pic}
 
 \usepackage{subfiles}
 \usepackage{listings}
@@ -23,7 +25,6 @@
 \usepackage{framed}
 \usepackage{type1cm}
 \usepackage{geometry}
-\usepackage[dvipdfmx]{pdfpages}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}
 \captionsetup{compatibility=false}

@@ -42,7 +42,7 @@
 \usepackage{indentfirst}
 \usepackage{framed}
 \usepackage{type1cm}
-\usepackage[a4paper,truedimen,top=15truemm,bottom=25truemm,left=25truemm,right=25truemm]{geometry}
+\usepackage[truedimen,top=15truemm,bottom=25truemm,left=25truemm,right=25truemm]{geometry}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}
 \captionsetup{compatibility=false}

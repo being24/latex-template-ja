@@ -24,7 +24,7 @@
 \usepackage{pxjahyper}
 \usepackage{framed}
 \usepackage{type1cm}
-\usepackage[a4paper,truedimen,margin=25truemm]{geometry}
+\usepackage[truedimen,margin=25truemm]{geometry}
 \usepackage{pdfpages}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}

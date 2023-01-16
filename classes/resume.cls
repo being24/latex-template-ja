@@ -7,16 +7,16 @@
 \pagestyle{empty}	%ページ数
 \textheight 280 mm	%本文の長さ，下マージン=297-textheight-topmargin
 \textwidth 180 mm	%横幅
-\setlength{\hoffset}{-2.54mm}	%横オフセット
-\setlength{\voffset}{-30mm}	%縦オフセット
-\setlength{\oddsidemargin}{0mm}	%左余白幅
-\setlength{\evensidemargin}{0mm}
-\setlength{\topmargin}{20.0mm}	%上マージン
+% \setlength{\hoffset}{-2.54mm}	%横オフセット
+% \setlength{\voffset}{-30mm}	%縦オフセット
+% \setlength{\oddsidemargin}{0mm}	%左余白幅
+% \setlength{\evensidemargin}{0mm}
+% \setlength{\topmargin}{20.0mm}	%上マージン
 \setlength{\headheight}{0.0mm}
 \setlength{\headsep}{0.0mm}
-\setlength{\marginparsep}{0.0mm}
-\setlength{\marginparwidth}{0.0mm}
-\setlength{\footskip}{0.0mm}
+% \setlength{\marginparsep}{0.0mm}
+% \setlength{\marginparwidth}{0.0mm}
+% \setlength{\footskip}{0.0mm}
 \columnsep 10 mm	%段の間の長さ
 
 \usepackage{secdot}	%sectionの数字の後のドット
@@ -42,7 +42,7 @@
 \usepackage{indentfirst}
 \usepackage{framed}
 \usepackage{type1cm}
-\usepackage{geometry}
+\usepackage[a4paper,truedimen,top=15truemm,bottom=25truemm,left=25truemm,right=25truemm]{geometry}
 \usepackage[backend=biber,style=ieee]{biblatex}
 \addbibresource{references.bib}
 \captionsetup{compatibility=false}

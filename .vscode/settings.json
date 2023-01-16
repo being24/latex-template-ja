@@ -71,4 +71,5 @@
         "/workdir/bin/linter.sh",
     ],
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?．。，、（）「」［］｛｝《》てにをはがのともへでや",
+    "editor.formatOnSave": false
 }

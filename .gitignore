@@ -37,6 +37,7 @@ node_modules/
 main.bcf
 
 _minted-main*
+tmp/
 
 __latexindent_temp.tex
 *.bak

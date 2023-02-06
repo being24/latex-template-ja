@@ -1,69 +1,78 @@
-\ProvidesClass{classes/resume}[2020/02/27 resume]
+\ProvidesClass{classes/resume}[2023/02/06 resume]
 
-\LoadClass[a4paper, two column, 9pt, uplatex, dvipdfmx]{jsarticle}	%A4, 2段, 字の大きさ
+% (u)pLaTeX非互換パッケージに対して互換させるパッチを読み込む命令
 \RequirePackage{plautopatch}
-\plautopatchdisable{eso-pic}
 
-\pagestyle{empty}	%ページ数
-\textheight 280 mm	%本文の長さ，下マージン=297-textheight-topmargin
-\textwidth 180 mm	%横幅
-% \setlength{\hoffset}{-2.54mm}	%横オフセット
-% \setlength{\voffset}{-30mm}	%縦オフセット
-% \setlength{\oddsidemargin}{0mm}	%左余白幅
-% \setlength{\evensidemargin}{0mm}
-% \setlength{\topmargin}{20.0mm}	%上マージン
-\setlength{\headheight}{0.0mm}
-\setlength{\headsep}{0.0mm}
-% \setlength{\marginparsep}{0.0mm}
-% \setlength{\marginparwidth}{0.0mm}
-% \setlength{\footskip}{0.0mm}
-\columnsep 10 mm	%段の間の長さ
+% 2カラム,A4,フォントサイズ9pt
+\LoadClass[
+    two column,
+    paper=a4,
+    fontsize=9pt,
+    disablejfam,
+    head_space=20mm,
+    foot_space=20mm,
+    gutter=15mm,
+    fore-edge=15mm,
+    column_gap=10mm,
+    ]{jlreq}
 
-\usepackage{secdot}	%sectionの数字の後のドット
-\usepackage{setspace}
-\usepackage[labelsep=space]{caption}
+\usepackage{secdot} % sectionの数字の後のドットの制御
+\sectiondot{subsection}
+\usepackage{setspace} % 行間設定用パッケージ
+\setstretch{1} % 行間設定
+\usepackage{caption} % キャプションとサブキャプションのパッケージ
 \usepackage{subcaption}
-\usepackage{here}
-\usepackage{bm}
-\usepackage[hyphens]{url}
-\urlstyle{same}
-\usepackage{enumerate}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage[dvipdfmx]{color}
-\usepackage{titlesec}
-\usepackage{minijs}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{amsmath}
-\usepackage{siunitx}
-\usepackage{times}
-\usepackage{subfiles}
-\usepackage{color}
-\usepackage{indentfirst}
-\usepackage{framed}
-\usepackage{type1cm}
-\usepackage[top=15truemm,bottom=25truemm,left=25truemm,right=25truemm]{geometry}
-\usepackage[backend=biber,style=ieee]{biblatex}
+\usepackage{here} % 好きな位置にfigなどを置くためのパッケージ
+\usepackage{bm} % ベクトルを大文字で書くためのパッケージ
+\usepackage[hyphens]{url} % URLを表示するためのパッケージ、ハイフンでの改行を許可
+\urlstyle{same} % URLの表示形式を本文と同じにする
+\usepackage{enumerate} % 高機能番号付き箇条書きのパッケージ
+\usepackage[dvipdfmx]{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
+\usepackage{amssymb, amsmath} % 高度な数式記述用パッケージ
+\usepackage[T1]{fontenc} % 欧文フォントを標準以外に
+\usepackage{times} % 欧文、数式のフォントをtimes系に
+\usepackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
+\usepackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
+\usepackage{indentfirst} % 最初の段落でインデントするためのパッケージ
+\usepackage[backend=biber,style=ieee]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}
-\captionsetup{compatibility=false}
+\usepackage[dvipdfmx]{hyperref} % ハイパーリンクをつけるためのパッケージ
+\usepackage{pxjahyper} % しおりを日本語化するためのパッケージ
+% \usepackage{titlesec} % sectionやsubsectionなどの書式を変更するためのパッケージ
 
+%ページ数の書式
+\pagestyle{empty}
 
-\setstretch{0.8}
+% キャプションとサブキャプションの設定
+\captionsetup[figure]{labelsep=space, compatibility=false, name=Fig.}
+\captionsetup[subfigure]{labelsep=space, labelformat=simple, compatibility=false, name=Fig.}
+\captionsetup[table]{labelsep=space, compatibility=false, name=Table}
 
-\captionsetup[subfigure]{labelformat=simple}
-\captionsetup{compatibility=false}
+% sectionのサイズを合わせる
+\RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
+\RenewBlockHeading{subsection}{2}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
+\RenewBlockHeading{subsubsection}{3}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
+
+% % セクション類の空白の設定
+\ModifyHeading{section}{before_space=5pt, after_space=5pt}
+\ModifyHeading{subsection}{before_space=5pt, after_space=5pt}
+\ModifyHeading{subsubsection}{before_space=5pt, after_space=5pt}
 
 \makeatletter
-\renewcommand{\figurename}{\normalsize Fig.}%\small
-\renewcommand{\tablename}{\normalsize Table.}
-\renewcommand*{\thesubfigure}{(\alph{subfigure})}
+\renewcommand{\@maketitle}{\newpage
+    \centering
+    \fontsize{14truept}{14truept}\selectfont
+    \@title
+    \par
+
+    \vspace{.5\jlreq@zh}
+    \fontsize{10truept}{10truept}\selectfont
+    \@author
+    \par
+    \vspace{2\jlreq@zh}
+}
+\normalsize
 \makeatother
 
-\newcommand{\bvec}[1]{\mbox{\boldmath $#1$}}
-\makeatletter
-\def\section{\@startsection {section}{1}{\z@}{ -1.5ex plus 2ex minus 0.0ex} {0.1ex plus 0.1ex}{\normalsize\gt}}		%sectionの上の空白幅
-\def\subsection{\@startsection {subsection}{1}{\z@}{ -0.8ex plus 2ex minus 0.0ex} {0.5ex plus 0.1ex}{\normalsize\gt}}	%sectionの下の空白幅
-\makeatother
 
-\captionsetup[subfigure]{labelformat=simple}
-\renewcommand{\thesubfigure}{(\alph{subfigure})}
+% フォントの埋め込み設定

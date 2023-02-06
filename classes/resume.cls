@@ -13,8 +13,8 @@
     foot_space=20mm,
     gutter=15mm,
     fore-edge=15mm,
-    column_gap=10mm,
-    ]{jlreq}
+    column_gap=10mm]
+    {jlreq}
 
 \usepackage{secdot} % sectionの数字の後のドットの制御
 \sectiondot{subsection}
@@ -38,7 +38,6 @@
 \addbibresource{references.bib}
 \usepackage[dvipdfmx]{hyperref} % ハイパーリンクをつけるためのパッケージ
 \usepackage{pxjahyper} % しおりを日本語化するためのパッケージ
-% \usepackage{titlesec} % sectionやsubsectionなどの書式を変更するためのパッケージ
 
 %ページ数の書式
 \pagestyle{empty}
@@ -53,11 +52,12 @@
 \RenewBlockHeading{subsection}{2}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
 \RenewBlockHeading{subsubsection}{3}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
 
-% % セクション類の空白の設定
+% セクション類の空白の設定
 \ModifyHeading{section}{before_space=5pt, after_space=5pt}
 \ModifyHeading{subsection}{before_space=5pt, after_space=5pt}
 \ModifyHeading{subsubsection}{before_space=5pt, after_space=5pt}
 
+% タイトルの設定
 \makeatletter
 \renewcommand{\@maketitle}{\newpage
     \centering
@@ -73,6 +73,3 @@
 }
 \normalsize
 \makeatother
-
-
-% フォントの埋め込み設定

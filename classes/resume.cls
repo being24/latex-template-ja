@@ -19,7 +19,7 @@
 \usepackage{secdot} % sectionの数字の後のドットの制御
 \sectiondot{subsection}
 \usepackage{setspace} % 行間設定用パッケージ
-\setstretch{1} % 行間設定
+\setstretch{0.8} % 行間設定
 \usepackage{caption} % キャプションとサブキャプションのパッケージ
 \usepackage{subcaption}
 \usepackage{here} % 好きな位置にfigなどを置くためのパッケージ

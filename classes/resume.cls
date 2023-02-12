@@ -54,9 +54,12 @@
 \RenewBlockHeading{subsubsection}{3}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
 
 % セクション類の空白の設定
-\ModifyHeading{section}{before_space=5pt, after_space=5pt}
-\ModifyHeading{subsection}{before_space=5pt, after_space=5pt}
-\ModifyHeading{subsubsection}{before_space=5pt, after_space=5pt}
+% \ModifyHeading{section}{before_space=5pt, after_space=5pt}
+% \ModifyHeading{subsection}{before_space=5pt, after_space=5pt}
+% \ModifyHeading{subsubsection}{before_space=5pt, after_space=5pt}
+\ModifyHeading{section}{lines=1}
+\ModifyHeading{subsection}{lines=1}
+\ModifyHeading{subsubsection}{lines=1}
 
 % タイトルの設定
 \makeatletter

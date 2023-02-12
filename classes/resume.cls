@@ -38,6 +38,7 @@
 \addbibresource{references.bib}
 \usepackage[dvipdfmx]{hyperref} % ハイパーリンクをつけるためのパッケージ
 \usepackage{pxjahyper} % しおりを日本語化するためのパッケージ
+\usepackage{tabularx} % 表の幅を指定するためのパッケージ
 
 %ページ数の書式
 \pagestyle{empty}

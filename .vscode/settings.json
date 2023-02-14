@@ -30,7 +30,6 @@
         },
     ],
     "latex-workshop.latex.autoBuild.run": "never",
-    "latex-workshop.latex.watch.delay": 1000,
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.latex.autoClean.run": "onBuilt",
     "latex-workshop.latex.clean.fileTypes": [

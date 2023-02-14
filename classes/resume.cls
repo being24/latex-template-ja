@@ -46,6 +46,7 @@
 % キャプションとサブキャプションの設定
 \captionsetup[figure]{labelsep=space, compatibility=false, name=Fig.}
 \captionsetup[subfigure]{labelsep=space, labelformat=simple, compatibility=false, name=Fig.}
+\renewcommand*{\thesubfigure}{(\alph{subfigure})}
 \captionsetup[table]{labelsep=space, compatibility=false, name=Table}
 
 % sectionのサイズを合わせる

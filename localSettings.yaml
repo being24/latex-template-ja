@@ -228,19 +228,19 @@ indentAfterHeadings:
     indentAfterThisHeading: 0
     level: 3
   subsection:
-    indentAfterThisHeading: 4
+    indentAfterThisHeading: 0
     level: 4
   subsection*:
-    indentAfterThisHeading: 4
+    indentAfterThisHeading: 0
     level: 4
   subsubsection:
-    indentAfterThisHeading: 4
+    indentAfterThisHeading: 0
     level: 5
   paragraph:
-    indentAfterThisHeading: 4
+    indentAfterThisHeading: 0
     level: 6
   subparagraph:
-    indentAfterThisHeading: 4
+    indentAfterThisHeading: 0
     level: 7
 
 # maximum indentation, off by default
@@ -311,10 +311,10 @@ commandCodeBlocks:
   roundParenthesesAllowed: 1
   stringsAllowedBetweenArguments:
     - amalgamate: 1
-    - "node"
-    - "at"
-    - "to"
-    - "decoration"
+    - 'node'
+    - 'at'
+    - 'to'
+    - 'decoration'
     - '\+\+'
     - '\-\-'
     - '\#\#\d'
@@ -564,8 +564,8 @@ modifyLineBreaks:
 # replacements, only active when either -r or -rr switches are active
 replacements:
   - amalgamate: 1
-  - this: "latexindent.pl"
-    that: "pl.latexindent"
+  - this: 'latexindent.pl'
+    that: 'pl.latexindent'
     lookForThis: 1
     when: before
   - this: "　"
@@ -603,4 +603,4 @@ fineTuning:
   modifyLineBreaks:
     betterFullStop: '(?:\.\)(?!\h*[a-z]))|(?:(?<!(?:(?:e\.g)|(?:i\.e)|(?:etc))))\.(?!(?:[a-z]|[A-Z]|\-|~|\,|[0-9]))'
     doubleBackSlash: '\\\\(?:\h*\[\h*\d+\h*[a-zA-Z]+\h*\])?'
-    comma: ","
+    comma: ','

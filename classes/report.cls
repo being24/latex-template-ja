@@ -41,9 +41,6 @@
 \usepackage{pxjahyper} % しおりを日本語化するためのパッケージ
 \usepackage{tabularx} % 表の幅を指定するためのパッケージ
 
-%ページ数の書式
-\pagestyle{empty}
-
 % キャプションとサブキャプションの設定
 \captionsetup[figure]{labelsep=space, compatibility=false, name=Fig.}
 \captionsetup[subfigure]{labelsep=space, labelformat=simple, compatibility=false, name=Fig.}

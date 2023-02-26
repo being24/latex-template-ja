@@ -30,7 +30,7 @@ Ubuntu 20.04 LTS上の TeX Live 2022を使用します
 
 また、VSCodeが必要です
 
-![demo](figures/screenshot.png)
+![demo](example/figures/screenshot.png)
 
 ## 使い方
 

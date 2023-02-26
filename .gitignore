@@ -42,3 +42,5 @@ tmp/
 __latexindent_temp.tex
 *.bak
 *.bak[0-9]
+
+__*.tex

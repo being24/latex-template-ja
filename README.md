@@ -58,12 +58,12 @@ jlistingの代わりにmintedを使用し、参考文献はbiblatexを使用し�
 ### resume.cls
 
 [resume.cls](/classes/resume.cls)は2段組みのレジュメを作成するためのクラスファイルです  
-使用方法は[例](/example/resume_template.tex)を参照してください
+使用方法は[例](/example/tex/resume_template.tex)を参照してください
 
 ### report.cls
 
 [report.cls](/classes/report.cls)は論文を作成するためのクラスファイルです  
-使用方法は[例](/example/report_template.tex)を参照してください
+使用方法は[例](/example/tex/report_template.tex)を参照してください
 
 ### .vscode/settings.jsonについて
 

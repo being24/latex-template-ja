@@ -1,7 +1,6 @@
 #!/usr/bin/env perl
 
-$latex = 'uplatex  -synctex=1 -interaction=nonstopmode -file-line-error -halt-on-error --shell-escape %S';
-$latex_silent = 'uplatex  -synctex=1 -file-line-error -halt-on-error -interaction=batchmode';
+$latex = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error -halt-on-error --shell-escape %S';
 $bibtex = 'upbibtex';
 $dvipdf = 'dvipdfmx %O -o %D %S';
 $makeindex = 'mendex %O -o %D %S';

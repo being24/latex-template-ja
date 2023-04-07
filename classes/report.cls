@@ -15,6 +15,7 @@
     report]
     {jlreq}
 
+\usepackage{luatexja} % LuaLaTeXに移行
 \usepackage{setspace} % 行間設定用パッケージ
 \usepackage{caption} % キャプションとサブキャプションのパッケージ
 \usepackage{subcaption}
@@ -24,7 +25,7 @@
 \urlstyle{same} % URLの表示形式を本文と同じにする
 \usepackage{enumerate} % 高機能番号付き箇条書きのパッケージ
 \usepackage{paralist} % インラインリストのパッケージ
-\usepackage[dvipdfmx]{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
+\usepackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
 \usepackage{amssymb, amsmath} % 高度な数式記述用パッケージ
 \usepackage{mathtools} % 高度な数式記述用パッケージ
 \usepackage[T1]{fontenc} % 欧文フォントを標準以外に
@@ -35,11 +36,11 @@
 \usepackage{indentfirst} % 最初の段落でインデントするためのパッケージ
 \usepackage{framed} % 囲み付き文章を出すためのパッケージ
 \usepackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
-\usepackage[backend=biber,style=ieee]{biblatex} % biblatexを使用するためのパッケージ
-\addbibresource{references.bib}
-\usepackage[dvipdfmx]{hyperref} % ハイパーリンクをつけるためのパッケージ
-\usepackage{pxjahyper} % しおりを日本語化するためのパッケージ
+\usepackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ
 \usepackage{tabularx} % 表の幅を指定するためのパッケージ
+\usepackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
+\addbibresource{references.bib}
+\DeclareFieldFormat{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 
 % キャプションとサブキャプションの設定
 \captionsetup[figure]{labelsep=space, compatibility=false, name=Fig.}

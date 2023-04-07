@@ -16,6 +16,7 @@
     column_gap=10mm]
     {jlreq}
 
+\usepackage{luatexja} % LuaLaTeXに移行
 \usepackage{secdot} % sectionの数字の後のドットの制御
 \sectiondot{subsection}
 \usepackage{setspace} % 行間設定用パッケージ
@@ -27,7 +28,7 @@
 \usepackage[hyphens]{url} % URLを表示するためのパッケージ、ハイフンでの改行を許可
 \urlstyle{same} % URLの表示形式を本文と同じにする
 \usepackage{enumerate} % 高機能番号付き箇条書きのパッケージ
-\usepackage[dvipdfmx]{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
+\usepackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
 \usepackage{amssymb, amsmath} % 高度な数式記述用パッケージ
 \usepackage{mathtools} % 高度な数式記述用パッケージ
 \usepackage[T1]{fontenc} % 欧文フォントを標準以外に
@@ -35,11 +36,11 @@
 \usepackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
 \usepackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
 \usepackage{indentfirst} % 最初の段落でインデントするためのパッケージ
-\usepackage[backend=biber,style=ieee]{biblatex} % biblatexを使用するためのパッケージ
-\addbibresource{references.bib}
-\usepackage[dvipdfmx]{hyperref} % ハイパーリンクをつけるためのパッケージ
-\usepackage{pxjahyper} % しおりを日本語化するためのパッケージ
+\usepackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ
 \usepackage{tabularx} % 表の幅を指定するためのパッケージ
+\usepackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
+\addbibresource{references.bib}
+\DeclareFieldFormat{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 
 %ページ数の書式
 \pagestyle{empty}

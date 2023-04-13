@@ -28,8 +28,8 @@
 \usepackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
 \usepackage{amssymb, amsmath} % 高度な数式記述用パッケージ
 \usepackage{mathtools} % 高度な数式記述用パッケージ
+\usepackage{tgtermes} % 欧文、数式のフォントをtimes系に
 \usepackage[T1]{fontenc} % 欧文フォントを標準以外に
-\usepackage{times} % 欧文、数式のフォントをtimes系に
 \usepackage{minted} % ソースコード表示の用パッケージ
 \usepackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
 \usepackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ

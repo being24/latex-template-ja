@@ -28,6 +28,7 @@
 *.bcf
 *.xml
 *.pdf
+!figures/*.pdf
 !.vscode/settings.json
 !.vscode/extensions.json
 .vscode/

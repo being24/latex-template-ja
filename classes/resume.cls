@@ -26,7 +26,7 @@
 \usepackage{subcaption}
 \usepackage{here} % 好きな位置にfigなどを置くためのパッケージ
 \usepackage{bm} % ベクトルを大文字で書くためのパッケージ
-\usepackage[hyphens]{url} % URLを表示するためのパッケージ、ハイフンでの改行を許可
+\usepackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
 \urlstyle{same} % URLの表示形式を本文と同じにする
 \usepackage{enumerate} % 高機能番号付き箇条書きのパッケージ
 \usepackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ

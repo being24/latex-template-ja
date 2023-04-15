@@ -16,6 +16,7 @@
     column_gap=10mm]
     {jlreq}
 
+\PassOptionsToPackage{hyphens}{url}
 \usepackage{luatexja} % LuaLaTeXに移行
 \usepackage{secdot} % sectionの数字の後のドットの制御
 \sectiondot{subsection}

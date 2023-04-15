@@ -15,6 +15,7 @@
     report]
     {jlreq}
 
+\PassOptionsToPackage{hyphens}{url}
 \usepackage{luatexja} % LuaLaTeXに移行
 \usepackage{setspace} % 行間設定用パッケージ
 \usepackage{caption} % キャプションとサブキャプションのパッケージ

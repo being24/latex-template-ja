@@ -29,9 +29,6 @@
 *.xml
 *.pdf
 !figures/*.pdf
-!.vscode/settings.json
-!.vscode/extensions.json
-.vscode/
 
 # Ignore node_modules
 node_modules/

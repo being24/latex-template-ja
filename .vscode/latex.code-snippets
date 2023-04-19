@@ -1,0 +1,16 @@
+{
+    "subfile template": {
+        "prefix": "subfile",
+        // "scope": "text.tex.latex",
+        "body": [
+          "%! TEX root = ../main.tex",
+          "\\documentclass[main]{subfiles}",
+          "",
+          "\\begin{document}",
+          "",
+          "\\end{document}",
+          ""
+        ],
+        "description": "subfile template"
+      }
+}

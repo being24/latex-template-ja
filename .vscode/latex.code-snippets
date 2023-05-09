@@ -1,16 +1,29 @@
 {
-    "subfile template": {
-        "prefix": "subfile",
-        // "scope": "text.tex.latex",
-        "body": [
-          "%! TEX root = ../main.tex",
-          "\\documentclass[main]{subfiles}",
-          "",
-          "\\begin{document}",
-          "",
-          "\\end{document}",
-          ""
-        ],
-        "description": "subfile template"
-      }
+  "subfile template": {
+      "prefix": "subfile",
+      // "scope": "text.tex.latex",
+      "body": [
+        "%! TEX root = ../main.tex",
+        "\\documentclass[main]{subfiles}",
+        "",
+        "\\begin{document}",
+        "",
+        "\\end{document}",
+        ""
+      ],
+      "description": "subfile template"
+    },
+  "figure template": {
+      "prefix": "figure",
+      // "scope": "text.tex.latex",
+      "body": [
+        "\\begin{figure}[htbp]",
+        "    \\centering",
+        "    \\includegraphics[keepaspectratio, width=\\linewidth]{${1:figures}}",
+        "    \\caption{${2:caption}}",
+        "    \\label{fig:${3:label}}",
+        "\\end{figure}"
+      ],
+      "description": "figure template"
+    },
 }

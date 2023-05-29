@@ -1,7 +1,7 @@
 \ProvidesClass{classes/report}[2023/02/20 report]
 
 % (u)pLaTeX非互換パッケージに対して互換させるパッチを読み込む命令
-\RequirePackage{plautopatch}
+% \RequirePackage{plautopatch}
 
 % 2カラム,A4,フォントサイズ9pt
 \LoadClass[
@@ -44,10 +44,10 @@
 \DeclareFieldFormat{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 
 % キャプションとサブキャプションの設定
-\captionsetup[figure]{labelsep=space, compatibility=false, name=Fig.}
-\captionsetup[subfigure]{labelsep=space, labelformat=simple, compatibility=false, name=Fig.}
+\captionsetup[figure]{labelsep=space, name=Fig.}
+\captionsetup[subfigure]{labelsep=space, labelformat=simple, name=Fig.}
 \renewcommand*{\thesubfigure}{(\alph{subfigure})}
-\captionsetup[table]{labelsep=space, compatibility=false, name=Table}
+\captionsetup[table]{labelsep=space, name=Table}
 
 % sectionのサイズを合わせる
 \RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=1\jlreq@zw}

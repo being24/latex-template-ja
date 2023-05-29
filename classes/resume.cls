@@ -47,10 +47,10 @@
 \pagestyle{empty}
 
 % キャプションとサブキャプションの設定
-\captionsetup[figure]{labelsep=space, compatibility=false, name=Fig.}
-\captionsetup[subfigure]{labelsep=space, labelformat=simple, compatibility=false, name=Fig.}
+\captionsetup[figure]{labelsep=space, name=Fig.}
+\captionsetup[subfigure]{labelsep=space, labelformat=simple, name=Fig.}
 \renewcommand*{\thesubfigure}{(\alph{subfigure})}
-\captionsetup[table]{labelsep=space, compatibility=false, name=Table}
+\captionsetup[table]{labelsep=space, name=Table}
 
 % sectionのサイズを合わせる
 \RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}

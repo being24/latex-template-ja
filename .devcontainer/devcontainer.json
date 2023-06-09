@@ -13,7 +13,9 @@
 		}
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workdir,type=bind",
-	"workspaceFolder": "/workdir"
+	"workspaceFolder": "/workdir",
+	// "postCreateCommand": "curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && apt update && apt install -y nodejs && npm install -g"
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

@@ -13,8 +13,7 @@
 		}
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workdir,type=bind",
-	"workspaceFolder": "/workdir",
-	"postCreateCommand": "npm install"
+	"workspaceFolder": "/workdir"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

@@ -41,6 +41,8 @@
 \usepackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
 \usepackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ
 \usepackage{tabularx} % 表の幅を指定するためのパッケージ
+\usepackage{multirow} % 複数行を結合するパッケージ
+\usepackage{multicolumn} % 複数列を結合するパッケージ
 \usepackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}
 \DeclareFieldFormat{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に

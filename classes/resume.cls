@@ -34,9 +34,11 @@
 \usepackage{mathtools} % 高度な数式記述用パッケージ
 \usepackage{tgtermes} % 欧文、数式のフォントをtimes系に
 \usepackage[T1]{fontenc} % 欧文フォントを標準以外に
+\usepackage{minted} % ソースコード表示の用パッケージ
 \usepackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
 \usepackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
 \usepackage{indentfirst} % 最初の段落でインデントするためのパッケージ
+\usepackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
 \usepackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ
 \usepackage{tabularx} % 表の幅を指定するためのパッケージ
 \usepackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
@@ -45,6 +47,9 @@
 
 %ページ数の書式
 \pagestyle{empty}
+
+% figの余白の調整
+% \setlength{\intextsep}{0pt}
 
 % キャプションとサブキャプションの設定
 \captionsetup[figure]{labelsep=space, name=Fig.}

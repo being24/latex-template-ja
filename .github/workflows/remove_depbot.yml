@@ -22,7 +22,7 @@ jobs:
     steps:
       # get main branch repo contents
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # remove files not needed for user instance of template
       - name: Remove unneeded files

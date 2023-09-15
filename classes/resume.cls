@@ -71,6 +71,12 @@
 % \ModifyHeading{subsection}{lines=1}
 % \ModifyHeading{subsubsection}{lines=1}
 
+% セクションが連続する際の行取りを設定
+\SetBlockHeadingSpaces{
+    {_section{*},_subsection{before_space=0pt, after_space=5pt}}
+    {_subsection{*},_subsubsection{before_space=0pt, after_space=5pt}}
+}
+
 % figの余白の調整
 % \setlength{\intextsep}{0pt}
 
@@ -78,12 +84,12 @@
 \makeatletter
 \renewcommand{\@maketitle}{\newpage
     \centering
-    \fontsize{14truept}{14truept}\selectfont
+    \fontsize{14pt}{14pt}\selectfont
     \@title
     \par
 
     \vspace{.5\jlreq@zh}
-    \fontsize{10truept}{10truept}\selectfont
+    \fontsize{10pt}{10pt}\selectfont
     \@author
     \par
     \vspace{2\jlreq@zh}

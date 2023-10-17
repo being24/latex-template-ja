@@ -16,8 +16,10 @@
     column_gap=10mm]
     {jlreq}
 
+\RequirePackage{ifptex}
+\RequirePackage{ifluatex}
+
 \PassOptionsToPackage{hyphens}{url}
-\usepackage{luatexja} % LuaLaTeXに移行
 \usepackage{secdot} % sectionの数字の後のドットの制御
 \sectiondot{subsection}
 \usepackage{setspace} % 行間設定用パッケージ
@@ -40,7 +42,23 @@
 \usepackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
 \usepackage{indentfirst} % 最初の段落でインデントするためのパッケージ
 \usepackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
-\usepackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ
+
+\ifptex
+    \ifnativeuptex
+    %upLaTeX
+        \usepackage[dvipdfmx,unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線を消す、pdfのメタデータをタイトルにする
+    \else
+    %pLaTeX
+    \fi
+\fi
+
+\ifluatex
+    % LuaLaTeX
+    \usepackage{luatexja}
+    \usepackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線罫線を消す、pdfのメタデータをタイトルにする、pdfのバージョンを1.4にする
+    % \usepackage{hyperxmp} % PDFのメタデータを設定するためのパッケージ
+\fi
+
 \usepackage{tabularx} % 表の幅を指定するためのパッケージ
 \usepackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}

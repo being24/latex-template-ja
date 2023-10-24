@@ -40,6 +40,7 @@
 \usepackage{indentfirst} % 最初の段落でインデントするためのパッケージ
 \usepackage{framed} % 囲み付き文章を出すためのパッケージ
 \usepackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
+\usepackage{tikz} % 図を描くためのパッケージ
 
 \ifptex
     \ifnativeuptex

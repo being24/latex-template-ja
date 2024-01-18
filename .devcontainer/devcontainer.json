@@ -13,7 +13,8 @@
 		}
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workdir,type=bind",
-	"workspaceFolder": "/workdir"
+	"workspaceFolder": "/workdir",
+	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

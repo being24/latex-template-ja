@@ -34,7 +34,7 @@ jobs:
 
       # 生成したPDFをGitHub Actionsにアップロードする
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pdf
           # アップロードするファイルを変更する場合、以下を変える

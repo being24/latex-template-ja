@@ -64,10 +64,10 @@
 \DeclareFieldFormat{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 
 % キャプションとサブキャプションの設定
-\captionsetup[figure]{labelsep=space, name=Fig.}
+\captionsetup[figure]{labelsep=space, labelformat=simple, name=Fig.}
 \captionsetup[subfigure]{labelsep=space, labelformat=simple, name=Fig.}
 \renewcommand*{\thesubfigure}{(\alph{subfigure})}
-\captionsetup[table]{labelsep=space, name=Table}
+\captionsetup[table]{labelsep=space, labelformat=simple, name=Table}
 
 % sectionのサイズを合わせる
 \RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=1\jlreq@zw}

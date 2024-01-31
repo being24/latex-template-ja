@@ -71,10 +71,10 @@
 % \setlength{\intextsep}{0pt}
 
 % キャプションとサブキャプションの設定
-\captionsetup[figure]{labelsep=space, name=Fig.}
+\captionsetup[figure]{labelsep=space, labelformat=simple, name=Fig.}
 \captionsetup[subfigure]{labelsep=space, labelformat=simple, name=Fig.}
 \renewcommand*{\thesubfigure}{(\alph{subfigure})}
-\captionsetup[table]{labelsep=space, name=Table}
+\captionsetup[table]{labelsep=space, labelformat=simple, name=Table}
 
 % sectionのサイズを合わせる
 \RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}

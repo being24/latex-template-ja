@@ -63,6 +63,7 @@
 \addbibresource{references.bib}
 \DeclareFieldFormat*{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 \DeclareFieldFormat*{title}{\textit{#1}}
+\DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}
 
 % キャプションとサブキャプションの設定
 \captionsetup[figure]{labelsep=space, labelformat=simple, name=Fig.}

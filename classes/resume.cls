@@ -62,7 +62,8 @@
 \usepackage{tabularx} % 表の幅を指定するためのパッケージ
 \usepackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}
-\DeclareFieldFormat{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
+\DeclareFieldFormat*{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
+\DeclareFieldFormat*{title}{\textit{#1}}
 
 %ページ数の書式
 \pagestyle{empty}

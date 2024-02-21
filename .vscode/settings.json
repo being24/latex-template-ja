@@ -16,7 +16,7 @@
         },
         {
             "name": "svg2png",
-            "command": "sh",
+            "command": "bash",
             "args": [
                 "/workdir/bin/svg2png.sh"
             ]
@@ -44,7 +44,7 @@
     ],
     "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.view.pdf.viewer": "tab",
-    "latex-workshop.latex.autoClean.run": "onFailed",
+    "latex-workshop.latex.autoClean.run": "never",
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
         "*.bbl",

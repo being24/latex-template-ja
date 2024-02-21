@@ -65,6 +65,7 @@
 \DeclareFieldFormat*{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 \DeclareFieldFormat*{title}{\textit{#1}}
 \DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}
+\DeclareFieldFormat[book]{title}{\textit{#1}}
 
 
 %ページ数の書式

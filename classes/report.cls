@@ -19,32 +19,33 @@
 \RequirePackage{ifluatex}
 
 \PassOptionsToPackage{hyphens}{url}
-\usepackage{setspace} % 行間設定用パッケージ
-\usepackage{caption} % キャプションとサブキャプションのパッケージ
-\usepackage{subcaption}
-\usepackage{here} % 好きな位置にfigなどを置くためのパッケージ
-\usepackage{bm} % ベクトルを大文字で書くためのパッケージ
-\usepackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
+\RequirePackage{setspace} % 行間設定用パッケージ
+\RequirePackage{caption} % キャプションとサブキャプションのパッケージ
+\RequirePackage{subcaption}
+\RequirePackage{here} % 好きな位置にfigなどを置くためのパッケージ
+\RequirePackage{bm} % ベクトルを大文字で書くためのパッケージ
+\RequirePackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
 \urlstyle{same} % URLの表示形式を本文と同じにする
-\usepackage{paralist} % インラインリストのパッケージ
-\usepackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
-\usepackage{amssymb, amsmath} % 高度な数式記述用パッケージ
-\usepackage{mathtools} % 高度な数式記述用パッケージ
-\usepackage{tabularray} % 高度な表組み用パッケージ
-\usepackage{tgtermes} % 欧文、数式のフォントをtimes系に
-\usepackage[T1]{fontenc} % 欧文フォントをT1エンコーディングに
-% \usepackage{minted} % ソースコード表示の用パッケージ
-\usepackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
-\usepackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
-\usepackage{indentfirst} % 最初の段落でインデントするためのパッケージ
-\usepackage{framed} % 囲み付き文章を出すためのパッケージ
-\usepackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
-\usepackage{tikz} % 図を描くためのパッケージ
+\RequirePackage{paralist} % インラインリストのパッケージ
+\RequirePackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
+\RequirePackage{amssymb, amsmath} % 高度な数式記述用パッケージ
+\RequirePackage{mathtools} % 高度な数式記述用パッケージ
+\RequirePackage{tabularray} % 高度な表組み用パッケージ
+\RequirePackage[T1]{fontenc} % 欧文フォントをT1エンコーディングに
+\RequirePackage{newtxmath} % 数式フォントをnewtxmathにする
+\RequirePackage{tgtermes} % 本文フォントをTeX Gyre Termesにする
+% \RequirePackage{minted} % ソースコード表示の用パッケージ
+\RequirePackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
+\RequirePackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
+\RequirePackage{indentfirst} % 最初の段落でインデントするためのパッケージ
+\RequirePackage{framed} % 囲み付き文章を出すためのパッケージ
+\RequirePackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
+\RequirePackage{tikz} % 図を描くためのパッケージ
 
 \ifptex
     \ifnativeuptex
     %upLaTeX
-        \usepackage[dvipdfmx,unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線を消す、pdfのメタデータをタイトルにする
+        \RequirePackage[dvipdfmx,unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線を消す、pdfのメタデータをタイトルにする
     \else
     %pLaTeX
     \fi
@@ -52,14 +53,14 @@
 
 \ifluatex
     % LuaLaTeX
-    \usepackage{luatexja}
-    \usepackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線罫線を消す、pdfのメタデータをタイトルにする、pdfのバージョンを1.4にする
-    % \usepackage{hyperxmp} % PDFのメタデータを設定するためのパッケージ
+    \RequirePackage{luatexja}
+    \RequirePackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線罫線を消す、pdfのメタデータをタイトルにする、pdfのバージョンを1.4にする
+    % \RequirePackage{hyperxmp} % PDFのメタデータを設定するためのパッケージ
 \fi
 
-\usepackage{enumitem} % 高機能番号付き箇条書きのパッケージ
-\usepackage{tabularx} % 表の幅を指定するためのパッケージ
-\usepackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
+\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
+\RequirePackage{tabularx} % 表の幅を指定するためのパッケージ
+\RequirePackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}
 \DeclareFieldFormat*{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 \DeclareFieldFormat*{title}{\textit{#1}}

@@ -1,7 +1,7 @@
 \ProvidesClass{classes/report}[2023/02/20 report]
 
 % (u)pLaTeX非互換パッケージに対して互換させるパッチを読み込む命令
-% \RequirePackage{plautopatch}
+\RequirePackage{plautopatch}
 
 % 2カラム,A4,フォントサイズ9pt
 \LoadClass[
@@ -15,6 +15,7 @@
     report]
     {jlreq}
 
+
 \RequirePackage{ifptex}
 \RequirePackage{ifluatex}
 
@@ -27,13 +28,9 @@
 \RequirePackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
 \urlstyle{same} % URLの表示形式を本文と同じにする
 \RequirePackage{paralist} % インラインリストのパッケージ
-\RequirePackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
 \RequirePackage{amssymb, amsmath} % 高度な数式記述用パッケージ
 \RequirePackage{mathtools} % 高度な数式記述用パッケージ
 \RequirePackage{tabularray} % 高度な表組み用パッケージ
-\RequirePackage[T1]{fontenc} % 欧文フォントをT1エンコーディングに
-\RequirePackage{newtxmath} % 数式フォントをnewtxmathにする
-\RequirePackage{tgtermes} % 本文フォントをTeX Gyre Termesにする
 % \RequirePackage{minted} % ソースコード表示の用パッケージ
 \RequirePackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
 \RequirePackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
@@ -46,7 +43,11 @@
     \ifnativeuptex
     %upLaTeX
         \RequirePackage[dvipdfmx,unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線を消す、pdfのメタデータをタイトルにする
-    \else
+        \RequirePackage[T1]{fontenc} % 欧文フォントをT1エンコーディングに
+        \RequirePackage{newtxmath} % 数式フォントをnewtxmathにする
+        \RequirePackage{tgtermes} % 本文フォントをTeX Gyre Termesにする
+    
+        \else
     %pLaTeX
     \fi
 \fi
@@ -56,6 +57,16 @@
     \RequirePackage{luatexja}
     \RequirePackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線罫線を消す、pdfのメタデータをタイトルにする、pdfのバージョンを1.4にする
     % \RequirePackage{hyperxmp} % PDFのメタデータを設定するためのパッケージ
+
+    \RequirePackage{luatexja-fontspec}
+    \RequirePackage[haranoaji,deluxe,nfssonly,jis2004]{luatexja-preset}
+
+    \setmainfont[BoldFont=TeXGyreTermes-Bold,ItalicFont=TeXGyreTermes-Italic,Ligatures=TeX]{TeXGyreTermes}
+    \setsansfont[BoldFont=TeXGyreHeros-Bold,ItalicFont=TeXGyreHeros-Italic,Ligatures=TeX]{TeXGyreHeros}
+
+    \RequirePackage{unicode-math}
+    \setmathfont{TeX Gyre Termes Math}
+    
 \fi
 
 \RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ

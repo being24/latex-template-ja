@@ -7,20 +7,6 @@
                 "%DOCFILE_EXT%"
             ]
         },
-        {
-            "name": "diff",
-            "command": "sh",
-            "args": [
-                "/workdir/bin/diff.sh"
-            ]
-        },
-        {
-            "name": "svg2png",
-            "command": "bash",
-            "args": [
-                "/workdir/bin/svg2png.sh"
-            ]
-        }
     ],
     "latex-workshop.latex.recipes": [
         {
@@ -28,23 +14,11 @@
             "tools": [
                 "latexmk",
             ]
-        },
-        // {
-        //     "name": "create_diff",
-        //     "tools": [
-        //         "diff",
-        //     ]
-        // },
-        // {
-        //     "name": "convert svg to png",
-        //     "tools": [
-        //         "svg2png",
-        //     ]
-        // }
+        }
     ],
     "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.view.pdf.viewer": "tab",
-    "latex-workshop.latex.autoClean.run": "never",
+    "latex-workshop.latex.autoClean.run": "onFailed",
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
         "*.bbl",

@@ -6,4 +6,4 @@ result=''
 for file in $FILES;do
     result=$result$file' '
 done
-latexindent $result -c=/workdir/backups -l -w -s -rv
+latexindent $result -c=/workdir/backups -l -w -s -r

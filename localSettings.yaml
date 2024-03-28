@@ -1,3 +1,28 @@
+MIT License
+
+Copyright (c) 2022 Shena
+Copyright (c) 2024 being24
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
 fileExtensionPreference:
   .tex: 1
   .sty: 2
@@ -100,508 +125,337 @@ preambleCommandsBeforeEnvironments: 0
 # default value of indentation
 defaultIndent: "    "
 
-# name of code blocks that should have their body aligned at ampersand delimiters
-lookForAlignDelims:
-  tabular:
-    delims: 1
-    alignDoubleBackSlash: 1
-    spacesBeforeDoubleBackSlash: 1
-    multiColumnGrouping: 0
-    alignRowsWithoutMaxDelims: 1
-    spacesBeforeAmpersand: 1
-    spacesAfterAmpersand: 1
-    justification: left
-    alignFinalDoubleBackSlash: 0
-    dontMeasure: 0
-    delimiterRegEx: '(?<!\\)(&)'
-    delimiterJustification: left
-  tabularx:
-    delims: 1
-  longtable: 1
-  tabu: 1
-  array: 1
-  matrix: 1
-  listabla: 1
-  # amsmath
-  align: 1
-  align*: 1
-  alignat: 1
-  alignat*: 1
-  aligned: 1
-  bmatrix: 1
-  Bmatrix: 1
-  cases: 1
-  flalign: 1
-  flalign*: 1
-  pmatrix: 1
-  vmatrix: 1
-  Vmatrix: 1
-  # mathtools
-  cases*: 1
-  dcases: 1
-  dcases*: 1
-  rcases: 1
-  rcases*: 1
-  drcases: 1
-  drcases*: 1
-  # nicematrix
-  NiceMatrix: 1
-  pNiceMatrix: 1
-  bNiceMatrix: 1
-  BNiceMatrix: 1
-  vNiceMatrix: 1
-  VNiceMatrix: 1
-  NiceArray: 1
-  pNiceArrayC: 1
-  bNiceArrayC: 1
-  BNiceArrayC: 1
-  vNiceArrayC: 1
-  VNiceArrayC: 1
-  NiceArrayCwithDelims: 1
-  pNiceArrayRC: 1
-  bNiceArrayRC: 1
-  BNiceArrayRC: 1
-  vNiceArrayRC: 1
-  VNiceArrayRC: 1
-  NiceArrayRCwithDelims: 1
-
-# if you want the script to look for \item commands
-# and format it, as follows (for example),
-#       \begin{itemize}
-#           \item content here
-#                 next line is indented
-#                 next line is indented
-#           \item another item
-#       \end{itemize}
-# then populate indentAfterItems. See also itemNames
-indentAfterItems:
-  itemize: 1
-  enumerate: 1
-  description: 1
-  list: 1
-
-# if you want to use other names for your items (for example, \part)
-# then populate them here; note that you can trick latexindent.pl
-# into indenting all kinds of commands (within environments specified in
-# indentAfterItems) using this technique.
-itemNames:
-  item: 1
-  myitem: 1
+# one extension per one user-setting file!
+fileExtensionPreference:
+    .tex: 1
 
 # specialBeginEnd is, by default, mathmode focus, although
 # there's no restrictions
-specialBeginEnd:
-  displayMath:
-    begin: '\\\['
-    end: '\\\]'
-    lookForThis: 1
-  inlineMath:
-    begin: '(?<!\$)(?<!\\)\$(?!\$)'
-    end: '(?<!\\)\$(?!\$)'
-    lookForThis: 1
-  displayMathTeX:
-    begin: '\$\$'
-    end: '\$\$'
-    lookForThis: 1
-  specialBeforeCommand: 0
-  leftRightAutoSizeBrackets:
-    begin: '\\left(?:\(|\[|\\\{|\.|\\l)'
-    end: '\\right(?:\)|\]|\\\}|\.|\\r)'
-    lookForThis: 1
-
-# if you want to add indentation after
-# a heading, such as \part, \chapter, etc
-# then populate it in here - you can add
-# an indent rule to indentRules if you would
-# like something other than defaultIndent
-#
-# you can also change the level if you like,
-# or add your own title command
-indentAfterHeadings:
-  part:
-    indentAfterThisHeading: 0
-    level: 1
-  chapter:
-    indentAfterThisHeading: 0
-    level: 2
-  section:
-    indentAfterThisHeading: 0
-    level: 3
-  subsection:
-    indentAfterThisHeading: 0
-    level: 4
-  subsection*:
-    indentAfterThisHeading: 0
-    level: 4
-  subsubsection:
-    indentAfterThisHeading: 0
-    level: 5
-  paragraph:
-    indentAfterThisHeading: 0
-    level: 6
-  subparagraph:
-    indentAfterThisHeading: 0
-    level: 7
-
-# maximum indentation, off by default
-maximumIndentation: -1
-
-# if you don't want to have additional indentation
-# in a code block, then add it to noAdditionalIndent; note that
-# code blocks in this field will inherit
-# the *current* level of indentation they just won't
-# get any *additional* indentation
-noAdditionalIndent:
-  myexample: 1
-  mydefinition: 1
-  problem: 1
-  exercises: 1
-  mysolution: 1
-  foreach: 0
-  widepage: 1
-  comment: 1
-  document: 1
-  frame: 0
-
-# if you have indent rules for particular code blocks
-# then you can populate them in indentRules; for example, you might just want
-# to use a space " " or maybe a double tab "\t\t"
 indentRules:
-  myenvironment: "\t\t"
-  anotherenvironment: "\t\t\t\t"
-  chapter: " "
-  section: " "
-  item: "      "
-  myitem: "        "
-  leftRightAutoSizeBrackets: "  "
+    leftRightAutoSizeBrackets: '  '
+specialBeginEnd:
+    leftRightAutoSizeBrackets:
+        begin: '\\left(?:\(|\[|\\\{|\.|\\l)'
+        end: '\\right(?:\)|\]|\\\}|\.|\\r)'
+        lookForThis: 1
 
-# set noAdditionalIndent globally for codeblocks
-noAdditionalIndentGlobal:
-  environments: 0
-  commands: 1
-  optionalArguments: 0
-  mandatoryArguments: 0
-  ifElseFi: 0
-  items: 0
-  keyEqualsValuesBracesBrackets: 0
-  namedGroupingBracesBrackets: 0
-  UnNamedGroupingBracesBrackets: 0
-  specialBeginEnd: 0
-  afterHeading: 0
-  filecontents: 0
-
-# set indentRules globally for codeblocks; these need
-# to be horizontal spaces, if they are to be used
-indentRulesGlobal:
-  environments: 0
-  commands: 0
-  optionalArguments: 0
-  mandatoryArguments: 0
-  ifElseFi: 0
-  items: 0
-  keyEqualsValuesBracesBrackets: 0
-  namedGroupingBracesBrackets: 0
-  UnNamedGroupingBracesBrackets: 0
-  specialBeginEnd: 0
-  afterHeading: 0
-  filecontents: 0
-
-# command code block details
-commandCodeBlocks:
-  roundParenthesesAllowed: 1
-  stringsAllowedBetweenArguments:
-    - amalgamate: 1
-    - 'node'
-    - 'at'
-    - 'to'
-    - 'decoration'
-    - '\+\+'
-    - '\-\-'
-    - '\#\#\d'
-  commandNameSpecial:
-    - amalgamate: 1
-    - '@ifnextchar\['
-
-# modifyLineBreaks will only be searched if the -m
-# switch is active
-#
-# poly-switch examples:
-#
-#    BeginStartsOnOwnLine:
-#       modify line breaks before a begin statement
-#
-#       when set to -1, e.g
-#               some text some text
-#               \begin{myenvironment}
-#           will be changed to
-#               some text some text \begin{myenvironment}
-#       when set to 0, the switch is ignored
-#       when set to 1, e.g
-#               some text some text \begin{myenvironment}
-#           will be changed to
-#               some text some text
-#               \begin{myenvironment}
-#       when set to 2, e.g
-#               some text some text \begin{myenvironment}
-#           will be changed to
-#               some text some text%
-#               \begin{myenvironment}
-#       when set to 3, e.g
-#               some text some text \begin{myenvironment}
-#           will be changed to
-#               some text some text
-#
-#               \begin{myenvironment}
-#
-#    BodyStartsOnOwnLine:
-#       modify line breaks before the beginning of the body
-#
-#       when set to -1, e.g
-#               \begin{myenv}
-#                   body text body text
-#           will be changed to
-#               \begin{myenv}body text body text
-#       when set to 0, the switch is ignored
-#       when set to 1, e.g
-#               \begin{myenv}body text body text
-#           will be changed to
-#               \begin{myenv}
-#                   body text body text
-#       when set to 2, e.g
-#               \begin{myenv}body text body text
-#           will be changed to
-#               \begin{myenv}%
-#                   body text body text
-#       when set to 3, e.g
-#               \begin{myenv}body text body text
-#           will be changed to
-#               \begin{myenv}
-#
-#                   body text body text
-#
-#    EndStartsOnOwnLine:
-#       modify line breaks before the end statement
-#
-#       when set to -1, e.g
-#               some text some text
-#               \end{myenvironment}
-#           will be changed to
-#               some text some text \end{myenvironment}
-#       when set to 0, the switch is ignored
-#       when set to 1, e.g
-#               some text some text \end{myenvironment}
-#           will be changed to
-#               some text some text
-#               \end{myenvironment}
-#       when set to 2, e.g
-#               some text some text \end{myenvironment}
-#           will be changed to
-#               some text some text%
-#               \end{myenvironment}
-#       when set to 3, e.g
-#               some text some text \end{myenvironment}
-#           will be changed to
-#               some text some text
-#
-#               \end{myenvironment}
-#
-#    EndFinishesWithLineBreak:
-#       modify line breaks after the end statement
-#
-#       when set to -1, e.g
-#               \end{myenvironment}
-#               some text some text
-#           will be changed to
-#                   \end{myenvironment}some text some text
-#       when set to 0, the switch is ignored
-#       when set to 1, e.g
-#               \end{myenvironment}some text some text
-#           will be changed to
-#                   \end{myenvironment}
-#                   some text some text
-#       when set to 2, e.g
-#               \end{myenvironment}some text some text
-#           will be changed to
-#                   \end{myenvironment}%
-#                   some text some text
-#       when set to 3, e.g
-#               \end{myenvironment}some text some text
-#           will be changed to
-#                   \end{myenvironment}
-#
-#                   some text some text
-#
-# you can specify settings on a per-name basis
-modifyLineBreaks:
-  preserveBlankLines: 1
-  condenseMultipleBlankLinesInto: 1
-  oneSentencePerLine:
-    manipulateSentences: 1
-    removeSentenceLineBreaks: 1
-    multipleSpacesToSingle: 1
-    textWrapSentences: 0
-    sentenceIndent: ""
-    sentencesFollow:
-      par: 1
-      blankLine: 1
-      fullStop: 1
-      exclamationMark: 1
-      questionMark: 1
-      rightBrace: 1
-      commentOnPreviousLine: 1
-      other: 0
-    sentencesBeginWith:
-      A-Z: 1
-      a-z: 1
-      other: [0-9"']   
-    sentencesEndWith:
-      basicFullStop: 0
-      betterFullStop: 1
-      exclamationMark: 1
-      questionMark: 1
-      other: 0^
-  textWrapOptions:
-    columns: 0
-    separator: ""
-    perCodeBlockBasis: 0
-    all: 0
-    alignAtAmpersandTakesPriority: 1
-    environments:
-      quotation: 0
-    ifElseFi: 0
-    optionalArguments: 0
-    mandatoryArguments: 0
-    items: 0
-    specialBeginEnd: 0
-    afterHeading: 0
-    preamble: 0
-    filecontents: 0
-    masterDocument: 0
-  removeParagraphLineBreaks:
-    all: 0
-    beforeTextWrap: 0
-    alignAtAmpersandTakesPriority: 1
-    environments:
-      quotation: 0
-    ifElseFi: 0
-    optionalArguments: 0
-    mandatoryArguments: 0
-    items: 0
-    specialBeginEnd: 0
-    afterHeading: 0
-    preamble: 0
-    filecontents: 0
-    masterDocument: 0
-    paragraphsStopAt:
-      environments: 1
-      verbatim: 1
-      commands: 0
-      ifElseFi: 0
-      items: 0
-      specialBeginEnd: 0
-      heading: 0
-      filecontents: 0
-      comments: 0
-  environments:
-    BeginStartsOnOwnLine: 0
-    BodyStartsOnOwnLine: 0
-    EndStartsOnOwnLine: 0
-    EndFinishesWithLineBreak: 0
+# name of code blocks that should have their body aligned at ampersand delimiters
+lookForAlignDelims:
+    aligned:
+      delims: 1
+      alignDoubleBackSlash: 0
+      spacesBeforeDoubleBackSlash: 1
+      multiColumnGrouping: 1
+      alignRowsWithoutMaxDelims: 1
+      spacesBeforeAmpersand: 1
+      spacesAfterAmpersand: 1
+      justification: left
+      alignFinalDoubleBackSlash: 0
+      dontMeasure: 0
+      delimiterRegEx: (?<!\\)(&[\+\-\*=<>]?) # e.g., &=, &< 
+      delimiterJustification: left
+      lookForChildCodeBlocks: 1
+      alignContentAfterDoubleBackSlash: 0
+      spacesAfterDoubleBackSlash: 0
+    # equation(*) and gather fields are placed here lookForAlignDelims just for DBSFinishesWithLineBreak to find and act on them. The content of setting itself is not important.
+    equation:
+      delims: 1
+      alignDoubleBackSlash: 0
+      spacesBeforeDoubleBackSlash: 1
+      multiColumnGrouping: 0
+      alignRowsWithoutMaxDelims: 1
+      spacesBeforeAmpersand: 0
+      spacesAfterAmpersand: 0
+      justification: left
+      alignFinalDoubleBackSlash: 0
+      dontMeasure: 0
+      delimiterRegEx: 0^ # no delimiters
+      delimiterJustification: left
+      lookForChildCodeBlocks: 1
+      alignContentAfterDoubleBackSlash: 0
+      spacesAfterDoubleBackSlash: 0
     equation*:
-      BeginStartsOnOwnLine: 0
-      BodyStartsOnOwnLine: 0
-      EndStartsOnOwnLine: 0
-      EndFinishesWithLineBreak: 0
-  ifElseFi:
-    IfStartsOnOwnLine: 0
-    BodyStartsOnOwnLine: 0
-    OrStartsOnOwnLine: 0
-    OrFinishesWithLineBreak: 0
-    ElseStartsOnOwnLine: 0
-    ElseFinishesWithLineBreak: 0
-    FiStartsOnOwnLine: 0
-    FiFinishesWithLineBreak: 0
-    ifnum:
-      IfStartsOnOwnLine: 0
-      BodyStartsOnOwnLine: 0
-      OrStartsOnOwnLine: 0
-      OrFinishesWithLineBreak: 0
-      ElseStartsOnOwnLine: 0
-      ElseFinishesWithLineBreak: 0
-      FiStartsOnOwnLine: 0
-      FiFinishesWithLineBreak: 0
-  commands:
-    CommandStartsOnOwnLine: 0
-    CommandNameFinishesWithLineBreak: 0
-  optionalArguments:
-    LSqBStartsOnOwnLine: 0
-    OptArgBodyStartsOnOwnLine: 0
-    RSqBStartsOnOwnLine: 0
-    RSqBFinishesWithLineBreak: 0
-  mandatoryArguments:
-    LCuBStartsOnOwnLine: 0
-    MandArgBodyStartsOnOwnLine: 0
-    RCuBStartsOnOwnLine: 0
-    RCuBFinishesWithLineBreak: 0
-  keyEqualsValuesBracesBrackets:
-    KeyStartsOnOwnLine: 0
-    EqualsStartsOnOwnLine: 0
-    EqualsFinishesWithLineBreak: 0
-  items:
-    ItemStartsOnOwnLine: 0
-    ItemFinishesWithLineBreak: 0
-  namedGroupingBracesBrackets:
-    NameStartsOnOwnLine: 0
-    NameFinishesWithLineBreak: 0
-  specialBeginEnd:
-    SpecialBeginStartsOnOwnLine: 0
-    SpecialBodyStartsOnOwnLine: 0
-    SpecialEndStartsOnOwnLine: 0
-    SpecialEndFinishesWithLineBreak: 0
-  verbatim:
-    VerbatimBeginStartsOnOwnLine: 0
-    VerbatimEndFinishesWithLineBreak: 0
+      delims: 1
+      alignDoubleBackSlash: 0
+      spacesBeforeDoubleBackSlash: 1
+      multiColumnGrouping: 0
+      alignRowsWithoutMaxDelims: 1
+      spacesBeforeAmpersand: 0
+      spacesAfterAmpersand: 0
+      justification: left
+      alignFinalDoubleBackSlash: 0
+      dontMeasure: 0
+      delimiterRegEx: 0^ # no delimiters
+      delimiterJustification: left
+      lookForChildCodeBlocks: 1
+      alignContentAfterDoubleBackSlash: 0
+      spacesAfterDoubleBackSlash: 0
+    gather:
+      delims: 1
+      alignDoubleBackSlash: 0
+      spacesBeforeDoubleBackSlash: 1
+      multiColumnGrouping: 0
+      alignRowsWithoutMaxDelims: 1
+      spacesBeforeAmpersand: 0
+      spacesAfterAmpersand: 0
+      justification: left
+      alignFinalDoubleBackSlash: 0
+      dontMeasure: 0
+      delimiterRegEx: 0^ # no delimiters
+      delimiterJustification: left
+      lookForChildCodeBlocks: 1
+      alignContentAfterDoubleBackSlash: 0
+      spacesAfterDoubleBackSlash: 0
+    gather*:
+      delims: 1
+      alignDoubleBackSlash: 0
+      spacesBeforeDoubleBackSlash: 1
+      multiColumnGrouping: 0
+      alignRowsWithoutMaxDelims: 1
+      spacesBeforeAmpersand: 0
+      spacesAfterAmpersand: 0
+      justification: left
+      alignFinalDoubleBackSlash: 0
+      dontMeasure: 0
+      delimiterRegEx: 0^ # no delimiters
+      delimiterJustification: left
+      lookForChildCodeBlocks: 1
+      alignContentAfterDoubleBackSlash: 0
+      spacesAfterDoubleBackSlash: 0
 
-# replacements, only active when either -r or -rr switches are active
+modifyLineBreaks:
+    preserveBlankLines: 0                   # 0/1
+    condenseMultipleBlankLinesInto: 1       # 0/1
+    oneSentencePerLine:
+        manipulateSentences: 1              # 0/1
+        removeSentenceLineBreaks: 1         # 0/1
+        multipleSpacesToSingle: 1           # 0/1
+        sentencesBeginWith:            
+            A-Z: 1                          # 0/1
+            a-z: 1                          # 0/1
+            other: [0-9"']                # regex
+        sentencesEndWith:
+          other: 0^                        # regex
+    environments:
+        BeginStartsOnOwnLine: 1             # -1,0,1,2,3,4
+        BodyStartsOnOwnLine: 1              # -1,0,1,2,3,4
+        EndStartsOnOwnLine: 1               # -1,0,1,2,3,4
+        EndFinishesWithLineBreak: 1
+        DBSFinishesWithLineBreak: 1
+        # setting for individual environments to overwrite the default
+        document:
+            BodyStartsOnOwnLine: 4          # -1,0,1,2,3,4
+            EndStartsOnOwnLine: 4           # -1,0,1,2,3,4
+        # "outer" math envs, such as equation and gather, are set to have a preceding blank line, so that they are more easily distinguished by a neighboring sentence
+        # while "inner" math envs, such as aligned and cases, are set to have no additional blank line around them (use default)(see the example below).
+        # 
+        # Example
+        # 
+        # some sentence. 
+        # [a blank line here is useful to distinguish a preceding sentence and math env. So we set BeginStartsOnOwnLine: 4]
+        # \begin{equation*}
+        #   %[need a blank line here? I don't think so.]
+        #   \begin{aligned}
+        #     \rank J_{p} &= \rank \restrict{F}{E_{p}} \\
+        #                 &= \dim \mathbb{R}^{k} \\
+        #   \end{aligned}
+        #   %[need a blank line here? I don't think so.]
+        # \end{equation*} 
+        # % [a blank line here means the following line is a new paragraph, which is not always the case. So we would like to place comment mark % instead to create space, but the functionality is not provided by latexindent.]
+        # some sentences
+        # 
+        equation:                          
+            BeginStartsOnOwnLine: 4         # -1,0,1,2,3,4
+            BodyStartsOnOwnLine: 1          # -1,0,1,2,3,4
+            EndStartsOnOwnLine: 1           # -1,0,1,2,3,4
+            EndFinishesWithLineBreak: 1     # -1,0,1,2,3,4
+        equation*:
+            BeginStartsOnOwnLine: 4         # -1,0,1,2,3,4
+            BodyStartsOnOwnLine: 1          # -1,0,1,2,3,4
+            EndStartsOnOwnLine: 1           # -1,0,1,2,3,4
+            EndFinishesWithLineBreak: 1     # -1,0,1,2,3,4
+        gather:                          
+            BeginStartsOnOwnLine: 4         # -1,0,1,2,3,4
+            BodyStartsOnOwnLine: 1          # -1,0,1,2,3,4
+            EndStartsOnOwnLine: 1           # -1,0,1,2,3,4
+            EndFinishesWithLineBreak: 1     # -1,0,1,2,3,4
+        gather*:                          
+            BeginStartsOnOwnLine: 4         # -1,0,1,2,3,4
+            BodyStartsOnOwnLine: 1          # -1,0,1,2,3,4
+            EndStartsOnOwnLine: 1           # -1,0,1,2,3,4
+            EndFinishesWithLineBreak: 1     # -1,0,1,2,3,4
+
+
+# replacements gets active only when latexindent is called with -r switch 
 replacements:
-  - amalgamate: 1
-  - this: 'latexindent.pl'
-    that: 'pl.latexindent'
-    lookForThis: 1
-    when: before
-  - this: "　"
-    that: " "
-    lookForThis: 1
-    # Be sure to set it last
-    # Combine 2 or more "half-width spaces" into 1
-  - this: "。"
-    that: "．"
-    lookForThis: 1
-  - this: "、"
-    that: "，"
-    lookForThis: 1
+    -   amalgamate: 1
+    -   this: 'latexindent.pl'
+        that: 'pl.latexindent'
+        lookForThis: 1
+        when: before
+    -   this: "　"
+        that: " "
+        lookForThis: 1
+        # Be sure to set it last
+        # Combine 2 or more "half-width spaces" into 1
+    -   this: "。"
+        that: "．"
+        lookForThis: 1
+    -   this: "、"
+        that: "，"
+        lookForThis: 1
+        #
+        #--------------------------------------------------#
+        #                   DOC ENV                        #
+        #--------------------------------------------------#
+        #
+    -   substitution: |-
+          s/(?<=\\begin\{document\})(.*?)(?=\\end\{document\})/
+            my $body = $1;
+        # Condense consecutive white spaces into one
+            $body =~ s@\h{2,}@ @g;
+        # Remove leading and trailing white spaces in braces "{}"
+            $body =~ s@\{\h*(.*?)\h*\}@\{$1\}@g;
+        # Insert half-width space at every end of brace if it is followed by a command or a character
+            $body =~ s@(?<=\)|\}|])(\\?[0-9a-zA-Z])@ $1@g;
+        # Remove space before comma and punctuation
+            $body =~ s@\h*([,\.])@$1@g;
+        # add space before "\" (avoiding \left\rvert)
+            $body =~ s@(?<=\w)\\(?![rl][Vv]ert)@ \\@g;
+        # place %\n at the next line math env ends, in order to create visual space between math env and text env
+            $body =~ s@(?<=\\end\{equation\*\}|\\end\{gather\}|\\end\{gather\*\})(.*)\n(?!%)@$1\n%\n@g;
+            $body;/sxge;
+        lookForThis: 1
+        when: before
+        #
+        #--------------------------------------------------#
+        #                   TEX ENV                        #
+        #--------------------------------------------------#
+        #
+    -   substitution: |- # text env = document env minus math env
+          s/(?<=\\begin\{document\}|\\\)|\\end\{equation\}|\\end\{equation\*\}|\\end\{gather\}|\\end\{gather\*\})(.*?)(?=\\end\{document\}|\\\(|\\begin\{equation\}|\\begin\{equation\*\}|\\begin\{gather\}|\\begin\{gather\*\})/
+            my $body = $1;
+        # condense consecutive blank lines into one
+        # this is a symptomatic treatment.
+            $body =~ s@(?:\h*\n\h*){2,}\n@\n\n@gs;
+            $body;/sxge;
+        lookForThis: 0
+        when: before
+        #
+        #--------------------------------------------------#
+        #                   MATH ENV                       #
+        #--------------------------------------------------#
+        #
+        # Replacements for \begin{env}-\end{env} style math environment.
+        #
+        # Suppose we would like to apply some regular expressions to a formula inside a nested math environment 
+        # like \begin{equation*}\begin{aligned}f(x)&=g(x)+h(x)\\&=0\end{aligned}\end{equation*}.
+        # (Consider non-nested environment as a trivial nested environment.)
+        # the following code classifies formula ($body), \begin{env} ($begin) and \end{env} ($end) statements from the nested environments in a recursive way.
+        # (Technical Note) It seems that there are some perl syntax latexindent(v3.22.2) does not support, such as "if ($body =~ /regexp/)".
+        # The following code is written in a way that avoids such syntax.
+    -
+        # function to align a formula inside a nested math environment.
+        # The first line in substitution must be a regular expression? (otherwise it will not work in my experience).
+        substitution: |-
+          s/(\\begin\{(?:equation|gather)\*?\}[\h\n]*)(?<!\n)(.*?)(?!\h)([\h\n]*\\end\{(?:equation|gather)\*?\}[\h\n]*)/
+            my ($begin, $body, $end) = ($1, $2, $3);
+        # name of environment that could come into equation or gather.
+            my @envs = ("aligned","cases");
+        # choose only envs that are present in the body
+	          @envs = grep { contain_env($_, $body) } @envs;
+        # function to cut \begin\end in body and paste in \begin and \end 
+            sub process_gather {
+              my ($b, $c, $e, $be, $en) = @_;
+              $$be .= $b;
+              $$en = $e.$$en;
+              return $c;
+            }
+        # test if body contains \begin{env*?} statement
+            sub contain_env {
+              my ($env, $body) = @_;
+              return index($body, "\\begin\{".$env) != -1;
+            }
+        # recursively cut out \begin and \end from body and add them to $begin and $end
+            while (1){
+              foreach my $env (@envs){
+                if (contain_env($env, $body)){ 
+                  $body =~ s@([\h\n]*?\\begin\{$env\*?\}[\h\n]*)(?<!\n)(.*?)(?!\h)([\h\n]*\\end\{$env\*?\}[\h\n]*)@process_gather($1, $2, $3, \$begin, \$end)@egxs;
+                  next;
+                }
+              }
+              last;
+            }
+        # add space around operators +-=/*\\ if they are not paired with &
+            $body =~ s@\h*(?<![&\{:])([\+\-=\/\*])(?![\:}&])\h*@ $1 @sg;
+        # Add braces to superscripts and subscripts
+            $body =~ s@(\^|\_)([a-zA-Z0-9]+)@$1\{$2\}@sg;
+        # add space around <>
+            $body =~ s@(?<!\\left|\\right)\h*(<|>)\h*(?!\\left|\\right)@ $1 @sg;
+        # remove blank line (this is done by modifyLineBreaks)
+            # $body =~ s@(?:\h*\n\h*){2,}@\n@g;
+            $begin . $body . $end /sxge;
+        lookForThis: 1
+        when: before
+        # 
+        #--------------------------------------------------#
+        #                 INLINE MATH                      #
+        #--------------------------------------------------#
+        #
+        # Replacements for inline math block \( x \).
+    -
+        substitution: |-
+          s/(?<=\\\()\h*(.*?)\h*(?=\\\))/
+        # ↑ this expression is solely for \( x \) style inline math.
+            my $body = $1;
+        # Insert space at the beginning&end of inline math env
+        # \(x\) -> \( x \)
+            $body = " ". $body . " ";
+        # Add braces to superscripts and subscripts
+            $body =~ s@(\^|\_)([a-zA-Z0-9]+)@$1\{$2\}@sg;
+        # add a single space around + - = * /
+            $body =~ s@\h*(?<![\{:])([\+\-=\/\*])(?![\}:])\h*@ $1 @sg;
+        # add space around <>
+            $body =~ s@(?<!\\left|\\right)\h*(<|>)\h*(?!\\left|\\right)@ $1 @sg;
+            $body;/sxge
+        lookForThis: 1
+        when: after
 
-# fineTuning allows you to tweak the internal pattern matching that
-# is central to latexindent.pl
 fineTuning:
-  environments:
-    name: '[a-zA-Z@\*0-9_\\]+'
-  ifElseFi:
-    name: '(?!@?if[a-zA-Z@]*?\{)@?if[a-zA-Z@]*?'
-  commands:
-    name: '[+a-zA-Z@\*0-9_\:]+?'
-  keyEqualsValuesBracesBrackets:
-    name: '[a-zA-Z@\*0-9_\/.:\#-]+[a-zA-Z@\*0-9_\/.\h\{\}:\#-]*?'
-    follow: '(?:(?<!\\)\{)|,|(?:(?<!\\)\[)'
-  namedGroupingBracesBrackets:
-    name: '[0-9\.a-zA-Z@\*><]+?'
-    follow: '\h|\R|\{|\[|\$|\)|\('
-  UnNamedGroupingBracesBrackets:
-    follow: '\{|\[|,|&|\)|\(|\$'
-  arguments:
-    before: '(?:#\d\h*;?,?\/?)+|\<.*?\>'
-    between: '_|\^|\*'
-  modifyLineBreaks:
-    betterFullStop: '(?:\.\)(?!\h*[a-z]))|(?:(?<!(?:(?:e\.g)|(?:i\.e)|(?:etc))))\.(?!(?:[a-z]|[A-Z]|\-|~|\,|[0-9]))'
-    doubleBackSlash: '\\\\(?:\h*\[\h*\d+\h*[a-zA-Z]+\h*\])?'
-    comma: ','
+    # fineTuning for trailing comments seems to cause trouble. so I disable it.
+    trailingComments:
+      notPreceededBy: # (?<!\\)
+      afterComment: 0^ # .*?
+    modifyLineBreaks:
+      comma: ','
+    # exclude .\command
+      betterFullStop: |-
+        (?x)                                # ignore spaces in the below
+        (?:                                 #
+          \.\)                              # .) 
+          (?!\h*[a-z\\])                    # not *followed by* a-z and \
+        )                                   #
+        |                                   # OR
+        (?:                                 #
+          (?<!                              # not *preceded by*
+            (?:                             #
+              (?:[eE]\.[gG])                # e.g OR E.g OR e.G OR E.G
+              |                             #
+              (?:[iI]\.[eE])                # i.e OR I.e OR i.E OR I.E
+              |                             #
+              (?:etc)                       # etc
+              |                             #
+              (?:[wW]\.[rR]\.[tT])          # w.r.t OR W.r.t OR w.R.t OR w.r.T OR W.R.t OR W.r.T OR w.R.T OR W.R.T
+            )                               #
+          )                                 #
+        )                                   # 
+        \.                                  # .
+        (?!                                 # not *followed by*
+          (?:                               #
+            [a-zA-Z0-9-~,\\]                #
+            |                               #
+            \),                             # ),
+            |                               #
+            \)\.                            # ).
+          )                                 #
+        )                                   #

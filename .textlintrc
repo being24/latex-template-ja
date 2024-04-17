@@ -22,12 +22,18 @@
             "no-doubled-joshi": {
                 "min_interval": 1,
                 "strict": false,
-                "allow": ["も", "や", "にも"],
+                "allow": [
+                    "も",
+                    "や",
+                    "にも"
+                ],
                 "separatorCharacters": [
-                    "．", "。"
+                    "．",
+                    "。"
                 ],
                 "commaCharacters": [
-                    "、", "，"
+                    "、",
+                    "，"
                 ]
             },
             "no-doubled-conjunction": true,
@@ -39,6 +45,11 @@
             "ja-no-abusage": true,
             "ja-no-successive-word": true,
             "ja-no-weak-phrase": true,
+            "max-kanji-continuous-len": true,
+            "max-ten": {
+                "touten": "，",
+                "kuten": "．"
+              },
             "ja-no-mixed-period": {
                 "periodMark": "．",
                 "allowPeriodMarks": [],
@@ -47,10 +58,14 @@
             },
             "no-mix-dearu-desumasu": {
                 "preferInHeader": "である",
-                "preferInBody": "です",
+                "preferInBody": "ですます",
                 "preferInList": "である",
                 "strict": true
-            }
+            },
+            "no-exclamation-question-mark": true,
+            "no-hankaku-kana": true,
+            "no-zero-width-spaces": true,
+            "preset-jtf-style": true
         },
         "prh": {
             "rulePaths": [

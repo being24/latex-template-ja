@@ -12,3 +12,6 @@ latexdiff-vc -e utf8 -t CFONT --git --flatten --force -r HEAD main.tex
 
 # diffファイルへの出力
 # git diff commit_id commit_id "*.tex"  > diff.diff
+
+# タグ間の差分
+# latexdiff-vc -r v1.0 -r v2.0 -e utf8 -t CFONT --git --flatten --force main.tex

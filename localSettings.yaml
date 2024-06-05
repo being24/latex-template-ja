@@ -125,10 +125,6 @@ preambleCommandsBeforeEnvironments: 0
 # default value of indentation
 defaultIndent: "    "
 
-# one extension per one user-setting file!
-fileExtensionPreference:
-    .tex: 1
-
 # specialBeginEnd is, by default, mathmode focus, although
 # there's no restrictions
 indentRules:

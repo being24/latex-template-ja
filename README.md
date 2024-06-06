@@ -19,7 +19,7 @@ Docker環境が必要ですが、clsファイルについては多少弄ればCl
 * Docker 18.06 or later
 * Docker Desktop for Windows
 
-Ubuntu 20.04 LTS上の TeX Live 2022を使用します  
+ghcr.io/being24/latex-docker を使用します  
 ビルド用のdocker imageは[こちらのリポジトリ](https://github.com/being24/latex-docker)を参照してください
 
 また、VSCodeが必要です

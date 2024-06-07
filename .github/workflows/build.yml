@@ -24,6 +24,7 @@ jobs:
     container:
       # もし独自のDockerイメージを変更したい場合、ここを変更する
       image: ghcr.io/being24/latex-docker:latest
+      options: --user root
     steps:
       - name: Checkout
         uses: actions/checkout@v4

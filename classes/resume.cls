@@ -38,34 +38,37 @@
 \RequirePackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
 \RequirePackage{indentfirst} % 最初の段落でインデントするためのパッケージ
 \RequirePackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
+\RequirePackage{newtxtext,newtxmath} % Times系フォントを使用するためのパッケージ
 
-\ifptex
-    \ifnativeuptex
-    %upLaTeX
-    \RequirePackage[dvipdfmx,unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線を消す、pdfのメタデータをタイトルにする
-    \RequirePackage[T1]{fontenc} % 欧文フォントをT1エンコーディングに
-    \RequirePackage{newtxmath} % 数式フォントをnewtxmathにする
-    \RequirePackage{tgtermes} % 本文フォントをTeX Gyre Termesにする
-
-    \else
-    %pLaTeX
-    \fi
-\fi
 
 \ifluatex
-    % LuaLaTeX
+    % LuaTeXを日本語で使うための設定
     \RequirePackage{luatexja}
-    \RequirePackage[unicode,hidelinks,pdfusetitle]{hyperref} % ハイパーリンクをつけるためのパッケージ、unicodeの使用を許可、リンクの下線罫線を消す、pdfのメタデータをタイトルにする、pdfのバージョンを1.4にする
-    % \RequirePackage{hyperxmp} % PDFのメタデータを設定するためのパッケージ
+    % 日本語フォントは原ノ味フォントを使用
+    \RequirePackage{luatexja-fontspec}
+    \RequirePackage[haranoaji,no-math]{luatexja-preset}
 
-    \RequirePackage[scale=1]{luatexja-fontspec}
-    \RequirePackage[haranoaji,deluxe]{luatexja-preset}
+    % 図表関連のパッケージを読み込む
+    \RequirePackage{graphicx}
 
-    \setmainfont[BoldFont=TeXGyreTermes-Bold,ItalicFont=TeXGyreTermes-Italic,Ligatures=TeX]{TeXGyreTermes}
-    \setsansfont[BoldFont=TeXGyreHeros-Bold,ItalicFont=TeXGyreHeros-Italic,Ligatures=TeX]{TeXGyreHeros}
+    % ハイパーリンクを設定
+    \RequirePackage[unicode,hidelinks,pdfusetitle]{hyperref}
+\else
+    \ifuptex
+        % upLaTeXのフォントを設定
+        \RequirePackage[haranoaji,noalphabet]{pxchfon}
 
-    \RequirePackage{unicode-math}
-    \setmathfont{TeX Gyre Termes Math}
+        % 図表関連のパッケージを読み込む
+        \RequirePackage{color}
+        \RequirePackage[dvipdfmx]{graphicx}
+
+        % ハイパーリンクを設定
+        \RequirePackage[dvipdfmx,unicode,hidelinks,pdfusetitle]{hyperref}
+
+    \else
+        % pTeXでコンパイルしようとする場合はエラーを出す
+        \ClassError{sice}{This class file is for LuaLaTeX or upLaTeX only.}{Use LuaLaTeX or upLaTeX to compile this document.}
+    \fi
 \fi
 
 \RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ

@@ -43,3 +43,4 @@ __latexindent_temp.tex
 *.bak[0-9]
 
 __*.tex
+*SAVE-ERROR

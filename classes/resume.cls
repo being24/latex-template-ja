@@ -30,15 +30,17 @@
 \RequirePackage{bm} % ベクトルを大文字で書くためのパッケージ
 \RequirePackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
 \urlstyle{same} % URLの表示形式を本文と同じにする
-\RequirePackage{graphicx} % 画像の挿入、テキストや図の操作のためのパッケージ
+\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
+\RequirePackage{paralist} % インラインリストのパッケージ
 \RequirePackage{amssymb, amsmath} % 高度な数式記述用パッケージ
+\RequirePackage{mathtools} % 高度な数式記述用パッケージ
+\RequirePackage{newtxtext,newtxmath} % Times系フォントを使用するためのパッケージ
 \RequirePackage{tabularray} % 高度な表組み用パッケージ
 % \RequirePackage{minted} % ソースコード表示の用パッケージ
 \RequirePackage{siunitx} % SI単位記法に準拠した形式で単位を書くためのパッケージ
 \RequirePackage{subfiles} % 大規模な文章を分割して記述して、統合するためのパッケージ
 \RequirePackage{indentfirst} % 最初の段落でインデントするためのパッケージ
 \RequirePackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
-\RequirePackage{newtxtext,newtxmath} % Times系フォントを使用するためのパッケージ
 
 
 \ifluatex

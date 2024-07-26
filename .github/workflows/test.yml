@@ -1,0 +1,31 @@
+name: Test Docker Image
+
+on:
+  schedule:
+    - cron: '0 0 18 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/being24/latex-docker:latest
+      options: --user root
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test Docker Image with luaLaTeX
+        run: latexmk -pdf -e '$pdf_mode=4' main.tex
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: main-lua.pdf
+
+      - name: Test Docker Image with upLaTeX
+        run: latexmk -pdf -e '$pdf_mode=3' main.tex
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: main-up.pdf

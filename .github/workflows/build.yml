@@ -20,7 +20,7 @@ env:
 jobs:
   # PDFのビルドジョブ
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     container:
       # もし独自のDockerイメージを変更したい場合、ここを変更する
       image: ghcr.io/being24/latex-docker:latest

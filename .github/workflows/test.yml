@@ -21,6 +21,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: main-lua.pdf
+          path: main.pdf
 
       - name: Test Docker Image with upLaTeX
         run: latexmk -pdf -e '$pdf_mode=3' main.tex
@@ -29,3 +30,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: main-up.pdf
+          path: main.pdf

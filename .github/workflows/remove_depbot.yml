@@ -14,7 +14,7 @@ concurrency:
 jobs:
   first-time-setup:
     # ensure run only once, when repo generated
-    if: github.run_number == 1
+    if: github.event.before = 0000000000000000000000000000000000000000
 
     runs-on: ubuntu-latest
     permissions: write-all

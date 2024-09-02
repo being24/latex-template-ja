@@ -1,5 +1,9 @@
 # 日本語論文をLaTeXで書いて、textlintをするためのテンプレート
 
+[![Test Docker Image](https://github.com/being24/latex-template-ja/actions/workflows/test.yml/badge.svg)](https://github.com/being24/latex-template-ja/actions/workflows/test.yml)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+
+
 ## 機能
 
 * 個人環境にLaTeX workshopを構築せず、dockerでビルドします

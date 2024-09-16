@@ -88,7 +88,7 @@
 \pagestyle{empty}
 
 % figの余白の調整
-% \setlength{\intextsep}{0pt}
+\setlength{\intextsep}{0pt}
 
 % キャプションとサブキャプションの設定
 \captionsetup[figure]{labelsep=space, labelformat=simple, name=Fig., skip=3pt, font={stretch=0.8}}
@@ -115,9 +115,6 @@
     {_section{*},_subsection{before_space=0pt, after_space=5pt}}
     {_subsection{*},_subsubsection{before_space=0pt, after_space=5pt}}
 }
-
-% figの余白の調整
-% \setlength{\intextsep}{0pt}
 
 % タイトルの設定
 \makeatletter

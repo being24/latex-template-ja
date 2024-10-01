@@ -52,8 +52,9 @@
         //"*.log",
         //"*/*.log"
     ],
-    "latex-workshop.latexindent.path": "sh",
-    "latex-workshop.latexindent.args": [
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.formatting.latexindent.path": "sh",
+    "latex-workshop.formatting.latexindent.args": [
         "./bin/linter.sh",
     ],
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?．。，、（）「」［］｛｝《》てにをはがのともへでや",

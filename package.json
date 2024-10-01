@@ -32,6 +32,6 @@
         "textlint-rule-preset-ja-technical-writing": "^10.0.1",
         "textlint-rule-preset-jtf-style": "^2.3.14",
         "textlint-rule-prh": "^6.0.0",
-        "textlint-rule-sentence-length": "^5.0.0"
+        "textlint-rule-sentence-length": "^5.2.0"
     }
 }

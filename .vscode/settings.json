@@ -53,12 +53,21 @@
         //"*/*.log"
     ],
     "latex-workshop.formatting.latex": "latexindent",
-    "latex-workshop.formatting.latexindent.path": "sh",
+    // "latex-workshop.formatting.latexindent.path": "sh",
+    // "latex-workshop.formatting.latexindent.args": [
+    //     "./bin/linter.sh",
+    // ],
+    "latex-workshop.formatting.latexindent.path": "latexindent",
     "latex-workshop.formatting.latexindent.args": [
-        "./bin/linter.sh",
+        "-c=/workdir/backups",
+        "-l",
+        "-w",
+        "-s",
+        "-r",
+        "%DOC%"
     ],
     "latex-workshop.formatting.tex-fmt.path": "tex-fmt",
-    "latex-workshop.formatting.tex-fmt.doNotWrap": false,
+    "latex-workshop.formatting.tex-fmt.doNotWrap": true,
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?．。，、（）「」［］｛｝《》てにをはがのともへでや",
     "editor.formatOnSave": false
 }

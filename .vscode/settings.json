@@ -57,6 +57,8 @@
     "latex-workshop.formatting.latexindent.args": [
         "./bin/linter.sh",
     ],
+    "latex-workshop.formatting.tex-fmt.path": "tex-fmt",
+    "latex-workshop.formatting.tex-fmt.doNotWrap": false,
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?．。，、（）「」［］｛｝《》てにをはがのともへでや",
     "editor.formatOnSave": false
 }

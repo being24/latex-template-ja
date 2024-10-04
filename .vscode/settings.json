@@ -45,10 +45,10 @@
         "*.vrb",
         "*.run.xml",
         "*.dvi",
-        "*.fdb_latexmk",
         "*.fls",
         "*.toc",
         "*.bcf",
+        "*.run.xml",
         //"*.log",
         //"*/*.log"
     ],

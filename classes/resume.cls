@@ -59,6 +59,12 @@
         \RequirePackage[deluxe]{otf}
         \RequirePackage[haranoaji,noalphabet]{pxchfon}
 
+        % Font shape JY2/hmc/b/n' undefined (Font) using JY2/hmc/bx/n' instead.
+        \DeclareFontShape{JY2}{hmc}{b}{n}{<->ssub*hmc/bx/n}{}
+
+        % LaTeX Font: Font shape `JT2/hmc/b/n' undefine(Font)	using `JT2/hmc/m/n' instead.
+        \DeclareFontShape{JT2}{hmc}{b}{n}{<->ssub*hmc/m/n}{}
+
         % 図表関連のパッケージを読み込む
         \RequirePackage{color}
         \RequirePackage[dvipdfmx]{graphicx}

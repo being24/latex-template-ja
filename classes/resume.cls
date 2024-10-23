@@ -5,7 +5,7 @@
 
 % 2カラム,A4,フォントサイズ9pt
 \LoadClass[
-    two column,
+    twocolumn,
     paper=a4,
     fontsize=9pt,
     disablejfam,
@@ -24,8 +24,6 @@
 \sectiondot{subsection}
 \RequirePackage{setspace} % 行間設定用パッケージ
 \setstretch{0.8} % 行間設定
-\RequirePackage{caption} % キャプションとサブキャプションのパッケージ
-\RequirePackage{subcaption}
 \RequirePackage{here} % 好きな位置にfigなどを置くためのパッケージ
 \RequirePackage{bm} % ベクトルを大文字で書くためのパッケージ
 \RequirePackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
@@ -91,10 +89,41 @@
 \setlength{\intextsep}{0pt}
 
 % キャプションとサブキャプションの設定
-\captionsetup[figure]{labelsep=space, labelformat=simple, name=Fig., skip=3pt, font={stretch=0.8}}
-\captionsetup[subfigure]{labelsep=space, labelformat=simple, name=Fig., skip=3pt, font={stretch=0.8}}
+\RequirePackage{silence}
+\WarningFilter{caption}{Unknown document class (or package)}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\captionsetup[figure]{labelsep=quad, labelformat=simple, name=\bfseries Fig., skip=5pt, font={stretch=0.8}, belowskip=0pt}
+\captionsetup[subfigure]{labelsep=space, labelformat=simple, name=\bfseries Fig., skip=3pt, font={stretch=0.8}, belowskip=0pt}
 \renewcommand*{\thesubfigure}{(\alph{subfigure})}
-\captionsetup[table]{labelsep=space, labelformat=simple, name=Table, skip=3pt, font={stretch=0.8}}
+\captionsetup[table]{labelsep=quad, labelformat=simple, name=\bfseries Table, skip=5pt, font={stretch=0.8}, belowskip=0pt}
+
+% 本文中のFigureとTableの表記統一のため，\Fig・\Tableを定義
+% 引数としてlabelを受け取り，それを使ってFigureやTableを参照する
+% \FigTableマクロの定義
+\newcommand{\FigTable}[3][]{%
+    \def\temp{#1}%
+    \ifx\temp\empty
+        {#2~\ref{#3}}%
+    \else
+        \textbf{#2~\ref{#3}}%
+    \fi
+}
+
+% \Figマクロの定義
+\newcommand{\Fig}[2][]{%
+    \FigTable[#1]{Fig.}{#2}%
+}
+
+% \Figureマクロの定義
+\newcommand{\Figure}[2][]{%
+    \FigTable[#1]{Figure}{#2}%
+}
+
+% \Tableマクロの定義
+\newcommand{\Table}[2][]{%
+    \FigTable[#1]{Table}{#2}%
+}
 
 % sectionのサイズを合わせる
 \RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}

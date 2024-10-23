@@ -23,8 +23,6 @@
 
 \PassOptionsToPackage{hyphens}{url}
 \RequirePackage{setspace} % 行間設定用パッケージ
-\RequirePackage{caption} % キャプションとサブキャプションのパッケージ
-\RequirePackage{subcaption}
 \RequirePackage{here} % 好きな位置にfigなどを置くためのパッケージ
 \RequirePackage{bm} % ベクトルを大文字で書くためのパッケージ
 \RequirePackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
@@ -33,6 +31,7 @@
 \RequirePackage{paralist} % インラインリストのパッケージ
 \RequirePackage{amssymb, amsmath} % 高度な数式記述用パッケージ
 \RequirePackage{mathtools} % 高度な数式記述用パッケージ
+\RequirePackage{amsthm} % 定理環境を使用するためのパッケージ
 \RequirePackage{newtxtext,newtxmath} % Times系フォントを使用するためのパッケージ
 \RequirePackage{tabularray} % 高度な表組み用パッケージ
 % \RequirePackage{minted} % ソースコード表示の用パッケージ
@@ -85,25 +84,68 @@
 
 
 % キャプションとサブキャプションの設定
-\captionsetup[figure]{labelsep=space, labelformat=simple, name=Fig.}
-\captionsetup[subfigure]{labelsep=space, labelformat=simple, name=Fig.}
+\RequirePackage{silence}
+\WarningFilter{caption}{Unknown document class (or package)}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\captionsetup[figure]{labelsep=quad, labelformat=simple, name=Fig.}
+\captionsetup[subfigure]{labelsep=quad, labelformat=simple, name=Fig.}
 \renewcommand*{\thesubfigure}{(\alph{subfigure})}
-\captionsetup[table]{labelsep=space, labelformat=simple, name=Table}
+\captionsetup[table]{labelsep=quad, labelformat=simple, name=Table}
+
+% 本文中のFigureとTableの表記統一のため，\Fig・\Tableを定義
+% 引数としてlabelを受け取り，それを使ってFigureやTableを参照する
+% \FigTableEqマクロの定義
+\newcommand{\FigTableEq}[3][]{%
+    \def\temp{#1}%
+    \ifx\temp\empty
+        {#2~\ref{#3}}%
+    \else
+        \textbf{#2~\ref{#3}}%
+    \fi
+}
+
+% \Figマクロの定義
+\newcommand{\Fig}[2][]{%
+    \FigTableEq[#1]{Fig.}{#2}%
+}
+
+% \Figureマクロの定義
+\newcommand{\Figure}[2][]{%
+    \FigTableEq[#1]{Figure}{#2}%
+}
+
+% \Tableマクロの定義
+\newcommand{\Table}[2][]{%
+    \FigTableEq[#1]{Table}{#2}%
+}
+
+% \Equationマクロの定義
+\newcommand{\Eq}[2][]{%
+    \FigTableEq[#1]{Eq.}{#2}%
+}
 
 % sectionのサイズを合わせる
-\RenewBlockHeading{chapter}{0}{indent=1\jlreq@zw,lines=6,label_format={第\thechapter 章},font={\huge},after_label_space=1\jlreq@zw,second_heading_text_indent={-1\jlreq@zw,1\jlreq@zw},subtitle_font={\jlreq@keepbaselineskip{\Large}}}
-\RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=1\jlreq@zw}
-\RenewBlockHeading{subsection}{2}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=1\jlreq@zw}
-\RenewBlockHeading{subsubsection}{3}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=1\jlreq@zw}
+\RenewBlockHeading{chapter}{0}{lines=6,label_format={第\thechapter 章},font={\jlreq@keepbaselineskip{\Huge\bfseries}},after_label_space=1\jlreq@zw,second_heading_text_indent={-1\jlreq@zw,1\jlreq@zw},subtitle_font={\jlreq@keepbaselineskip{\Large}}}
+\RenewBlockHeading{section}{1}{font=\huge,after_label_space=1\jlreq@zw}
+\RenewBlockHeading{subsection}{2}{font=\LARGE,after_label_space=1\jlreq@zw}
+\RenewBlockHeading{subsubsection}{3}{font=\Large,after_label_space=1\jlreq@zw}
 
 % セクション類の空白の設定
-% \ModifyHeading{section}{before_space=5pt, after_space=5pt}
-% \ModifyHeading{subsection}{before_space=5pt, after_space=5pt}
-% \ModifyHeading{subsubsection}{before_space=5pt, after_space=5pt}
+\ModifyHeading{section}{before_space=15pt, after_space=15pt}
+\ModifyHeading{subsection}{before_space=10pt, after_space=10pt}
+\ModifyHeading{subsubsection}{before_space=10pt, after_space=10pt}
 % セクションタイトルが一行以下なら下、２行以上なら上
-\ModifyHeading{section}{lines=1}
-\ModifyHeading{subsection}{lines=1}
-\ModifyHeading{subsubsection}{lines=1}
+% \ModifyHeading{section}{lines=1}
+% \ModifyHeading{subsection}{lines=1}
+% \ModifyHeading{subsubsection}{lines=1}
+
+% セクションが連続する際の行取りを設定
+\SetBlockHeadingSpaces{
+    {_chapter{*},_section{before_space=0pt, after_space=15pt}},
+    {_section{*},_subsection{before_space=0pt, after_space=5pt}}
+    {_subsection{*},_subsubsection{before_space=0pt, after_space=5pt}}
+}
 
 \setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{4}

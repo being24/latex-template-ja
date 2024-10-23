@@ -46,7 +46,7 @@
     \RequirePackage{luatexja}
     % 日本語フォントは原ノ味フォントを使用
     \RequirePackage{luatexja-fontspec}
-    \RequirePackage[haranoaji,no-math]{luatexja-preset}
+    \RequirePackage[haranoaji,no-math,deluxe]{luatexja-preset}
 
     % 図表関連のパッケージを読み込む
     \RequirePackage{graphicx}
@@ -56,6 +56,7 @@
 \else
     \ifuptex
         % upLaTeXのフォントを設定
+        \RequirePackage[deluxe]{otf}
         \RequirePackage[haranoaji,noalphabet]{pxchfon}
 
         % 図表関連のパッケージを読み込む

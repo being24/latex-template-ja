@@ -10,10 +10,11 @@
     paper=a4,
     fontsize=11pt,
     disablejfam,
-    head_space=25mm,
-    foot_space=25mm,
+    head_space=30mm,
+    foot_space=30mm,
     gutter=25mm,
     fore-edge=25mm,
+    linegap=1zw,
     report]
     {jlreq}
 
@@ -27,7 +28,6 @@
 \RequirePackage{bm} % ベクトルを大文字で書くためのパッケージ
 \RequirePackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
 \urlstyle{same} % URLの表示形式を本文と同じにする
-\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
 \RequirePackage{paralist} % インラインリストのパッケージ
 \RequirePackage{amssymb, amsmath} % 高度な数式記述用パッケージ
 \RequirePackage{mathtools} % 高度な数式記述用パッケージ
@@ -40,6 +40,8 @@
 \RequirePackage{indentfirst} % 最初の段落でインデントするためのパッケージ
 \RequirePackage{framed} % 囲み付き文章を出すためのパッケージ
 \RequirePackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
+\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
+
 
 
 \ifluatex
@@ -133,15 +135,15 @@
 }
 
 % sectionのサイズを合わせる
-\RenewBlockHeading{chapter}{0}{lines=6,label_format={第\thechapter 章},font={\jlreq@keepbaselineskip{\Huge\bfseries}},after_label_space=1\jlreq@zw,second_heading_text_indent={-1\jlreq@zw,1\jlreq@zw},subtitle_font={\jlreq@keepbaselineskip{\Large}}}
+\RenewBlockHeading{chapter}{0}{lines=6,label_format={第\thechapter 章},font={\jlreq@keepbaselineskip{\bfseries\Huge}},after_label_space=1\jlreq@zw,second_heading_text_indent={-1\jlreq@zw,1\jlreq@zw},subtitle_font={\jlreq@keepbaselineskip{\Large}}}
 \RenewBlockHeading{section}{1}{font=\huge,after_label_space=1\jlreq@zw}
 \RenewBlockHeading{subsection}{2}{font=\LARGE,after_label_space=1\jlreq@zw}
 \RenewBlockHeading{subsubsection}{3}{font=\Large,after_label_space=1\jlreq@zw}
 
 % セクション類の空白の設定
-\ModifyHeading{section}{before_space=15pt, after_space=15pt}
-\ModifyHeading{subsection}{before_space=10pt, after_space=10pt}
-\ModifyHeading{subsubsection}{before_space=10pt, after_space=10pt}
+\ModifyHeading{section}{before_space=30pt, after_space=30pt}
+\ModifyHeading{subsection}{before_space=20pt, after_space=20pt}
+\ModifyHeading{subsubsection}{before_space=15pt, after_space=15pt}
 % セクションタイトルが一行以下なら下、２行以上なら上
 % \ModifyHeading{section}{lines=1}
 % \ModifyHeading{subsection}{lines=1}
@@ -150,8 +152,8 @@
 % セクションが連続する際の行取りを設定
 \SetBlockHeadingSpaces{
     {_chapter{*},_section{before_space=0pt, after_space=15pt}},
-    {_section{*},_subsection{before_space=0pt, after_space=5pt}}
-    {_subsection{*},_subsubsection{before_space=0pt, after_space=5pt}}
+    {_section{*},_subsection{before_space=15pt, after_space=5pt}}
+    {_subsection{*},_subsubsection{before_space=15pt, after_space=5pt}}
 }
 
 \setcounter{tocdepth}{2}

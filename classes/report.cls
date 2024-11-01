@@ -83,13 +83,13 @@
 
 \RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
 \RequirePackage{tabularx} % 表の幅を指定するためのパッケージ
-\RequirePackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
+\RequirePackage[bibstyle=report,sorting=none,date=year,isbn=false,doi,giveninits,urldate=iso,seconds]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}
 
-\DeclareFieldFormat*{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
-\DeclareFieldFormat*{title}{\textit{#1}}
-\DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}
-\DeclareFieldFormat[book]{title}{\textit{#1}}
+% \DeclareFieldFormat*{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
+% \DeclareFieldFormat*{title}{\textit{#1}}
+% \DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}
+% \DeclareFieldFormat[book]{title}{\textit{#1}}
 
 
 % キャプションとサブキャプションの設定

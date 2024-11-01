@@ -1,0 +1,48 @@
+\ProvidesFile{sice.bbx}
+
+\RequireBibliographyStyle{numeric}
+
+% 参考文献リストの番号の後ろにスペースを入れる
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}\hspace{.5\jlreq@zw}}
+
+% maxnamesとminnamesの設定を追加
+\ExecuteBibliographyOptions{maxnames=99, minnames=1}
+
+% In.の削除
+\renewbibmacro*{in:}{}
+
+\DeclareFieldFormat[article,book,booklet,inbook,inproceedings,incollection,manual,mastersthesis,misc,phdthesis,proceedings,techreport,unpublished,online]{title}{#1}
+% \DeclareFieldFormat{journal}{\textbf{#1}}
+% \DeclareFieldFormat{booktitle}{\textrm{#1}}
+\DeclareFieldFormat{journaltitle}{#1}
+
+
+% yearとpageの表示順を入れ替え
+% yearの表示を削除
+\renewbibmacro*{journal+issuetitle}{%
+    \usebibmacro{journal}%
+    \setunit*{\addspace}%
+    \iffieldundef{series}
+        {}
+        {\newunit
+        \printfield{series}%
+        \setunit{\addspace}}%
+    \usebibmacro{volume+number+eid}%
+    \setunit{\addspace}%
+    \usebibmacro{issue}%
+    \newunit}
+
+% note+pagesにissue+dateを追加し、yearの表示を追加
+\renewbibmacro*{note+pages}{%
+    \printfield{note}%
+    \setunit{\bibpagespunct}%
+    \printfield{pages}%
+    \setunit{\addcomma\space}%
+    \usebibmacro{issue+date}%
+    \setunit{\addspace}% ここで区切りを変更
+}
+
+% visited onをaccessed onに変更
+\DeclareFieldFormat{urldate}{(accessed on #1)}
+
+\endinput

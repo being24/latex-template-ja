@@ -74,7 +74,7 @@
 
     \else
         % pTeXでコンパイルしようとする場合はエラーを出す
-        \ClassError{sice}{This class file is for LuaLaTeX or upLaTeX only.}{Use LuaLaTeX or upLaTeX to compile this document.}
+        \ClassError{resume}{This class file is for LuaLaTeX or upLaTeX only.}{Use LuaLaTeX or upLaTeX to compile this document.}
     \fi
 \fi
 

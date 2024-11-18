@@ -9,6 +9,10 @@ on:
       - master
     tags:
       - "v*"
+    # .github内が変更されたときは実行しない
+    paths-ignore:
+      - .github/**
+    
 
 env:
   # MakefileでDockerを使う機能を無効にする

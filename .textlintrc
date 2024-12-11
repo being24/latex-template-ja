@@ -45,7 +45,9 @@
             "ja-no-abusage": true,
             "ja-no-successive-word": true,
             "ja-no-weak-phrase": true,
-            "max-kanji-continuous-len": true,
+            "max-kanji-continuous-len": {
+                "max": 8
+            },
             "max-ten": {
                 "touten": "，",
                 "kuten": "．"
@@ -58,7 +60,7 @@
             },
             "no-mix-dearu-desumasu": {
                 "preferInHeader": "である",
-                "preferInBody": "ですます",
+                "preferInBody": "である",
                 "preferInList": "である",
                 "strict": true
             },

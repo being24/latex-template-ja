@@ -40,7 +40,6 @@
 \RequirePackage{indentfirst} % 最初の段落でインデントするためのパッケージ
 \RequirePackage{framed} % 囲み付き文章を出すためのパッケージ
 \RequirePackage{type1cm} % 文字の大きさを自由に変えるためのパッケージ
-\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
 
 
 
@@ -81,7 +80,7 @@
     \fi
 \fi
 
-\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
+% \RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
 \RequirePackage{tabularx} % 表の幅を指定するためのパッケージ
 \RequirePackage[bibstyle=report,sorting=none,date=year,isbn=false,doi,giveninits,urldate=iso,seconds]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}

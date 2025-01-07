@@ -28,7 +28,6 @@
 \RequirePackage{bm} % ベクトルを大文字で書くためのパッケージ
 \RequirePackage[hyphens]{xurl} % URLを表示するためのパッケージ、ハイフンでの改行を許可
 \urlstyle{same} % URLの表示形式を本文と同じにする
-\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
 \RequirePackage{paralist} % インラインリストのパッケージ
 \RequirePackage{amssymb, amsmath} % 高度な数式記述用パッケージ
 \RequirePackage{mathtools} % 高度な数式記述用パッケージ
@@ -78,7 +77,7 @@
     \fi
 \fi
 
-\RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
+% \RequirePackage{enumitem} % 高機能番号付き箇条書きのパッケージ
 \RequirePackage{tabularx} % 表の幅を指定するためのパッケージ
 \RequirePackage[backend=biber,style=trad-unsrt]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}

@@ -152,7 +152,7 @@
 \SetBlockHeadingSpaces{
     {_chapter{*},_section{before_space=0pt, after_space=15pt}},
     {_section{*},_subsection{before_space=5pt, after_space=15pt}}
-    {_subsection{*},_subsubsection{before_space=15pt, after_space=5pt}}
+    {_subsection{*},_subsubsection{before_space=5pt, after_space=15pt}}
 }
 
 \setcounter{tocdepth}{2}

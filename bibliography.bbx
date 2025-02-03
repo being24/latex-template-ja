@@ -1,4 +1,4 @@
-\ProvidesFile{sice.bbx}
+\ProvidesFile{bibliography.bbx}
 
 \RequireBibliographyStyle{numeric}
 
@@ -44,5 +44,45 @@
 
 % visited onをaccessed onに変更
 \DeclareFieldFormat{urldate}{(accessed on #1)}
+
+% mastersthesisのMA thesisを修士論文に変更
+% phdthesisのPhD thesisを博士論文に変更
+\DefineBibliographyStrings{english}{
+  mathesis = {修士論文},
+  phdthesis = {博士論文},
+}
+
+\DeclareBibliographyDriver{mastersthesis}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title}%
+  \newunit
+  \printfield{type}%
+  \newunit
+  \usebibmacro{institution+location+date}%
+  \newunit\newblock
+  \usebibmacro{chapter+pages}%
+  \newunit
+  \printfield{pagetotal}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \usebibmacro{related}%
+  \usebibmacro{finentry}}
+
+% mastersthesisとphdthesis専用の日付表示マクロ
+\renewbibmacro*{institution+location+date}{%
+  \printlist{institution}%
+  \newunit
+  \printlist{location}%
+  \newunit
+  \printtext[parens]{\printfield{year}}%
+  \newunit}
 
 \endinput

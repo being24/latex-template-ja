@@ -101,7 +101,7 @@
 % 本文中のFigureとTableの表記統一のため，\Fig・\Tableを定義
 % 引数としてlabelを受け取り，それを使ってFigureやTableを参照する
 % \FigTableマクロの定義
-\newcommand{\FigTable}[3][]{%
+\newcommand{\FigTableEq}[3][]{%
     \def\temp{#1}%
     \ifx\temp\empty
         {#2~\ref{#3}}%
@@ -112,17 +112,17 @@
 
 % \Figマクロの定義
 \newcommand{\Fig}[2][]{%
-    \FigTable[#1]{Fig.}{#2}%
+    \FigTableEq[#1]{Fig.}{#2}%
 }
 
 % \Figureマクロの定義
 \newcommand{\Figure}[2][]{%
-    \FigTable[#1]{Figure}{#2}%
+    \FigTableEq[#1]{Figure}{#2}%
 }
 
 % \Tableマクロの定義
 \newcommand{\Table}[2][]{%
-    \FigTable[#1]{Table}{#2}%
+    \FigTableEq[#1]{Table}{#2}%
 }
 
 % \Equationマクロの定義

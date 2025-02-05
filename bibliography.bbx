@@ -12,35 +12,33 @@
 \renewbibmacro*{in:}{}
 
 \DeclareFieldFormat[article,book,booklet,inbook,inproceedings,incollection,manual,mastersthesis,misc,phdthesis,proceedings,techreport,unpublished,online]{title}{#1}
-% \DeclareFieldFormat{journal}{\textbf{#1}}
-% \DeclareFieldFormat{booktitle}{\textrm{#1}}
 \DeclareFieldFormat{journaltitle}{#1}
 
 
-% yearとpageの表示順を入れ替え
-% yearの表示を削除
-\renewbibmacro*{journal+issuetitle}{%
-    \usebibmacro{journal}%
-    \setunit*{\addspace}%
-    \iffieldundef{series}
-        {}
-        {\newunit
-        \printfield{series}%
-        \setunit{\addspace}}%
-    \usebibmacro{volume+number+eid}%
-    \setunit{\addspace}%
-    \usebibmacro{issue}%
-    \newunit}
+% % yearとpageの表示順を入れ替え
+% % yearの表示を削除
+% \renewbibmacro*{journal+issuetitle}{%
+%     \usebibmacro{journal}%
+%     \setunit*{\addspace}%
+%     \iffieldundef{series}
+%         {}
+%         {\newunit
+%         \printfield{series}%
+%         \setunit{\addspace}}%
+%     \usebibmacro{volume+number+eid}%
+%     \setunit{\addspace}%
+%     \usebibmacro{issue}%
+%     \newunit}
 
-% note+pagesにissue+dateを追加し、yearの表示を追加
-\renewbibmacro*{note+pages}{%
-    \printfield{note}%
-    \setunit{\bibpagespunct}%
-    \printfield{pages}%
-    \setunit{\addcomma\space}%
-    \usebibmacro{issue+date}%
-    \setunit{\addspace}% ここで区切りを変更
-}
+% % note+pagesにissue+dateを追加し、yearの表示を追加
+% \renewbibmacro*{note+pages}{%
+%     \printfield{note}%
+%     \setunit{\bibpagespunct}%
+%     \printfield{pages}%
+%     \setunit{\addcomma\space}%
+%     \usebibmacro{issue+date}%
+%     \setunit{\addspace}% ここで区切りを変更
+% }
 
 % visited onをaccessed onに変更
 \DeclareFieldFormat{urldate}{(accessed on #1)}
@@ -52,37 +50,37 @@
   phdthesis = {博士論文},
 }
 
-\DeclareBibliographyDriver{mastersthesis}{%
-  \usebibmacro{bibindex}%
-  \usebibmacro{begentry}%
-  \usebibmacro{author}%
-  \setunit{\labelnamepunct}\newblock
-  \usebibmacro{title}%
-  \newunit
-  \printfield{type}%
-  \newunit
-  \usebibmacro{institution+location+date}%
-  \newunit\newblock
-  \usebibmacro{chapter+pages}%
-  \newunit
-  \printfield{pagetotal}%
-  \newunit\newblock
-  \usebibmacro{doi+eprint+url}%
-  \newunit\newblock
-  \usebibmacro{addendum+pubstate}%
-  \setunit{\bibpagerefpunct}\newblock
-  \usebibmacro{pageref}%
-  \newunit\newblock
-  \usebibmacro{related}%
-  \usebibmacro{finentry}}
+% \DeclareBibliographyDriver{mastersthesis}{%
+%   \usebibmacro{bibindex}%
+%   \usebibmacro{begentry}%
+%   \usebibmacro{author}%
+%   \setunit{\labelnamepunct}\newblock
+%   \usebibmacro{title}%
+%   \newunit
+%   \printfield{type}%
+%   \newunit
+%   \usebibmacro{institution+location+date}%
+%   \newunit\newblock
+%   \usebibmacro{chapter+pages}%
+%   \newunit
+%   \printfield{pagetotal}%
+%   \newunit\newblock
+%   \usebibmacro{doi+eprint+url}%
+%   \newunit\newblock
+%   \usebibmacro{addendum+pubstate}%
+%   \setunit{\bibpagerefpunct}\newblock
+%   \usebibmacro{pageref}%
+%   \newunit\newblock
+%   \usebibmacro{related}%
+%   \usebibmacro{finentry}}
 
-% mastersthesisとphdthesis専用の日付表示マクロ
-\renewbibmacro*{institution+location+date}{%
-  \printlist{institution}%
-  \newunit
-  \printlist{location}%
-  \newunit
-  \printtext[parens]{\printfield{year}}%
-  \newunit}
+% % mastersthesisとphdthesis専用の日付表示マクロ
+% \renewbibmacro*{institution+location+date}{%
+%   \printlist{institution}%
+%   \newunit
+%   \printlist{location}%
+%   \newunit
+%   \printtext[parens]{\printfield{year}}%
+%   \newunit}
 
 \endinput

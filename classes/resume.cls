@@ -125,6 +125,11 @@
     \FigTable[#1]{Table}{#2}%
 }
 
+% \Equationマクロの定義
+\newcommand{\Eq}[2][]{%
+    \FigTableEq[#1]{Eq.}{#2}%
+}
+
 % sectionのサイズを合わせる
 \RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
 \RenewBlockHeading{subsection}{2}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}

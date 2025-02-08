@@ -21,7 +21,7 @@
 
 \PassOptionsToPackage{hyphens}{url}
 \RequirePackage{secdot} % sectionの数字の後のドットの制御
-\sectiondot{subsection}
+\sectiondot{section}
 \RequirePackage{setspace} % 行間設定用パッケージ
 \setstretch{0.8} % 行間設定
 \RequirePackage{here} % 好きな位置にfigなどを置くためのパッケージ

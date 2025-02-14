@@ -29,7 +29,11 @@ jobs:
 
       # remove files not needed for user instance of template
       - name: Remove unneeded files
-        run: rm -f .github/dependabot.yml .github/workflows/test.yml .github/workflows/remove_depbot.yml
+        run: rm -f .github/dependabot.yml .github/workflows/test.yml .github/workflows/remove_depbot.yml README.md
+
+      # create blank README.md
+      - name: Create blank README.md
+        run: echo "# README for your project \n\nThis is a blank README file. You can add your project description here." > README.md
 
       # save changed files
       - name: Commit changed files

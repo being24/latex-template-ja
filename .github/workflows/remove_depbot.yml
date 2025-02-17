@@ -33,7 +33,7 @@ jobs:
 
       # create blank README.md
       - name: Create blank README.md
-        run: echo "# README for your project \n\nThis is a blank README file. You can add your project description here." > README.md
+        run: echo -e "# README for your project \n\nThis is a blank README file. You can add your project description here." > README.md
 
       # save changed files
       - name: Commit changed files

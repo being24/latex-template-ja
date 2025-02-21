@@ -5,15 +5,15 @@ name: build
 # 例えばv1.0.0など
 on:
   push:
-    branches:
-      - master
+    # branches:
+      # - master
     tags:
       - "v*"
     # .github内が変更されたときは実行しない
     paths-ignore:
       - .github/**
+    workflow-dispatch:
     
-
 env:
   # MakefileでDockerを使う機能を無効にする
   USE_DOCKER: no

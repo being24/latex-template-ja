@@ -85,6 +85,8 @@
 \RequirePackage[bibstyle=bibliography,sorting=none,date=year,isbn=false,doi,giveninits,urldate=iso,seconds]{biblatex} % biblatexを使用するためのパッケージ
 \addbibresource{references.bib}
 
+\RequirePackage{tikz} % 図を描画するためのパッケージ
+
 % \DeclareFieldFormat*{journaltitle}{\textit{#1}} % 日本語雑誌名を通常に、英語雑誌名を斜体に
 % \DeclareFieldFormat*{title}{\textit{#1}}
 % \DeclareFieldFormat[inproceedings]{booktitle}{\textit{#1}}

@@ -385,7 +385,7 @@ replacements:
         # add space around operators +-=/*\\ if they are not paired with &
             $body =~ s@\h*(?<![&\{:])([\+\-=\/\*])(?![\:}&])\h*@ $1 @sg;
         # Add braces to superscripts and subscripts
-            $body =~ s@(\^|\_)([a-zA-Z0-9]+)@$1\{$2\}@sg;
+            $body =~ s@(?<!\\label\{[^}]*?)(\^|\_)([a-zA-Z0-9]+)@$1\{$2\}@sg;
         # add space around <>
             $body =~ s@(?<!\\left|\\right)\h*(<|>)\h*(?!\\left|\\right)@ $1 @sg;
         # remove blank line (this is done by modifyLineBreaks)
@@ -408,7 +408,7 @@ replacements:
         # \(x\) -> \( x \)
             $body = " ". $body . " ";
         # Add braces to superscripts and subscripts
-            $body =~ s@(\^|\_)([a-zA-Z0-9]+)@$1\{$2\}@sg;
+            $body =~ s@(?<!\\label\{[^}]*?)(\^|\_)([a-zA-Z0-9]+)@$1\{$2\}@sg;
         # add a single space around + - = * /
             $body =~ s@\h*(?<![\{:])([\+\-=\/\*])(?![\}:])\h*@ $1 @sg;
         # add space around <>

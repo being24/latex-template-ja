@@ -14,7 +14,8 @@
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workdir,type=bind",
 	"workspaceFolder": "/workdir",
-	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+	"containerUser": "ubuntu"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},

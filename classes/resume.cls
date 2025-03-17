@@ -131,9 +131,9 @@
 }
 
 % sectionのサイズを合わせる
-\RenewBlockHeading{section}{1}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
-\RenewBlockHeading{subsection}{2}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
-\RenewBlockHeading{subsubsection}{3}{font={\jlreq@keepbaselineskip{\normalsize\bfseries}},after_label_space=0\jlreq@zw}
+\RenewBlockHeading{section}{1}{font={\normalsize\bfseries},after_label_space=0\jlreq@zw}
+\RenewBlockHeading{subsection}{2}{font={\normalsize\bfseries},after_label_space=0\jlreq@zw}
+\RenewBlockHeading{subsubsection}{3}{font={\normalsize\bfseries},after_label_space=0\jlreq@zw}
 
 % セクション類の空白の設定
 \ModifyHeading{section}{before_space=5pt, after_space=5pt}

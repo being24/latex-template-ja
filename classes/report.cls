@@ -136,7 +136,7 @@
 }
 
 % sectionのサイズを合わせる
-\RenewBlockHeading{chapter}{0}{lines=6,label_format={第\thechapter 章},font={\jlreq@keepbaselineskip{\bfseries\Huge}},after_label_space=1\jlreq@zw,second_heading_text_indent={-1\jlreq@zw,1\jlreq@zw},subtitle_font={\jlreq@keepbaselineskip{\Large}}}
+\RenewBlockHeading{chapter}{0}{lines=6,label_format={第\thechapter 章},font={\bfseries\Huge},after_label_space=1\jlreq@zw,second_heading_text_indent={-1\jlreq@zw,1\jlreq@zw},subtitle_font={\Large}}
 \RenewBlockHeading{section}{1}{font=\huge,after_label_space=1\jlreq@zw}
 \RenewBlockHeading{subsection}{2}{font=\LARGE,after_label_space=1\jlreq@zw}
 \RenewBlockHeading{subsubsection}{3}{font=\Large,after_label_space=1\jlreq@zw}

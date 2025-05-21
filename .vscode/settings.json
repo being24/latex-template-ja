@@ -68,7 +68,7 @@
     // ],
     "latex-workshop.formatting.tex-fmt.path": "tex-fmt",
     "latex-workshop.formatting.tex-fmt.args": [
-        "--keep"
+        "-n"
     ],
     "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?．。，、（）「」［］｛｝《》てにをはがのともへでや",
     "editor.formatOnSave": false

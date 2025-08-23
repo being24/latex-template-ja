@@ -25,7 +25,7 @@ jobs:
     steps:
       # get main branch repo contents
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # remove files not needed for user instance of template
       - name: Remove unneeded files

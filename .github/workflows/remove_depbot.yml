@@ -37,7 +37,7 @@ jobs:
 
       # save changed files
       - name: Commit changed files
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Remove Dependabot"
           branch: master

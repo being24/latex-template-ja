@@ -1,0 +1,55 @@
+name: Notify Slack on PR to master
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send notification to Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+          REPO_NAME: ${{ github.repository }}
+        run: |
+          payload=$(cat <<EOF
+          {
+            "text": ":bell: *Pull Request 通知*",
+            "username": "PR Bot",
+            "icon_emoji": ":github:",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": ":bell: *${PR_USER}* さんが *${REPO_NAME}* に Pull Request を作成しました．"
+                }
+              },
+              {
+                "type": "section",
+                "text":{
+                  "type": "mrkdwn",
+                  "text": "*タイトル:* ${PR_TITLE}"
+                }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*リンク:* <${PR_URL}|PRを開く>"
+                }
+              }
+            ]
+          }
+          EOF
+          )
+
+          curl -X POST -H 'Content-type: application/json' --data "${payload}" "$SLACK_WEBHOOK_URL"

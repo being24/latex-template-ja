@@ -19,7 +19,13 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
           PR_USER: ${{ github.event.pull_request.user.login }}
           REPO_NAME: ${{ github.repository }}
+          SLACK_USER1_ID: ${{ secrets.SLACK_URL_SATO }}
+          SLACK_USER2_ID: ${{ secrets.SLACK_URL_IWAMURA }}
         run: |
+
+          USER1="<@${SLACK_USER1_ID}>"
+          USER2="<@${SLACK_USER2_ID}>"
+
           payload=$(cat <<EOF
           {
             "text": ":bell: *Pull Request 通知*",
@@ -30,7 +36,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": ":bell: *${PR_USER}* さんが *${REPO_NAME}* に Pull Request を作成しました．"
+                  "text": ":bell: ${USER1} ${USER2}\n*${PR_USER}* さんが *${REPO_NAME}* に Pull Request を作成しました．"
                 }
               },
               {

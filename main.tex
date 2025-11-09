@@ -1,17 +1,20 @@
-\documentclass{classes/report}
+\documentclass[dvipdfmx]{jlreq}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[hidelinks]{hyperref}
 
 \begin{document}
 
-\subfile{sections/title}
+\input{sections/title}
 \newpage
 
 \tableofcontents
 \clearpage
 % はじめに
-% \subfile{sections/section1.tex}
+% \input{sections/section1.tex}
 
 % システム概要
-% \subfile{sections/section2.tex}
+% \input{sections/section2.tex}
 
 % 一般会員サブシステム構成
 
@@ -36,6 +39,8 @@
 
 % 貢献度
 
-\subfile{sections/references}
+
+% 参考文献
+\input{sections/references}
 
 \end{document}

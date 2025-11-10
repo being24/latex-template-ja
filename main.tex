@@ -1,22 +1,47 @@
-\documentclass{classes/report}
+\documentclass[dvipdfmx]{jlreq}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
 
 \begin{document}
 
-\pagenumbering{roman}
-\subfile{sections/title}
+\input{sections/title}
 \newpage
 
 \tableofcontents
 \clearpage
+% はじめに
+% \input{sections/section1.tex}
 
-\pagenumbering{arabic}
+% システム概要
+% \input{sections/section2.tex}
 
-\subfile{sections/abstract}
-\newpage
+% 一般会員サブシステム構成
 
-\subfile{sections/main_issue}
-\newpage
 
-\subfile{sections/references}
+% 事業者会員サブシステム構成
+
+
+% 管理者側サブシステム構成
+
+
+% ユーザーインターフェース
+
+
+% 運用・保守設計
+
+
+% データベース設計
+
+
+% ネットワーク設計
+\input{sections/section9.tex}
+
+% 貢献度
+
+
+% 参考文献
+\input{sections/references}
 
 \end{document}

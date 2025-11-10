@@ -27,7 +27,7 @@
 *.fls
 *.bcf
 *.xml
-
+*.pdf
 # Ignore node_modules
 node_modules/
 main.bcf

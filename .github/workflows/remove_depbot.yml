@@ -3,10 +3,7 @@ name: remove-dependabot
 run-name: Remove Dependabot
 
 on:
-  # run when push to main branch
-  push:
-    branches:
-      - master
+  workflow_dispatch:  
 
 
 # only keep latest run of this workflow

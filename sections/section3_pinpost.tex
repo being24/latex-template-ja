@@ -1,0 +1,83 @@
+\subsection{ピン投稿機能}
+ピン投稿機能は，以下のような機能から構成されている．
+\begin{itemize}
+    \item 場所情報投稿機能
+    \item 記述・写真情報投稿機能
+    \item 時間情報登録機能
+    \item ジャンル登録機能
+\end{itemize}
+
+\subsubsection{場所情報投稿機能}
+一般会員自身がピンとして投稿する機能である．
+
+投稿をするには，「新規投稿」を選択して，タイトル，説明，ジャンル，緯度，経度，写真を入力する．
+
+この機能の全体の構成を図\ref{fig:pinpost_gen1_1}に示す．閲覧画面の「新規投稿」を選択すると，投稿画面が表示される．必須入力になっているのはタイトル，説明，ジャンル，緯度，経度で写真は任意でアップロードできる．「投稿する」を選択するとデータベースにアクセスして，投稿内容を格納する．その後，「投稿しました!」とメッセージを表示して，閲覧画面に遷移してピンを表示する．一般会員が投稿した際のピンは共通である．
+
+投稿を取りやめるときの構成を図\ref{fig:pinpost_gen1_2}に示す．投稿画面が表示された後に「キャンセル」を選択すると閲覧画面に遷移する．
+
+位置情報の入力は地図上で選択または，事業者名検索により行う．位置情報を地図上で選択して入力するときの構成を図\ref{fig:pinpost_gen1_3}に示す．「地図上で選択」を選択して，地図を表示し，一般会員が地図上をクリックすることでその位置を取得して緯度と経度の項目を入力する．位置情報を事業者名検索で入力するときの構成を図\ref{fig:pinpost_gen1_4}に示す．一般会員は事業者名検索の項目に事業者名を入力する．データベースにアクセスして，入力した事業者名が存在するかを調べて存在しないならば，「この事業者名は存在しません」というように再度入力をするようにメッセージを表示する．存在するならば，緯度と経度の項目を入力する．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sections/fig_pinpost_general/pinpost_gen1_1.jpg}
+    \caption{場所情報投稿機能の全体}
+    \label{fig:pinpost_gen1_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sections/fig_pinpost_general/pinpost_gen1_2.jpg}
+    \caption{投稿を取りやめる}
+    \label{fig:pinpost_gen1_2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sections/fig_pinpost_general/pinpost_gen1_3.jpg}
+    \caption{位置情報を地図表で選択}
+    \label{fig:pinpost_gen1_3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sections/fig_pinpost_general/pinpost_gen1_4.jpg}
+    \caption{位置情報を事業者名検索で選択}
+    \label{fig:pinpost_gen1_4}
+\end{figure}
+
+\subsubsection{記述・写真情報投稿機能}
+一般会員自身がつけたピンに対して，説明文等のテキスト，写真情報を投稿できる機能である．
+
+投稿画面が表示された後にタイトル，説明，ジャンル，緯度，経度，任意で写真が入力できる．「投稿する」を選択すると必須項目であるタイトル，説明，緯度，経度に入力がされているかを確認する．入力がされていない項目があれば，入力をするようにメッセージを表示する．入力内容に不備がなければ，データベースにアクセスして，投稿内容をデータベースに格納して，「投稿しました!」とメッセージを表示する．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sections/fig_pinpost_general/pinpost_gen2.jpg}
+    \caption{記述・写真情報投稿機能}
+    \label{fig:pinpost_gen2}
+\end{figure}
+
+\subsubsection{時間情報登録機能}
+一般会員がピンの投稿，記述・写真を投稿した際の時刻を登録する機能である．
+
+一般会員が投稿画面で「投稿する」を選択したとき，現在時刻を取得する．データベースにアクセスして，取得した時刻を投稿時刻としてデータベースに格納する．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sections/fig_pinpost_general/pinpost_gen3.jpg}
+    \caption{時間情報登録機能}
+    \label{fig:pinpost_gen3}
+\end{figure}
+
+\subsubsection{ジャンル登録機能}
+一般会員が投稿内容のジャンルを登録できる機能である．
+
+投稿画面にジャンルという項目があり，そこにある「v」をクリックするとジャンルの項目が展開されて一覧が表示される．その中から，ジャンルを選択して，「投稿する」を選択すると，データベースにアクセスしてジャンルを格納することで登録ができる．ジャンルのデフォルトは「その他」である．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{sections/fig_pinpost_general/pinpost_gen4.jpg}
+    \caption{ジャンル登録機能}
+    \label{fig:pinpost_gen4}
+\end{figure}

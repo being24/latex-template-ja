@@ -1,0 +1,217 @@
+\section{ユーザーインターフェース}
+
+\subsection{一般会員側の画面遷移図}
+一般会員全体の画面遷移図を図\ref{Overall_screen_transition_diagram}に示す．
+\begin{figure}[H]
+    \centering
+    \fbox{\includesvg[scale=0.5]{sections/User_UI/User_UI.svg}}
+    \caption{一般会員全体の画面遷移図}
+    \label{Overall_screen_transition_diagram}
+\end{figure}
+
+\subsubsection{ログイン画面}
+ログイン画面では，一般会員が Google アカウントを用いた認証機能により認証を行うことで本システムにログインをする．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/login.jpg}}
+    \caption{ログイン画面}
+    \label{login}
+\end{figure}
+
+\subsubsection{地図表示画面}
+地図表示画面では，図\ref{map}のような地図上にある投稿しているピンを確認することができる．また，投稿の一覧を確認することができる．その際，投稿の絞り込みと並び替えを行うことができる．絞り込みはキーワード，図\ref{genre}のようなジャンル，図\ref{date}のような日にち，並び替えは図\ref{sort}のような距離順・リアクション数順・新着順である．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/map.jpg}}
+    \caption{地図表示画面}
+    \label{map}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/genre.jpg}}
+    \caption{ジャンルの絞り込み}
+    \label{genre}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/date.jpg}}
+    \caption{日にち絞り込み}
+    \label{date}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.42]{sections/User_UI/sort.jpg}}
+    \caption{並び替え}
+    \label{sort}
+\end{figure}
+
+\subsubsection{新規投稿画面}
+新規投稿画面では，一般会員が任意のタイミングで匿名で投稿をすることができる．
+図\ref{new_post}のように，タイトルを入力し，説明を入れ，図\ref{new_post_genre}のような投稿のジャンル分けをすることができる．また，任意で画像を添付することもできる．地図上でクリックまたは店舗名検索で投稿の位置を指定できる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/new_post.jpg}}
+    \caption{新規投稿画面}
+    \label{new_post}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/new_post_genre.jpg}}
+    \caption{ジャンル分け}
+    \label{new_post_genre}
+\end{figure}
+
+\subsubsection{投稿閲覧画面}
+投稿閲覧画面では，一般会員が利用者の投稿を閲覧することができる．
+閲覧できる内容は図\ref{view_posts}のように，タイトル，ジャンル，投稿者（投稿者が一般会員なら匿名，事業者会員なら事業者会員の名前），投稿日時，閲覧数，説明，投稿場所の座標，リアクション数である．また，一般会員はリアクションをすることができる．利用者はブロックと同じ場所に投稿を追加することができる．投稿を追加する場合は新規投稿画面へ画面が遷移する．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.42]{sections/User_UI/view_posts.jpg}}
+    \caption{投稿閲覧画面}
+    \label{view_posts}
+\end{figure}
+
+\subsubsection{通報画面}
+通報画面では，一般会員が投稿主に対して通報することができる．
+図\ref{report}のように，通報理由を入力し「通報する」を押すと通報することができる．通報理由を入力しない場合図\ref{not_report}のように「通報理由を入力してください」と表示され通報することができない．また，「キャンセル」を押すと投稿閲覧画面まで戻る．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/report.jpg}}
+    \caption{通報画面}
+    \label{report}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/not_report.jpg}}
+    \caption{通報理由なし}
+    \label{not_report}
+\end{figure}
+
+\subsubsection{マイページ画面}
+マイページ画面では，図\ref{my_page}のように一般会員のユーザー名，メールアドレス，アカウント種別，登録日を閲覧することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/User_UI/my_page.jpg}}
+    \caption{マイページ画面}
+    \label{my_page}
+\end{figure}
+
+\subsubsection{事業者登録申請画面}
+事業者登録申請画面では，事業者会員になるための申請をすることができる．
+図\ref{application}のように，店舗名，電話番号，住所を入力すると「申請する」を押すことができる．押すと図\ref{can_application}のように「事業者登録申請を送信しました。運営からの承認をお待ちください。」と表示される．また，「キャンセル」を押すとマイページ画面まで戻ることができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/application.jpg}}
+    \caption{事業者登録申請画面}
+    \label{application}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.63]{sections/User_UI/can_application.jpg}}
+    \caption{事業者登録申請後}
+    \label{can_application}
+\end{figure}
+
+\subsubsection{投稿履歴画面}
+投稿履歴画面では，図\ref{post_history}のように一般会員が投稿した履歴を確認することができる．
+「削除」というボタンを押すと図\ref{delete_post}のように「この投稿を削除しますか」と表示され「OK」を押すと投稿を削除することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/post_history.jpg}}
+    \caption{投稿履歴画面}
+    \label{post_history}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/delete_post.jpg}}
+    \caption{投稿削除}
+    \label{delete_post}
+\end{figure}
+
+\subsubsection{リアクション履歴画面}
+リアクション履歴画面では，図\ref{reaction_history}のように一般会員がリアクションした投稿を閲覧できる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/reaction_history.jpg}}
+    \caption{リアクション履歴画面}
+    \label{reaction_history}
+\end{figure}
+
+\subsubsection{設定画面}
+設定画面では，図\ref{setting}のようにブロックしたユーザーの管理，退会画面へのボタンを押すことができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/setting.jpg}}
+    \caption{設定画面}
+    \label{setting}
+\end{figure}
+
+\subsubsection{退会画面}
+退会画面では，図\ref{1withdrawal}のように一般会員が任意のタイミングで退会することができる．
+図\ref{2withdrawal}のように，すべての項目を確認し、チェックを入れると「アカウントを削除する」というボタンを押すことができる．アカウントを削除するというボタンを押すと図\ref{confirmation_withdrawal}のように最後に「本当にアカウントを削除してもよろしいですか？この操作は取り消せません。」と表示され「OK」を押すと退会できる．また，「キャンセル」を押すとチェックを入れ終わった画面まで戻る．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/1withdrawal.jpg}}
+    \caption{退会画面}
+    \label{1withdrawal}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/2withdrawal.jpg}}
+    \caption{退会画面}
+    \label{2withdrawal}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/confirmation_withdrawal.jpg}}
+    \caption{退会確認}
+    \label{confirmation_withdrawal}
+\end{figure}
+
+\subsubsection{お問い合わせ画面}
+お問い合わせ画面では，管理者へ問い合わせをすることができる．
+図\ref{inquiry}のようにお問い合わせの件名，お問い合わせ内容を記入し，「送信する」を押すと図\ref{after_inquiry}のように「お問い合わせを送信しました．運営からの返信をお待ちください」と表示される．お問い合わせの件名，お問い合わせ内容が記入されてない場合「送信する」を押すことができない．「キャンセル」を押すとお問い合わせ画面に遷移する前の画面へ戻る．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/inquiry.jpg}}
+    \caption{お問い合わせ画面}
+    \label{inquiry}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/after_inquiry.jpg}}
+    \caption{お問い合わせ後}
+    \label{after_inquiry}
+\end{figure}
+
+\subsubsection{ログアウト画面}
+ログアウト画面では，図\ref{logout}のように本システムにすでにログインしている会員が任意のタイミングでログアウトすることができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/User_UI/logout.jpg}}
+    \caption{ログアウト画面}
+    \label{logout}
+\end{figure}

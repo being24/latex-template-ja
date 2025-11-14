@@ -1,3 +1,4 @@
+```ignore
 .DS_Store
 
 *.aux
@@ -27,7 +28,7 @@
 *.fls
 *.bcf
 *.xml
-*.pdf
+main.pdf
 # Ignore node_modules
 node_modules/
 main.bcf
@@ -41,3 +42,7 @@ __latexindent_temp.tex
 
 __*.tex
 *SAVE-ERROR
+
+# Ignore generated svg-inkscape artifacts (EPS, _tex files, etc.)
+svg-inkscape/
+```

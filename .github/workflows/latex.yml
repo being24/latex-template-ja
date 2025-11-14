@@ -20,18 +20,12 @@ jobs:
 
       - name: Compile only main.tex
         run: |
-          echo "Compiling main.tex"
-          # uplatexを2回実行して参照や目次を解決
-          uplatex -interaction=nonstopmode main.tex
-          uplatex -interaction=nonstopmode main.tex
-
-          # DVIが生成されていればPDFへ変換
-          if [ -f main.dvi ]; then
-            dvipdfmx main.dvi
-          fi
+          echo "Compile LaTeX with latexmk (uplatex + dvipdfmx)"
+          latexmk -pdfdvi -interaction=nonstopmode -shell-escape main.tex
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: main-pdf
           path: main.pdf

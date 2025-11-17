@@ -1,0 +1,48 @@
+\documentclass{jlreq}
+\usepackage{graphicx} % Required for inserting images
+
+\subsection{ピン表示機能}
+ピン表示機能は，事業者会員が投稿した情報を地図上で視覚的に確認できるようにするための機能である．
+本機能は主に以下の要素から構成される．
+
+\begin{itemize}
+  \item 地図上でのピン表示機能
+  \item ジャンル分け機能
+  \item リアクション表示機能
+\end{itemize}
+
+\subsubsection{地図上でのピン表示機能}
+他の会員が投稿したピンを地図上に表示する機能である．
+一般会員による投稿はすべて円形のピンとして描画され，投稿位置に応じた座標へ配置される．
+
+同一地点または非常に近い地点に複数の投稿が存在する場合，密度を視覚的に把握できるように，
+ピンのサイズが段階的に変化する．具体的には，投稿数が多い地点ほど大きいピンが表示される．
+これにより，会員は投稿が集中している地域を直感的に把握することができる．
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{sections/fig_blockpintuho/pin_jigyo.jpg}
+    \caption{地図上でのピン表示機能}
+    \label{fig:pin_main1}
+\end{figure}
+
+\subsubsection{ジャンル分け機能}
+投稿時に選択されたジャンルに応じてピンの色を変更する機能である．
+ジャンルは運営側であらかじめ定義されており，各ジャンルに固有の色が割り当てられている．
+
+会員は地図上のピンの色を見ることで，投稿の種類を瞬時に判別できる．
+また，他の機能（絞り込み機能など）と組み合わせることで，特定ジャンルのみの地図表示にも対応している．
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{sections/fig_blockpintuho/genre_jigyo.jpg}
+    \caption{ジャンル分け機能}
+    \label{fig:pin_main2}
+\end{figure}
+
+
+
+\end{document}

@@ -1,0 +1,189 @@
+\subsection{事業者会員の画面遷移図}
+
+一般会員全体の画面遷移図を図\ref{Business_screen_transition_diagram}に示す．
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{sections/Business_UI/Business.pdf}
+    \caption{事業者会員全体の画面遷移図}
+    \label{Business_screen_transition_diagram}
+\end{figure}
+
+\subsubsection{ログイン画面}
+ログイン画面では，事業者会員が Google アカウントを用いた認証機能により認証を行うことで本システムにログインをする．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/Business_UI/login.jpg}}
+    \caption{ログイン画面}
+    \label{Business_login}
+\end{figure}
+
+\subsubsection{地図表示画面}
+地図表示画面では，図\ref{Business_map}のような地図上にある投稿しているピンを確認することができる．また，投稿の一覧を確認することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/map.jpg}}
+    \caption{地図表示画面}
+    \label{Business_map}
+\end{figure}
+
+\subsubsection{新規投稿画面}
+新規投稿画面では，事業者会員が任意のタイミングで投稿をすることができる．
+図\ref{Business_new_post}のように，タイトルを入力し，説明を入れ，図\ref{Business_new_post_genre}のような投稿のジャンル分けをすることができる．また，任意で画像を添付することもできる．地図上でクリックまたは店舗名検索で投稿の位置を指定できる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_new_post.jpg}}
+    \caption{新規投稿画面}
+    \label{Business_new_post}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_new_post_genre.jpg}}
+    \caption{ジャンル分け}
+    \label{Business_new_post_genre}
+\end{figure}
+
+\subsubsection{投稿閲覧画面}
+投稿閲覧画面では，事業者会員が利用者の投稿を閲覧することができる．
+閲覧できる内容は図\ref{Business_view_posts}のように，タイトル，ジャンル，投稿者（投稿者が一般会員なら匿名，事業者会員なら事業者会員のユーザー名），投稿日時，閲覧数，説明，投稿場所の座標，リアクション数である．利用者はこの画面からブロック，同じ場所に投稿を追加することができる．投稿を追加する場合は新規投稿画面へ画面が遷移する．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.42]{sections/Business_UI/business_view_posts.jpg}}
+    \caption{投稿閲覧画面}
+    \label{Business_view_posts}
+\end{figure}
+
+\subsubsection{通報画面}
+通報画面では，事業者会員が投稿主に対して通報することができる．
+図\ref{Business_report}のように，通報理由を入力し「通報する」を押すと通報することができる．通報理由を入力しない場合図\ref{Business_not_report}のように「通報理由を入力してください」と表示され通報することができない．また，「キャンセル」を押すと投稿閲覧画面まで戻る．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_report.jpg}}
+    \caption{通報画面}
+    \label{Business_report}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_not_report.jpg}}
+    \caption{通報理由なし}
+    \label{Business_not_report}
+\end{figure}
+
+\subsubsection{マイページ画面}
+マイページ画面では，図\ref{Business_my_page}のように事業者会員のユーザー名，メールアドレス，アカウント種別，登録日を閲覧することができる．また，ユーザー名の変更をすることができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_my_page.jpg}}
+    \caption{マイページ画面}
+    \label{Business_my_page}
+\end{figure}
+
+\subsubsection{投稿履歴画面}
+投稿履歴画面では，図\ref{Business_post_history}のように事業者会員が投稿した履歴を確認することができる．
+「削除」というボタンを押すと図\ref{Business_delete_post}のように「この投稿を削除しますか」と表示され「OK」を押すと投稿を削除することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_post_history.jpg}}
+    \caption{投稿履歴画面}
+    \label{Business_post_history}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_delete_post.jpg}}
+    \caption{投稿削除}
+    \label{Business_delete_post}
+\end{figure}
+
+\subsubsection{設定画面}
+設定画面では，図\ref{Business_setting}のようにブロックしたユーザーの管理，退会画面へのボタンを押すことができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_setting.jpg}}
+    \caption{設定画面}
+    \label{Business_setting}
+\end{figure}
+
+\subsubsection{退会画面}
+退会画面では，図\ref{Business_1withdrawal}のように事業者会員が任意のタイミングで退会することができる．
+図\ref{Business_2withdrawal}のように，すべての項目を確認し、チェックを入れると「アカウントを削除する」というボタンを押すことができる．アカウントを削除するというボタンを押すと図\ref{Business_confirmation_withdrawal}のように最後に「本当にアカウントを削除してもよろしいですか？この操作は取り消せません。」と表示され「OK」を押すと退会できる．また，「キャンセル」を押すとチェックを入れ終わった画面まで戻る．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_1withdrawal.jpg}}
+    \caption{退会画面}
+    \label{Business_1withdrawal}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_2withdrawal.jpg}}
+    \caption{退会画面}
+    \label{Business_2withdrawal}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/business_confirmation_withdrawal.jpg}}
+    \caption{退会確認}
+    \label{Business_confirmation_withdrawal}
+\end{figure}
+
+\subsubsection{ダッシュボード画面}
+ダッシュボード画面では，図\ref{dashboard}のように，事業者会員が任意のタイミングでダッシュボードを確認することができる．
+閲覧できる内容は，総投稿数，総リアクション数，総閲覧数，エンゲージメント率，週間推移，ジャンル別投稿数，人気投稿TOP5である．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/dashboard.jpg}}
+    \caption{ダッシュボード画面}
+    \label{dashboard}
+\end{figure}
+
+\subsubsection{支払い情報画面}
+支払い情報画面では，図\ref{payment_information}のように，事業者会員が任意のタイミングで支払い情報を確認することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/payment_information.jpg}}
+    \caption{支払い情報画面}
+    \label{payment_information}
+\end{figure}
+
+\subsubsection{お問い合わせ画面}
+お問い合わせ画面では，管理者へ問い合わせをすることができる．
+図\ref{Business_inquiry}のようにお問い合わせの件名，お問い合わせ内容を記入し，「送信する」を押すと図\ref{Business_after_inquiry}のように「お問い合わせを送信しました．運営からの返信をお待ちください」と表示される．お問い合わせの件名，お問い合わせ内容が記入されてない場合「送信する」を押すことができない．「キャンセル」を押すとお問い合わせ画面に遷移する前の画面へ戻る．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/inquiry.jpg}}
+    \caption{お問い合わせ画面}
+    \label{Business_inquiry}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/after_inquiry.jpg}}
+    \caption{お問い合わせ後}
+    \label{Business_after_inquiry}
+\end{figure}
+
+\subsubsection{ログアウト画面}
+ログアウト画面では，図\ref{Business_logout}のように本システムにすでにログインしている事業者会員が任意のタイミングでログアウトすることができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Business_UI/logout.jpg}}
+    \caption{ログアウト画面}
+    \label{Business_logout}
+\end{figure}

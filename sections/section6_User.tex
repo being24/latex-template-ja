@@ -1,12 +1,12 @@
-\section{ユーザーインターフェース}
-
 \subsection{一般会員側の画面遷移図}
-一般会員全体の画面遷移図を図\ref{Overall_screen_transition_diagram}に示す．
+
+一般会員全体の画面遷移図を図\ref{General_screen_transition_diagram}に示す．
+
 \begin{figure}[H]
     \centering
-    \fbox{\includesvg[scale=0.5]{sections/User_UI/User_UI.svg}}
+    \includegraphics[width=\linewidth]{sections/User_UI/User_UI.pdf}
     \caption{一般会員全体の画面遷移図}
-    \label{Overall_screen_transition_diagram}
+    \label{General_screen_transition_diagram}
 \end{figure}
 
 \subsubsection{ログイン画面}
@@ -70,7 +70,7 @@
 
 \subsubsection{投稿閲覧画面}
 投稿閲覧画面では，一般会員が利用者の投稿を閲覧することができる．
-閲覧できる内容は図\ref{view_posts}のように，タイトル，ジャンル，投稿者（投稿者が一般会員なら匿名，事業者会員なら事業者会員の名前），投稿日時，閲覧数，説明，投稿場所の座標，リアクション数である．また，一般会員はリアクションをすることができる．利用者はブロックと同じ場所に投稿を追加することができる．投稿を追加する場合は新規投稿画面へ画面が遷移する．
+閲覧できる内容は図\ref{view_posts}のように，タイトル，ジャンル，投稿者（投稿者が一般会員なら匿名，事業者会員なら事業者会員のユーザー名），投稿日時，閲覧数，説明，投稿場所の座標，リアクション数である．また，一般会員はリアクションをすることができる．利用者はこの画面からブロック，同じ場所に投稿を追加することができる．投稿を追加する場合は新規投稿画面へ画面が遷移する．
 
 \begin{figure}[H]
     \centering
@@ -207,7 +207,7 @@
 \end{figure}
 
 \subsubsection{ログアウト画面}
-ログアウト画面では，図\ref{logout}のように本システムにすでにログインしている会員が任意のタイミングでログアウトすることができる．
+ログアウト画面では，図\ref{logout}のように本システムにすでにログインしている一般会員会員が任意のタイミングでログアウトすることができる．
 
 \begin{figure}[H]
     \centering

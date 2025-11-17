@@ -1,0 +1,167 @@
+\section{データベース設計}
+本システムのデータベース設計を以下に示す．図 \ref{fig:sec8/er} はデータの関係をER図で表したものであり，表 \ref{tb:user} から表 \ref{tb:businessReq}はデータベースのテーブル設計である．
+\begin{figure}[H]
+    \centering
+    \includesvg[inkscapelatex=false, width=1.1\linewidth]{sections/section8_database.svg}
+    \caption{ER図}
+    \label{fig:sec8/er}
+\end{figure}
+
+\if0
+\begin{table}[H]
+    \centering
+    \caption{}
+    \label{tb:}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+    \end{tabular}
+\end{table}
+\fi
+
+\begin{table}[H]
+    \centering
+    \caption{会員情報}
+    \label{tb:user}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & VARCHAR(50) & Google ID \\ \hline
+        gmail & & & not null & VARCHAR(100) & メールアドレス \\ \hline
+        role & & & not null & ENUM('user','business','admin') & 会員区分 \\ \hline
+        businessId & & ○ & not null & INT & 事業者ID \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{事業者会員情報}
+    \label{tb:business}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        businessName & & & not null & VARCHAR(50) & 事業者名 \\ \hline
+        kanaBusinessName & & & not null & VARCHAR(50) & カナ事業者名 \\ \hline
+        zipCode & & & not null & INT & 郵便番号 \\ \hline
+        address & & & not null & VARCHAR(100) & 住所 \\ \hline
+        phone & & & not null & INT & 電話番号 \\ \hline
+        registDate & & & not null & DATETIME & 登録日時 \\ \hline
+        profileImage & & & & BLOB & プロフィール画像 \\ \hline
+        userId & & ○ & not null & VARCHAR(50) & Goolge ID \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{支払い情報}
+    \label{tb:pay}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        businessId & & ○ & not null & INT & 事業者ID \\ \hline
+        payAmout & & & not null & INT & 支払額 \\ \hline
+        date & & & not null & DATETIME & 支払日 \\ \hline
+        payFlag & & & not null & BOOLEAN & 支払いフラグ \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{ブロック情報}
+    \label{tb:block}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        blockerId & & ○ & not null & VARCHAR(50) & ブロックしたユーザーのGoogle ID \\ \hline
+        blockedId & & ○ & not null & VARCHAR(50) & ブロックされたユーザーのGoogle ID \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{問い合わせ情報}
+    \label{tb:ask}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        date & & & not null & DATETIME & 問い合わせ日時 \\ \hline
+        subject & & & not null & VARCHAR(100) & 件名 \\ \hline
+        text & & & not null & TEXT & 本文 \\ \hline
+        askId & & ○ & not null & VARCHAR(50) & 問い合わせたユーザーのGoogle ID \\ \hline
+        askFlag & & & not null & BOOLEAN & 問い合わせフラグ \\ \hline
+        query & & & & TEXT & 下書き \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{投稿内容}
+    \label{tb:post}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        placeId & & ○ & not null & INT & 場所ID \\ \hline
+        userId & & ○ & not null & VARCHAR(50) & 投稿者ID \\ \hline
+        postDate & & & not null & DATETIME & 投稿日時 \\ \hline
+        text & & & not null & TEXT & 投稿の説明文 \\ \hline
+        postImage & & & & BLOB & 投稿画像 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{場所情報}
+    \label{tb:place}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        placeId & ○ & & not null & INT & 場所ID \\ \hline
+        postId & ○ & ○ & not null & INT & 投稿ID \\ \hline
+        numPost & & & not null & INT & 投稿数 \\ \hline
+        latitude & & & not null & DOUBLE(1, 4) & 緯度 \\ \hline
+        longitude & & & not null & DOUBLE(1, 4) & 経度 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{ジャンル情報}
+    \label{tb:genre}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        genreId & ○ & & not null & INT & ジャンルID \\ \hline
+        postId & ○ & ○ & not null & INT & 投稿ID \\ \hline
+        genreName & & & not null & 
+        \begin{tabular}{c}
+            ENUM('food', 'event', 'scene', \\'store', 'emergency', 'other')
+        \end{tabular}
+        & ジャンル名 \\ \hline
+        color & & & not null & VARCHAR(6) & 表示色 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+   \caption{通報情報}
+    \label{tb:report}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        userId & & ○ & not null & VARCHAR(50) & 通報したユーザーのGoogle ID \\ \hline
+        postId & & ○ & not null & INT & 対象投稿ID \\ \hline
+        reason & & & not null & TEXT & 通報理由 \\ \hline
+        date & & & not null & DATETIME & 通報日時 \\ \hline
+        reportFlag & & & not null & BOOLEAN & 対応済みフラグ \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{事業者申請情報}
+    \label{tb:businessReq}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        name & & & not null & VARCHAR(50) & 事業者名 \\ \hline
+        address & & & not null & VARCHAR(100) & 住所 \\ \hline
+        phone & & & not null & INT & 電話番号 \\ \hline
+        userId & & ○ & not null & VARCHAR(50) & 申請者のGoogle ID \\ \hline
+    \end{tabular}
+\end{table}

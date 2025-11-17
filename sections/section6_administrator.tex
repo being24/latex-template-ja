@@ -1,0 +1,152 @@
+\subsection{管理者の画面遷移図}
+
+管理者全体の画面遷移図を図\ref{administrator_screen_transition_diagram}に示す．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[inkscapelatex=false, width=1\linewidth]{sections/Administrator_UI/administrator.svg}
+    \caption{管理者全体の画面遷移図}
+    \label{administrator_screen_transition_diagram}
+\end{figure}
+
+\subsubsection{ログイン画面}
+ログイン画面では，管理者が Google アカウントを用いた認証機能により認証を行うことで本システムにログインをする．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.5]{sections/Administrator_UI/login.jpg}}
+    \caption{ログイン画面}
+    \label{administrator_login}
+\end{figure}
+
+\subsubsection{概要画面}
+概要画面では，管理者が任意のタイミングでダッシュボード概要を閲覧できる．
+閲覧できる内容は図\ref{overview}のように，総ユーザー数，アクティブユーザー，総投稿数，総リアクション，事業者アカウント，未処理通報，週間アクティビティ推移，ジャンル別投稿である．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/overview.jpg}}
+    \caption{概要画面}
+    \label{overview}
+\end{figure}
+
+\subsubsection{通報管理画面}
+通報管理画面では，図\ref{report_management}のように管理者が任意のタイミングで通報された投稿を削除することができる．「投稿削除」ボタンを押すと図\ref{after_report_management}のように投稿を削除することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/report_management.jpg}}
+    \caption{通報管理画面}
+    \label{report_management}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/after_report_management.jpg}}
+    \caption{通報後}
+    \label{after_report_management}
+\end{figure}
+
+\subsubsection{事業者申請画面}
+事業者申請画面では図\ref{business_application}のように，一般会員の事業者申請を図\ref{after_business_application}のように承認，図\ref{not_business}のように拒否することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/business_application.jpg}}
+    \caption{事業者申請画面}
+    \label{business_application}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/after_business_application.jpg}}
+    \caption{承認後}
+    \label{after_business_application}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/not_business.jpg}}
+    \caption{拒否後}
+    \label{not_business}
+\end{figure}
+
+\subsubsection{投稿管理画面}
+投稿管理画面では図\ref{post_management}のように，投稿を管理することができる．ゴミ箱のマークを押すと図\ref{after_post_management}のように投稿を削除することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/post_management.jpg}}
+    \caption{投稿管理画面}
+    \label{post_management}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/after_post_management.jpg}}
+    \caption{投稿削除後}
+    \label{after_post_management}
+\end{figure}
+
+\subsubsection{ユーザー管理画面}
+ユーザー管理画面では図\ref{user_management}のようにユーザーを管理することができる．「削除」ボタンを押すと図\ref{after_user_management}のようにアカウントを削除することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/user_management.jpg}}
+    \caption{ユーザー管理画面}
+    \label{user_management}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/after_user_management.jpg}}
+    \caption{削除後}
+    \label{after_user_management}
+\end{figure}
+
+\subsubsection{お問い合わせ画面}
+お問い合わせ画面では利用者からのお問い合わせに対して閲覧，下書き，返信をすることができる．
+「未対応」ボタンを押すと図\ref{not_supported}のように返信をしていないお問い合わせだけを閲覧することができる．「返信」ボタンを押すと図\ref{mail}のように返信内容を打つことができる．「下書き」ボタンを押すと図\ref{draft}のように返信内容の下書きを保存することができる．「メールで送信」ボタンを押すと図\ref{after_mail}のように返信内容を送信することができる．「削除」ボタンを押すと図\ref{delete_mail}のようにお問い合わせを削除することができる．
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/inquiry.jpg}}
+    \caption{お問い合わせ画面}
+    \label{inquiry}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/not_supported.jpg}}
+    \caption{未対応画面}
+    \label{not_supported}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/mail.jpg}}
+    \caption{返信画面}
+    \label{mail}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/draft.jpg}}
+    \caption{下書き後}
+    \label{draft}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/after_mail.jpg}}
+    \caption{送信後}
+    \label{after_mail}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[scale=0.4]{sections/Administrator_UI/delete_mail.jpg}}
+    \caption{削除後}
+    \label{delete_mail}
+\end{figure}

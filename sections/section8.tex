@@ -45,7 +45,7 @@
         phone & & & not null & INT & 電話番号 \\ \hline
         registDate & & & not null & DATETIME & 登録日時 \\ \hline
         profileImage & & & & BLOB & プロフィール画像 \\ \hline
-        userId & & ○ & not null & VARCHAR(50) & Goolge ID \\ \hline
+        userId & & ○ & not null & VARCHAR(50) & Google ID \\ \hline
     \end{tabular}
 \end{table}
 
@@ -57,7 +57,7 @@
         カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
         id & ○ & & not null & INT & ID \\ \hline
         businessId & & ○ & not null & INT & 事業者ID \\ \hline
-        payAmout & & & not null & INT & 支払額 \\ \hline
+        payAmount & & & not null & INT & 支払額 \\ \hline
         date & & & not null & DATETIME & 支払日 \\ \hline
         payFlag & & & not null & BOOLEAN & 支払いフラグ \\ \hline
     \end{tabular}
@@ -103,6 +103,7 @@
         postDate & & & not null & DATETIME & 投稿日時 \\ \hline
         text & & & not null & TEXT & 投稿の説明文 \\ \hline
         postImage & & & & BLOB & 投稿画像 \\ \hline
+        numReaction & & & not null & INT & リアクション数 \\ \hline
     \end{tabular}
 \end{table}
 
@@ -139,7 +140,7 @@
 
 \begin{table}[H]
     \centering
-   \caption{通報情報}
+    \caption{通報情報}
     \label{tb:report}
     \begin{tabular}{|c|c|c|c|c|c|} \hline
         カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline

@@ -1,0 +1,84 @@
+\section{管理者側サブシステム構成}
+管理者側の機能は以下のような機能から構成されている．
+
+\begin{itemize}
+    \item 投稿削除機能
+    \item アカウント削除機能
+    \item 事業者アカウントへの変更機能
+    \item 問い合わせへの対応機能
+    \item 運用状況モニタリング機能
+    \item 通報機能
+\end{itemize}
+
+\subsection{投稿削除機能}
+投稿削除タブを選択すると，投稿一覧を格納しているデータベースにアクセスし，その一覧を表示する．その一覧の右にあるゴミ箱マークを押すことで該当する投稿をデータベースから削除することができる．また，投稿したアカウントに削除した旨の通知を送る．最後に，「削除しました」というポップが表示される．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[keepaspectratio, width=0.8\linewidth]{figures/delete_post.svg}
+    \caption{投稿削除機能}
+    \label{fig:delete_post}
+\end{figure}
+
+\subsection{アカウント削除機能}
+
+ユーザー管理タブを選択すると，ユーザー一覧を格納しているデータベースにアクセスし，ユーザー一覧を表示する．右側にあるゴミ箱ボタンを押すことで該当するユーザーとその投稿とリアクションを全て削除する．削除後に，「削除しました」というポップが表示される．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[keepaspectratio, width=0.8\linewidth]{figures/delete_user.svg}
+    \caption{アカウント削除機能}
+    \label{fig:delete_user}
+\end{figure}
+
+\subsection{事業者アカウントへの変更機能}
+事業者申請タブを選択すると，申請情報を格納しているデータベースにアクセスし，申請情報一覧を表示する．事業者申請を却下する場合，申請情報をデータベースから削除し，「却下しました」というポップが表示される．承認する場合，事業者会員情報を格納しているデータベースに新しくタプルを作成し，元々の会員情報と紐付けを行う．紐付け後，「承認しました！」というポップを表示する．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[keepaspectratio, width=0.8\linewidth]{figures/business_account.svg}
+    \caption{事業者アカウントへの変更機能}
+    \label{fig:business_account}
+\end{figure}
+
+\subsection{問い合わせへの対応機能}
+
+問い合わせタブを選択すると，問い合わせ情報を格納しているデータベースにアクセスし，未対応の問い合わせ情報のみを表示する．そこから返信ボタンを押し，返信をすることでそれをユーザーに送信すると共に該当の問い合わせを対応済みに変更し，「対応済みにしました」というポップを表示する．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[keepaspectratio, width=0.8\linewidth]{figures/support_request.svg}
+    \caption{問い合わせへの対応}
+    \label{fig:support_request}
+\end{figure}
+\subsection{運用状況モニタリング機能}
+
+概要タブを選択すると，以下の要素をデータベースから参照し，表示する．
+\begin{itemize}
+    \item 総ユーザー数
+    \item アクティブユーザー数
+    \item 総投稿数
+    \item 事業者アカウント数
+    \item 未処理通報数
+    \item 1週間の新規投稿数
+    \item 1週間のリアクション数
+    \item ジャンルのカテゴリー分布
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includesvg[keepaspectratio, width=0.8\linewidth]{figures/monitoring.svg}
+    \caption{運用状況モニタリング機能}
+    \label{fig:monitoring}
+\end{figure}
+
+\subsection{通報機能}
+通報管理タブを選択すると，通報一覧情報を格納しているデータベースにアクセスし，未処理の通報のみを表示する．
+その通報を却下する場合は，該当通報を処理済みに変更し，「処理しました」というポップを表示する．承諾する場合は，該当投稿とそのリアクションを削除し，「削除しました！」というポップを表示する．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[keepaspectratio, width=0.8\linewidth]{figures/report.svg}
+    \caption{通報機能}
+    \label{fig:report}
+\end{figure}

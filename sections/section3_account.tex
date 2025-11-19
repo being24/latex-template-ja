@@ -15,16 +15,15 @@
 一般会員が新規会員登録として，Googleアカウントを用いて会員になる機能．
 
 利用規約に同意し，「Googleでログイン」を選択すると，Google認証に移る．
-次に，登録するアカウントを選択，そのアカウント情報をDBに格納する．
-これでログインが完了し，ホーム画面に遷移する．
+次に，登録するアカウントを選択，そのアカウント情報をデータベースに格納する．
+これでログインが完了し，地図表示画面に遷移する．
+
 
 \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.5]{sections/fig_account_general/account_gen1.jpg}
-        \caption{新規会員機能}
-
-        %\label{}
-
+    \centering
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_general/account_gen1.svg}
+    \caption{新規会員機能}
+    %\label{Business_screen_transition_diagram}
 \end{figure}
 
 \subsubsection{ログイン・ログアウト}
@@ -36,38 +35,40 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_general/account_gen2_1.jpg}
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_general/account_gen2_1.svg}
     \caption{ログイン}
-    %\label{fig:pinpost_bus1_1}
+    %\label{Business_screen_transition_diagram}
 \end{figure}
 
-ログアウト機能では，すでにログインしている会員が任意のタイミングでログアウト操作を行うことができる．
-ログアウト操作時にはまずログアウト画面を表示し，ユーザがキャンセルを選択した場合はホーム画面へ戻る．
+ログアウト機能では，すでにログインしている一般会員が任意のタイミングでログアウト操作を行うことができる．
+ログアウト操作時にはまずログアウト画面を表示し，ユーザがキャンセルを選択した場合は地図表示画面へ戻る．
 ログアウトを確定した場合はセッション情報を無効化し，ログイン画面へ遷移する．
 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_general/account_gen2_2.jpg}
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_general/account_gen2_2.svg}
     \caption{ログアウト}
-    %\label{fig:pinpost_bus1_1}
+    %\label{Business_screen_transition_diagram}
 \end{figure}
 
+
 \subsubsection{退会}
-退会機能では，会員が任意のタイミングで本システムから退会できる．退会した会員の情報は，退会処理が完了した時点で完全に消去する．
+退会機能では，一般会員が任意のタイミングで本システムから退会できる．退会した一般会員の情報は，退会処理が完了した時点で完全に消去する．
 
 退会の流れとしては，まず「マイページ」をクリックしてマイページ画面に遷移し，設定を選択すると退会画面が表示される．
-続いてアカウント削除画面を表示し，ユーザは退会理由（任意）を入力し，削除確認項目にすべてチェックを入れる．
-この状態で「アカウントを削除する」を選択するが，キャンセルを選択した場合はマイページ画面へ戻る．
+一般会員は退会理由（任意）を入力し，削除確認項目にすべてチェックを入れる．
+この状態で「アカウントを削除する」を選択するが，キャンセルを選択した場合（構成図では「NO」と表記）はマイページ画面へ戻る．
 
-そのまま「アカウントを削除する」を選択した場合は，「本当にアカウントを削除してもよろしいですか？この操作は取り消せません．」という確認画面を表示する．
-ここでキャンセルを選択した場合はアカウント削除画面に戻り，「OK」を選択した場合はデータベースにアクセスして会員情報を削除し，ログイン画面へ遷移する．
+そのまま「アカウントを削除する」を選択した場合は，「本当にアカウントを削除してもよろしいですか？この操作は取り消せません．」という退会確認画面を表示する．
+ここでキャンセルを選択した場合（構成図では「NO」と表記）はアカウント削除画面に戻り，「OK」を選択した場合はデータベースにアクセスして会員情報を削除し，ログイン画面へ遷移する．
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_general/account_gen3.jpg}
+    \includesvg[inkscapelatex=false, width=0.6\linewidth]{sections/fig_account_general/account_gen3.svg}
     \caption{退会}
-    %\label{fig:pinpost_bus1_1}
+    %\label{Business_screen_transition_diagram}
 \end{figure}
 
 \subsubsection{問い合わせ}
@@ -80,25 +81,26 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_general/account_gen4.jpg}
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_general/account_gen4.svg}
     \caption{問い合わせ}
-    %\label{fig:pinpost_bus1_1}
+    %\label{Business_screen_transition_diagram}
 \end{figure}
 
 \subsubsection{事業者申請機能}
 事業者登録申請機能は，一般会員が事業者会員への昇格を運営側へ申請するための機能である．
-会員は店舗名，電話番号，住所などの情報を入力し，運営側による承認を経て事業者会員となる．
+会員は事業者名，電話番号，住所などの情報を入力し，運営側による承認を経て事業者会員となる．
 
 申請の流れとしては，まず「マイページ」をクリックしてマイページ画面を表示し，「事業者登録を申請」を選択する．
-次に事業者登録申請画面が表示され，ユーザは店舗名，電話番号，住所を入力する．ここで「申請」を選択せずにキャンセルを選択した場合は，マイページ画面へ戻る．
+次に事業者登録申請画面が表示され，一般会員は「店舗名」の欄に事業者名，「電話番号」の欄に電話番号，「住所」の欄に住所を入力する．
+ここで「申請」を選択せずにキャンセルを選択した場合（構成図では「NO」と表記）は，マイページ画面へ戻る．
 
-「申請」を選択した場合は，データベースにアクセスして事業者情報を保存し，「事業者登録申請を送信しました．運営からの承認をお待ちください．」と表示する．
+「申請」を選択した場合は，データベースにアクセスして事業者申請情報を保存し，「事業者登録申請を送信しました．運営からの承認をお待ちください．」と表示する．
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_general/account_gen5.jpg}
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_general/account_gen5.svg}
     \caption{事業者申請機能}
-    %\label{fig:pinpost_bus1_1}
+    %\label{Business_screen_transition_diagram}
 \end{figure}
 
 

@@ -1,0 +1,38 @@
+\subsection{ブロック機能}
+ブロック機能は，事業者会員が特定の利用者に対して表示制限を行うための機能である．
+本機能を利用することで，事業者会員は不快・迷惑と感じる相手の投稿を非表示にし，
+快適な利用環境を維持することができる．
+
+ブロック機能は以下の要素から構成される．
+
+\begin{itemize}
+  \item ブロック機能
+  \item ブロック解除機能
+\end{itemize}
+
+\subsubsection{ブロック機能}
+事業者会員は投稿閲覧画面から「ブロック」ボタンを選択し，
+対象利用者をブロックすることができる．
+
+ブロック操作を実行すると「このユーザーをブロックしますか？ブロックすると相手の投稿が表示されなくなります。」と表示され，「OK」を押すとブロック対象の利用者の会員IDがブロックリストに登録され，登録されている利用者の投稿は投稿一覧に表示されなくなる．「キャンセル」を押した場合は投稿閲覧画面に遷移する．
+図 \ref{fig:block_bus}のシステム構成図では，「OK」を選択する分岐において，キャンセルを押した場合は「NO」へ分岐するものとする．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[inkscapelatex=false, width=1\linewidth]{sections/fig_blockpintuho/block_jigyo.svg}
+    \caption{ブロック機能}
+    \label{fig:block_bus}
+\end{figure}
+
+\subsubsection{ブロック解除機能}
+事業者会員は設定画面内の「ブロックリスト」から，過去にブロックした利用者を確認し，
+必要に応じて「ブロック解除」を押すことでブロックを解除することができる．
+
+ブロックを解除すると，対象利用者の投稿やリアクションが再び表示されるようになる．
+
+\begin{figure}[H]
+    \centering
+    \includesvg[inkscapelatex=false, width=1\linewidth]{sections/fig_blockpintuho/unblock_jigyo.svg}
+    \caption{ブロック解除機能}
+    \label{fig:unblock_bus}
+\end{figure}

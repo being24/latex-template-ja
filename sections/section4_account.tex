@@ -16,26 +16,27 @@
 ログインの流れとしては，まず「利用規約に同意する」にチェックを入れ，「Google でログイン」を選択する．
 その後，Google 認証画面へ遷移し，任意のアカウントを選択して認証を行う．
 認証後，データベースへアクセスし，登録済みのアカウント情報と一致するかを照合する．
-照合が成功した場合はログインを許可し，ホーム画面へ遷移する．
-
+照合が成功した場合はログインを許可し，地図表示画面へ遷移する．
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_business/account_bus1_1.jpg}
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_business/account_bus1_1.svg}
     \caption{ログイン}
-    %\label{fig:pinpost_bus1_1}
+    %\label{administrator_screen_transition_diagram}
 \end{figure}
 
-ログアウト機能では，すでにログインしている会員が任意のタイミングでログアウト操作を行うことができる．
-ログアウト操作時にはまずログアウト画面を表示し，ユーザがキャンセルを選択した場合はホーム画面へ戻る．
+ログアウト機能では，すでにログインしている事業者会員が任意のタイミングでログアウト操作を行うことができる．
+ログアウト操作時にはまずログアウト画面を表示し，ユーザがキャンセルを選択した場合（構成図では「NO」と表記）は地図表示画面へ戻る．
 ログアウトを確定した場合はセッション情報を無効化し，ログイン画面へ遷移する．
 
 
+
+
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_business/account_bus1_2.jpg}
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_business/account_bus1_2.svg}
     \caption{ログアウト}
-    %\label{fig:pinpost_bus1_1}
+    %\label{administrator_screen_transition_diagram}
 \end{figure}
 
 \subsubsection{退会}
@@ -43,16 +44,18 @@
 
 退会の流れとしては，まず「マイページ」をクリックしてマイページ画面に遷移し，設定を選択すると退会画面が表示される．
 続いてアカウント削除画面を表示し，事業者会員は退会理由（任意）を入力し，削除確認項目にすべてチェックを入れる．
-この状態で「アカウントを削除する」を選択するが，キャンセルを選択した場合はマイページ画面へ戻る．
+この状態で「アカウントを削除する」を選択するが，キャンセルを選択した場合（構成図では「NO」と表記）はマイページ画面へ戻る．
 
-そのまま「アカウントを削除する」を選択した場合は，「本当にアカウントを削除してもよろしいですか？この操作は取り消せません．」という確認画面を表示する．
-ここでキャンセルを選択した場合はアカウント削除画面に戻り，「OK」を選択した場合はデータベースにアクセスして会員情報を削除し，ログイン画面へ遷移する．
+そのまま「アカウントを削除する」を選択した場合は，「本当にアカウントを削除してもよろしいですか？この操作は取り消せません．」という退会確認画面を表示する．
+ここでキャンセルを選択した場合（構成図では「NO」と表記）はアカウント削除画面に戻り，
+「OK」を選択した場合はデータベースにアクセスして会員情報を削除し，ログイン画面へ遷移する．
+
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_business/account_bus2.jpg}
+    \includesvg[inkscapelatex=false, width=0.7\linewidth]{sections/fig_account_business/account_bus2.svg}
     \caption{退会}
-    %\label{fig:pinpost_bus1_1}
+    %\label{administrator_screen_transition_diagram}
 \end{figure}
 
 \subsubsection{問い合わせ}
@@ -65,7 +68,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{sections/fig_account_business/account_bus3.jpg}
+    \includesvg[inkscapelatex=false, width=0.8\linewidth]{sections/fig_account_business/account_bus3.svg}
     \caption{問い合わせ}
-    %\label{fig:pinpost_bus1_1}
+    %\label{administrator_screen_transition_diagram}
 \end{figure}

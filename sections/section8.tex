@@ -1,5 +1,5 @@
 \section{データベース設計}
-本システムのデータベース設計を以下に示す．図 \ref{fig:sec8/er} はデータの関係をER図で表したものであり，表 \ref{tb:user} から表 \ref{tb:businessReq}はデータベースのテーブル設計である．
+本システムのデータベース設計を以下に示す．図 \ref{fig:sec8/er} はデータの関係をER図で表したものであり，表 \ref{tb:user} から表 \ref{tb:reaction}はデータベースのテーブル設計である．
 \begin{figure}[H]
     \centering
     \includesvg[inkscapelatex=false, width=1.1\linewidth]{sections/section8_database.svg}
@@ -164,5 +164,17 @@
         address & & & not null & VARCHAR(100) & 住所 \\ \hline
         phone & & & not null & INT & 電話番号 \\ \hline
         userId & & ○ & not null & VARCHAR(50) & 申請者のGoogle ID \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{リアクション情報}
+    \label{tb:reaction}
+    \begin{tabular}{|c|c|c|c|c|c|} \hline
+        カラム名 & PK & FK & その他の制約 & 論理データ型 & 説明 \\ \hline\hline
+        id & ○ & & not null & INT & ID \\ \hline
+        userId & ○ & ○ & not null & VARCHAR(50) & リアクションをしたユーザーのGoogle ID \\ \hline
+        postId & & ○ & not null & INT & 投稿ID \\ \hline
     \end{tabular}
 \end{table}

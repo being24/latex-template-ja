@@ -8,7 +8,7 @@
     "dependencies": {
         "textlint": "^15.5.0",
         "textlint-filter-rule-allowlist": "^4.0.0",
-        "textlint-filter-rule-comments": "^1.2.2",
+        "textlint-filter-rule-comments": "^1.3.0",
         "textlint-plugin-latex2e": "^1.2.1",
         "textlint-rule-ja-no-abusage": "^3.0.0",
         "textlint-rule-ja-no-mixed-period": "^3.0.2",

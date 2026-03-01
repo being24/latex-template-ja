@@ -19,7 +19,7 @@ jobs:
         run: latexmk -pdf -e '$pdf_mode=4' main.tex
 
       - name: Upload PDF
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: main-lua.pdf
           path: main.pdf
@@ -28,7 +28,7 @@ jobs:
         run: latexmk -pdf -e '$pdf_mode=3' main.tex
 
       - name: Upload PDF
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: main-up.pdf
           path: main.pdf

@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v7
         with:
           cache: npm
-          node-version: "16.x"
+          node-version: "22.x"
 
       - uses: reviewdog/action-setup@v1
         with:
@@ -35,7 +35,7 @@ jobs:
       # 依存関係の構築とtextlintの実行
       - name: Run lint
         run: |
-          npm install
+          npm ci
           npm run lint
 
       # ↑のステップでtextlintが違反を検知した場合のみ実行

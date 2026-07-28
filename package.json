@@ -1,5 +1,9 @@
 {
     "name": "thesis-template-master",
+    "packageManager": "npm@11.18.0",
+    "engines": {
+        "node": ">=20"
+    },
     "scripts": {
         "lint": "textlint */*.tex",
         "fix": "textlint --fix */*.tex",

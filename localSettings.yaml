@@ -226,12 +226,12 @@ modifyLineBreaks:
         manipulateSentences: 1              # 0/1
         removeSentenceLineBreaks: 1         # 0/1
         multipleSpacesToSingle: 1           # 0/1
-        sentencesBeginWith:            
+        sentencesBeginWith:
             A-Z: 1                          # 0/1
-            a-z: 1                          # 0/1
-            other: [0-9"']                # regex
+            a-z: 0                          # 0/1（1だと.pdf等の拡張子を誤って文末と判定するため無効化）
+            other: [ぁ-んァ-ヶ一-龠]                # regex（日本語文字対応。数字・クォートは\includegraphics等の数値を誤って文末と判定するため含めない）
         sentencesEndWith:
-          other: 0^                        # regex
+          other: [．。]                        # regex（全角句点対応）
     environments:
         BeginStartsOnOwnLine: 1             # -1,0,1,2,3,4
         BodyStartsOnOwnLine: 1              # -1,0,1,2,3,4

@@ -37,10 +37,12 @@ DOCKER_CMD=docker run --rm $(UIDOPT) -v $(CURDIR):/workdir -w /workdir $(DOCKER_
 ifeq "$(USE_DOCKER)" "yes"
 	LATEXMK_CMD=$(DOCKER_CMD) latexmk
 	LATEXMKRC_CMD=$(DOCKER_CMD) cp /.latexmkrc ./
+	NPM_CMD=$(DOCKER_CMD) npm
 	WATCH_OPTION=-pvc -view=none
 else
 	LATEXMK_CMD=latexmk
 	LATEXMKRC_CMD=cp /.latexmkrc ./
+	NPM_CMD=npm
 	WATCH_OPTION=-pvc
 endif
 
@@ -72,11 +74,11 @@ latexmkrc: .latexmkrc
 
 .PHONY: lint
 lint:
-	npm run lint -- main.tex sections
+	$(NPM_CMD) run lint -- main.tex sections
 
 .PHONY: fix
 fix:
-	npm run fix -- main.tex sections
+	$(NPM_CMD) run fix -- main.tex sections
 
 .PHONY: mcp
 mcp:

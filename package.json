@@ -2,7 +2,7 @@
     "name": "thesis-template-master",
     "packageManager": "npm@11.18.0",
     "engines": {
-        "node": ">=20"
+        "node": ">=24"
     },
     "scripts": {
         "lint": "being-textlint */*.tex",
@@ -11,6 +11,6 @@
         "mcp": "being-textlint --mcp"
     },
     "devDependencies": {
-        "being-textlint-ja-latex": "https://github.com/being24/textlint-ja-latex/archive/refs/tags/v0.1.1.tar.gz"
+        "being-textlint-ja-latex": "https://github.com/being24/textlint-ja-latex/archive/refs/tags/v0.2.0.tar.gz"
     }
 }

@@ -1,4 +1,3 @@
-MAIN_SRC=main
 IN_CONTAINER=$(shell if test -f /.dockerenv || test -f /run/.containerenv || grep -Eq '(docker|containerd|kubepods|libpod)' /proc/1/cgroup 2>/dev/null; then echo yes; else echo no; fi)
 USE_DOCKER?=$(if $(filter yes,$(IN_CONTAINER)),no,yes)
 DOCKER_IMAGE=ghcr.io/being24/latex-docker
@@ -52,15 +51,18 @@ endif
 all: clean pdf
 
 .PHONY: pdf
-pdf: $(MAIN_SRC).pdf
+pdf:
+ifndef FILE
+	$(error FILE is not set. Usage: make pdf FILE=<file without .tex extension>, e.g. make pdf FILE=main)
+endif
+	$(LATEXMK_CMD) $(FILE).tex
 
-$(MAIN_SRC).pdf: $(TEX_SRCS) $(STY_SRCS) $(BIB_SRCS) $(FIGS)
-	$(LATEXMK_CMD)
-
-target=$(MAIN_SRC).tex
 .PHONY: watch
 watch:
-	$(LATEXMK_CMD) $(WATCH_OPTION) $(target)
+ifndef FILE
+	$(error FILE is not set. Usage: make watch FILE=<file without .tex extension>, e.g. make watch FILE=main)
+endif
+	$(LATEXMK_CMD) $(WATCH_OPTION) $(FILE).tex
 
 .PHONY: clean
 clean:

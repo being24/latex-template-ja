@@ -34,7 +34,7 @@ jobs:
       - name: Run lint
         run: |
           npm ci
-          npm run lint
+          npm run lint -- main.tex sections
 
       # ↑のステップでtextlintが違反を検知した場合のみ実行
       - name: Run reviewdog
@@ -42,4 +42,4 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm run --silent lint-style | reviewdog -f=checkstyle -name="textlint" -diff="Git diff HEAD^" -reporter=github-pr-review
+          npm run --silent lint-style -- main.tex sections | reviewdog -f=checkstyle -name="textlint" -diff="Git diff HEAD^" -reporter=github-pr-review

@@ -5,9 +5,9 @@
         "node": ">=24"
     },
     "scripts": {
-        "lint": "being-textlint */*.tex",
-        "fix": "being-textlint --fix */*.tex",
-        "lint-style": "being-textlint -f checkstyle */*.tex",
+        "lint": "being-textlint",
+        "fix": "being-textlint --fix",
+        "lint-style": "being-textlint -f checkstyle",
         "mcp": "being-textlint --mcp"
     },
     "devDependencies": {

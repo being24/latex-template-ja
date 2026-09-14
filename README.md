@@ -44,6 +44,13 @@ make lint
 make fix
 ```
 
+対象は引数で指定できます。通常は `main.tex` と `sections/` を対象にします。
+
+```sh
+npm run lint -- main.tex sections
+npm run fix -- main.tex sections/abstract.tex
+```
+
 textlint の依存関係は `npm ci` で導入します。dev container では作成時に実行します。
 
 LLM 用の MCP server は、対象リポジトリのルートで `npm run mcp` を起動します。MCP は指定した `.tex` ファイルを lint します。

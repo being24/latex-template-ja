@@ -7,8 +7,6 @@ on:
     # Pull Requestかつ
     # 以下のファイルに変更があった場合、このWorkflowを実行
     paths:
-      - "prh.yml"
-      - ".textlintrc"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/lint.yaml"

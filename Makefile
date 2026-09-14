@@ -1,5 +1,6 @@
 MAIN_SRC=main
-USE_DOCKER?=yes
+IN_CONTAINER=$(shell if test -f /.dockerenv || test -f /run/.containerenv || grep -Eq '(docker|containerd|kubepods|libpod)' /proc/1/cgroup 2>/dev/null; then echo yes; else echo no; fi)
+USE_DOCKER?=$(if $(filter yes,$(IN_CONTAINER)),no,yes)
 DOCKER_IMAGE=ghcr.io/being24/latex-docker
 
 # TeX sources
@@ -31,13 +32,15 @@ else
 	endif
 endif
 
-DOCKER_CMD=docker run --rm $(UIDOPT) -v $(CURDIR):/workdir $(DOCKER_IMAGE)
+DOCKER_CMD=docker run --rm $(UIDOPT) -v $(CURDIR):/workdir -w /workdir $(DOCKER_IMAGE)
 
 ifeq "$(USE_DOCKER)" "yes"
 	LATEXMK_CMD=$(DOCKER_CMD) latexmk
+	LATEXMKRC_CMD=$(DOCKER_CMD) cp /.latexmkrc ./
 	WATCH_OPTION=-pvc -view=none
 else
 	LATEXMK_CMD=latexmk
+	LATEXMKRC_CMD=cp /.latexmkrc ./
 	WATCH_OPTION=-pvc
 endif
 
@@ -62,7 +65,7 @@ clean:
 	$(LATEXMK_CMD) -C $(TEX_SRCS)
 
 .latexmkrc:
-	$(DOCKER_CMD) cp /.latexmkrc ./
+	$(LATEXMKRC_CMD)
 
 .PHONY: latexmkrc
 latexmkrc: .latexmkrc
@@ -74,6 +77,10 @@ lint:
 .PHONY: fix
 fix:
 	npm run fix
+
+.PHONY: mcp
+mcp:
+	npm run mcp
 
 branch=wip
 .PHONY: draft

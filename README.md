@@ -34,6 +34,20 @@ ghcr.io/being24/latex-docker を使用します
 
 使い方やFAQはこの[記事](https://zenn.dev/being/articles/how-to-use-my-latex)にまとめています
 
+### ビルドと textlint
+
+ホストでは `make pdf` が Docker の LaTeX 環境でビルドします。dev container と CI の container 内では、同じコマンドが container 内の `latexmk` を直接実行します。
+
+```sh
+make pdf
+make lint
+make fix
+```
+
+textlint の依存関係は `npm ci` で導入します。dev container では作成時に実行します。
+
+LLM 用の MCP server は、対象リポジトリのルートで `npm run mcp` を起動します。MCP は指定した `.tex` ファイルを lint します。
+
 ## License
 
 CC0

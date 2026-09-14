@@ -3,7 +3,10 @@
 {
 	"name": "LaTeX",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "ghcr.io/being24/latex-docker",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -14,6 +17,7 @@
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workdir,type=bind",
 	"workspaceFolder": "/workdir",
+	"postCreateCommand": "npm ci",
 	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 	"containerUser": "ubuntu"
 

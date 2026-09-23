@@ -34,6 +34,7 @@ main.bcf
 
 _minted-main*
 tmp/
+build-check/
 
 __latexindent_temp.tex
 *.bak

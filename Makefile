@@ -37,11 +37,13 @@ ifeq "$(USE_DOCKER)" "yes"
 	LATEXMK_CMD=$(DOCKER_CMD) latexmk
 	LATEXMKRC_CMD=$(DOCKER_CMD) cp /.latexmkrc ./
 	NPM_CMD=$(DOCKER_CMD) npm
+	CHECK_CMD=$(DOCKER_CMD) bash ./bin/check.sh
 	WATCH_OPTION=-pvc -view=none
 else
 	LATEXMK_CMD=latexmk
 	LATEXMKRC_CMD=cp /.latexmkrc ./
 	NPM_CMD=npm
+	CHECK_CMD=bash ./bin/check.sh
 	WATCH_OPTION=-pvc
 endif
 
@@ -64,9 +66,17 @@ ifndef FILE
 endif
 	$(LATEXMK_CMD) $(WATCH_OPTION) $(FILE).tex
 
+.PHONY: check
+check:
+ifndef FILE
+	$(error FILE is not set. Usage: make check FILE=<file without .tex extension>, e.g. make check FILE=main)
+endif
+	$(CHECK_CMD) $(FILE)
+
 .PHONY: clean
 clean:
 	$(LATEXMK_CMD) -C $(TEX_SRCS)
+	rm -rf build-check
 
 .latexmkrc:
 	$(LATEXMKRC_CMD)

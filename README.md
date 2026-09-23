@@ -39,7 +39,7 @@ ghcr.io/being24/latex-docker を使用します
 ホストでは `make pdf` が Docker の LaTeX 環境でビルドします。dev container と CI の container 内では、同じコマンドが container 内の `latexmk` を直接実行します。
 
 ```sh
-make pdf
+make pdf FILE=main
 make lint
 make fix
 ```
@@ -54,6 +54,15 @@ npm run fix -- main.tex sections/abstract.tex
 textlint の依存関係は `npm ci` で導入します。dev container では作成時に実行します。
 
 LLM 用の MCP server は、対象リポジトリのルートで `npm run mcp` を起動します。MCP は指定した `.tex` ファイルを lint します。
+
+### 参照チェック
+
+`make check FILE=main` は、未使用・未定義の参照を検出します。1件でもあれば終了コード 1 で終わります。
+
+- 文献: [checkcites](https://ctan.org/pkg/checkcites) が未使用の `.bib` エントリと未定義の `\cite` を報告します
+- ラベル: [refcheck](https://ctan.org/pkg/refcheck) が参照されていない `\label` を、LaTeX の警告が未定義の `\ref` を報告します
+
+チェック用のビルドは `build-check/` に出力するため、`main.pdf` は変わりません。テンプレートのままでは、サンプルの文献 `ref:青空文庫Aozo22:online` が未使用として報告されます。
 
 ## License
 

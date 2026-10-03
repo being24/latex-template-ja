@@ -14,7 +14,7 @@
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workdir,type=bind",
 	"workspaceFolder": "/workdir",
-	"postCreateCommand": "npm ci",
+	"postCreateCommand": "timeout 300 npm ci || echo 'npm ci did not finish. Run npm ci later to use textlint.'",
 	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 	"containerUser": "ubuntu"
 

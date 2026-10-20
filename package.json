@@ -11,6 +11,6 @@
         "mcp": "being-textlint --mcp"
     },
     "devDependencies": {
-        "being-textlint-ja-latex": "github:being24/textlint-ja-latex#v0.2.0"
+        "being-textlint-ja-latex": "github:being24/textlint-ja-latex#v0.7.0"
     }
 }

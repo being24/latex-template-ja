@@ -37,8 +37,8 @@ jobs:
         run: |
           set -euo pipefail
           # Include paths as well as content in the fingerprint.
-          digest=$(git ls-tree -r HEAD -- main.tex sections package.json package-lock.json \
-            .github/workflows/lint.yaml | sha256sum | cut -d' ' -f1)
+          digest=$(git ls-tree -r HEAD -- . \
+            | awk '/\.tex$/ || /\t(package(-lock)?\.json|\.github\/workflows\/lint\.yaml)$/' | sha256sum | cut -d' ' -f1)
           echo "hash=$digest" >> "$GITHUB_OUTPUT"
           # Use the Issues API rather than the eventually consistent search index.
           gh api --paginate --slurp \
@@ -72,12 +72,62 @@ jobs:
         if: steps.inputs.outputs.run == 'true'
         run: npm ci
 
+      - name: Resolve referenced TeX files
+        if: steps.inputs.outputs.run == 'true'
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { execFileSync } = require('node:child_process');
+          const root = process.cwd();
+          const tracked = execFileSync('git', ['ls-files', '-z'], {encoding: 'utf8'})
+            .split('\0').filter(p => p.endsWith('.tex'));
+          const known = new Set(tracked);
+          const seen = new Set();
+          const uncertain = new Set();
+          function visit(file) {
+            if (seen.has(file)) return;
+            seen.add(file);
+            const source = fs.readFileSync(file, 'utf8')
+              .replace(/\\(?:verb\*?)([^a-zA-Z\s])[^ \r\n]*?\1/g, '')
+              .replace(/\\begin\{(verbatim\*?|Verbatim|lstlisting|minted)\}[\s\S]*?\\end\{\1\}/g, '')
+              .replace(/(^|[^\\])(?:\\\\)*%[^\r\n]*/gm, '$1');
+            const body = source.split(/\\end\{document\}|\\endinput\b/)[0];
+            for (const match of body.matchAll(/\\(?:input|include|subfile)\b\s*(?:\{([^{}]+)\}|([^\s{}%\\]+))/g)) {
+              let name = (match[1] ?? match[2]).trim();
+              if (/[\\#$]/.test(name)) { uncertain.add(file + ': ' + name); continue; }
+              if (!name.endsWith('.tex')) name += '.tex';
+              const choices = [...new Set([path.normalize(name), path.normalize(path.join(path.dirname(file), name))])]
+                .filter(p => known.has(p));
+              if (choices.length === 0) { uncertain.add(file + ': ' + name); continue; }
+              if (choices.length > 1) uncertain.add(file + ': ' + name + ' (ambiguous)');
+              for (const candidate of choices) visit(candidate);
+            }
+            if (/\\(?:import|subimport|inputfrom|includefrom|subfileinclude|includeonly)\b/.test(body))
+              uncertain.add(file + ': unsupported include command');
+            if (/\\(?:input|include|subfile)\b\s*(?:\\|(?:\{[^}]*[\\#]))/.test(body))
+              uncertain.add(file + ': dynamic include');
+          }
+          visit('main.tex');
+          // When static resolution is uncertain, avoid declaring files unused.
+          const candidates = tracked.filter(p => p.startsWith('sections/'));
+          const unused = uncertain.size ? [] : candidates.filter(p => !seen.has(p)).sort();
+          const targets = [...new Set([...seen, ...(uncertain.size ? candidates : [])])].sort();
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'tex-targets.json'), JSON.stringify(targets));
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'tex-unused.json'), JSON.stringify(unused));
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'tex-uncertain.json'), JSON.stringify([...uncertain].sort()));
+          console.log('Lint targets:', targets);
+          console.log('Unused files:', unused);
+          if (uncertain.size) console.warn('Static resolution incomplete:', [...uncertain]);
+          NODE
+
       - name: Run textlint
         if: steps.inputs.outputs.run == 'true'
         run: |
           set -euo pipefail
           status=0
-          npm run --silent lint -- --format json main.tex sections \
+          mapfile -d '' -t targets < <(jq -j '.[] | . + "\u0000"' "$RUNNER_TEMP/tex-targets.json")
+          npm run --silent lint -- --format json -- "${targets[@]}" \
             > "$RUNNER_TEMP/textlint.json" || status=$?
           if [[ "$status" -gt 1 ]] || ! jq -e '
             type == "array" and length > 0 and
@@ -105,7 +155,9 @@ jobs:
         run: |
           set -euo pipefail
           jq -r --arg root "$GITHUB_WORKSPACE/" --arg repo "$GH_REPO" \
-            --arg branch "$DEFAULT_BRANCH" --arg hash "$INPUT_HASH" --arg marker "$REPORT_MARKER" '
+            --arg branch "$DEFAULT_BRANCH" --arg hash "$INPUT_HASH" --arg marker "$REPORT_MARKER" \
+            --slurpfile unused "$RUNNER_TEMP/tex-unused.json" \
+            --slurpfile uncertain "$RUNNER_TEMP/tex-uncertain.json" '
             def esc: gsub("[\r\n]"; " ") | gsub("&"; "&amp;") |
               gsub("<"; "&lt;") | gsub(">"; "&gt;") | gsub("@"; "&#64;") |
               gsub("\\["; "&#91;") | gsub("\\]"; "&#93;") |
@@ -121,7 +173,11 @@ jobs:
               ($branch | @uri) + "/" + (.path | urlpath) + "#L" + (.line | tostring) +
               ") — " + (.message | esc) + " (" + (.ruleId | esc) + ")"
             )) as $lines |
-            ($marker + "\n<!-- input:" + $hash + " -->\n\n検出件数: " +
+            ($marker + "\n<!-- input:" + $hash + " -->\n\n## 未使用のTeXファイル\n\n" +
+             (if ($uncertain[0] | length) > 0 then "参照の静的解析が不完全なため、未使用判定を保留します。参照を確認してください。\n\n" + ($uncertain[0] | map("- " + (. | esc)) | join("\n"))
+              elif ($unused[0] | length) == 0 then "未使用ファイルはありません。"
+              else "以下のファイルは main.tex から参照されていません。不要なテンプレート・原稿ファイルは削除してください。\n\n" + ($unused[0] | map("- [" + (. | esc) + "](https://github.com/" + $repo + "/blob/" + ($branch | @uri) + "/" + (. | urlpath) + ")") | join("\n")) end) +
+             "\n\n## 文章校正結果\n\n検出件数: " +
              ($items | length | tostring) + "\n\n") +
             (if ($items | length) == 0 then "指摘事項はありません。"
              else ($lines | join("\n")) end) |
@@ -132,7 +188,9 @@ jobs:
 
           count=$(jq '[.[].messages[]] | length' "$RUNNER_TEMP/textlint.json")
           state=open
-          if [[ "$count" == 0 ]]; then state=closed; fi
+          unused_count=$(jq length "$RUNNER_TEMP/tex-unused.json")
+          uncertain_count=$(jq length "$RUNNER_TEMP/tex-uncertain.json")
+          if [[ "$count" == 0 && "$unused_count" == 0 && "$uncertain_count" == 0 ]]; then state=closed; fi
           number=$(jq -r '.[0].number // empty' "$RUNNER_TEMP/lint-issues.json")
           if [[ -n "$number" ]]; then
             if jq -e --rawfile body "$RUNNER_TEMP/lint-body.md" --arg state "$state" \

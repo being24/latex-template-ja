@@ -1,52 +1,164 @@
-# textlintでの文法チェックのワークフロー
 name: Lint
 
-# Reviewdogでの指摘を有効に使うため、pull requestでのみ有効
 on:
-  pull_request:
-    # Pull Requestかつ
-    # 以下のファイルに変更があった場合、このWorkflowを実行
-    paths:
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/lint.yaml"
-      - "**.tex"
+  schedule:
+    - cron: '17 18 * * *' # 03:17 JST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: nightly-textlint
+  cancel-in-progress: false
 
 jobs:
   lint:
-    permissions:
-      contents: read
-      pull-requests: write
+    if: ${{ !github.event.repository.is_template || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      REPORT_TITLE: Nightly textlint report
+      REPORT_MARKER: '<!-- nightly-textlint-report:v1 -->'
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
 
-      - name: Setup node environment
+      - name: Check for changed inputs
+        id: inputs
+        env:
+          FORCE: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          set -euo pipefail
+          # Include paths as well as content in the fingerprint.
+          digest=$(git ls-tree -r HEAD -- main.tex sections package.json package-lock.json \
+            .github/workflows/lint.yaml | sha256sum | cut -d' ' -f1)
+          echo "hash=$digest" >> "$GITHUB_OUTPUT"
+          # Use the Issues API rather than the eventually consistent search index.
+          gh api --paginate --slurp \
+            "repos/$GH_REPO/issues?state=all&per_page=100" |
+            jq --arg title "$REPORT_TITLE" --arg marker "$REPORT_MARKER" \
+              '[.[][] | select(.pull_request == null and .user.login == "github-actions[bot]"
+                and .title == $title and ((.body // "") | contains($marker)))]' \
+              > "$RUNNER_TEMP/lint-issues.json"
+          count=$(jq 'length' "$RUNNER_TEMP/lint-issues.json")
+          if [[ "$count" -gt 1 ]]; then
+            echo "::error::Multiple nightly reports found"
+            exit 1
+          fi
+          if [[ "$FORCE" != true && "$count" == 1 ]] &&
+             jq -e --arg marker "<!-- input:$digest -->" \
+               '.[0].body | contains($marker)' "$RUNNER_TEMP/lint-issues.json" >/dev/null; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "No input changes; skipping lint"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node
+        if: steps.inputs.outputs.run == 'true'
         uses: actions/setup-node@v7
         with:
           cache: npm
-          node-version: "24.x"
-
-      - uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Install npm
-        run: npm install --global npm@11.18.0
+          node-version: '24.x'
 
       - name: Install dependencies
-        run: npm ci
-
-      - name: Run lint
-        id: textlint
-        run: npm run lint -- main.tex sections
-
-      # ↑のステップでtextlintが違反を検知した場合のみ実行
-      - name: Run reviewdog
-        if: failure() && steps.textlint.outcome == 'failure'
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.inputs.outputs.run == 'true'
         run: |
-          npm run --silent lint-style -- main.tex sections | reviewdog -f=checkstyle -name="textlint" -diff="Git diff HEAD^" -reporter=github-pr-review
+          npm install --global npm@11.18.0
+          npm ci
+
+      - name: Run textlint
+        if: steps.inputs.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          status=0
+          npm run --silent lint -- --format json main.tex sections \
+            > "$RUNNER_TEMP/textlint.json" || status=$?
+          if [[ "$status" -gt 1 ]] || ! jq -e '
+            type == "array" and length > 0 and
+            all(.[]; (.filePath | type == "string") and
+              (.messages | type == "array") and
+              all(.messages[]; (.message | type == "string") and
+                (.fatal != true) and (.ruleId | type == "string") and
+                (.line | type == "number") and (.column | type == "number")))
+            ' "$RUNNER_TEMP/textlint.json" >/dev/null; then
+            echo "::error::Invalid textlint output or execution failure"
+            exit 1
+          fi
+          count=$(jq '[.[].messages[]] | length' "$RUNNER_TEMP/textlint.json")
+          if [[ "$status" == 1 && "$count" == 0 ]]; then
+            echo "::error::textlint failed without diagnostics"
+            exit 1
+          fi
+          echo "Found $count diagnostics"
+
+      - name: Publish report
+        if: steps.inputs.outputs.run == 'true'
+        env:
+          INPUT_HASH: ${{ steps.inputs.outputs.hash }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          jq -r --arg root "$GITHUB_WORKSPACE/" --arg repo "$GH_REPO" \
+            --arg branch "$DEFAULT_BRANCH" --arg hash "$INPUT_HASH" --arg marker "$REPORT_MARKER" '
+            def esc: gsub("[\r\n]"; " ") | gsub("&"; "&amp;") |
+              gsub("<"; "&lt;") | gsub(">"; "&gt;") | gsub("@"; "&#64;") |
+              gsub("\\["; "&#91;") | gsub("\\]"; "&#93;") |
+              gsub("\\*"; "&#42;") | gsub("\u0060"; "&#96;") |
+              gsub("\\|"; "&#124;") | gsub("\\\\"; "&#92;");
+            def urlpath: split("/") | map(@uri) | join("/");
+            [ .[] | (.filePath | ltrimstr($root) | ltrimstr("./")) as $path |
+              .messages[] | {path: $path, line, column, message, ruleId, severity} ] |
+            sort_by(.path,.line,.column,.ruleId,.message) as $items |
+            ($items | map(
+              "- [" + (.path | esc) + ":" + (.line | tostring) + ":" +
+              (.column | tostring) + "](https://github.com/" + $repo + "/blob/" +
+              ($branch | @uri) + "/" + (.path | urlpath) + "#L" + (.line | tostring) +
+              ") — " + (.message | esc) + " (" + (.ruleId | esc) + ")"
+            )) as $lines |
+            ($marker + "\n<!-- input:" + $hash + " -->\n\n検出件数: " +
+             ($items | length | tostring) + "\n\n") +
+            (if ($items | length) == 0 then "指摘事項はありません。"
+             else ($lines | join("\n")) end) |
+            if length > 60000 then .[0:58000] +
+              "\n\n（表示上限により省略。詳細はActionsのtextlint-result artifactを参照。）"
+            else . end
+          ' "$RUNNER_TEMP/textlint.json" > "$RUNNER_TEMP/lint-body.md"
+
+          count=$(jq '[.[].messages[]] | length' "$RUNNER_TEMP/textlint.json")
+          state=open
+          if [[ "$count" == 0 ]]; then state=closed; fi
+          number=$(jq -r '.[0].number // empty' "$RUNNER_TEMP/lint-issues.json")
+          if [[ -n "$number" ]]; then
+            if jq -e --rawfile body "$RUNNER_TEMP/lint-body.md" --arg state "$state" \
+              '.[0] | .body == ($body | rtrimstr("\n")) and .state == $state' \
+              "$RUNNER_TEMP/lint-issues.json" >/dev/null; then
+              echo "Report unchanged"
+              exit 0
+            fi
+            jq -n --rawfile body "$RUNNER_TEMP/lint-body.md" --arg state "$state" \
+              '{body: ($body | rtrimstr("\n")), state: $state}' |
+              gh api --method PATCH "repos/$GH_REPO/issues/$number" --input - --jq .html_url
+          else
+            number=$(jq -n --rawfile body "$RUNNER_TEMP/lint-body.md" --arg title "$REPORT_TITLE" \
+              '{title: $title, body: ($body | rtrimstr("\n"))}' |
+              gh api --method POST "repos/$GH_REPO/issues" --input - --jq .number)
+            if [[ "$state" == closed ]]; then
+              gh issue close "$number"
+            fi
+          fi
+
+      - name: Upload lint result
+        if: always() && steps.inputs.outputs.run == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: textlint-result
+          path: ${{ runner.temp }}/textlint.json
+          if-no-files-found: ignore

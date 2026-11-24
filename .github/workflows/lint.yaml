@@ -1,52 +1,54 @@
-# textlintでの文法チェックのワークフロー
 name: Lint
 
-# Reviewdogでの指摘を有効に使うため、pull requestでのみ有効
 on:
-  pull_request:
-    # Pull Requestかつ
-    # 以下のファイルに変更があった場合、このWorkflowを実行
-    paths:
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/lint.yaml"
-      - "**.tex"
+  schedule:
+    - cron: '17 18 * * *' # 03:17 JST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: nightly-textlint
+  cancel-in-progress: false
 
 jobs:
   lint:
-    permissions:
-      contents: read
-      pull-requests: write
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
 
-      - name: Setup node environment
+      - name: Check for changed inputs
+        id: inputs
+        env:
+          FORCE: ${{ github.event_name == 'workflow_dispatch' }}
+        run: python3 .github/scripts/nightly-lint.py prepare
+
+      - name: Setup Node
+        if: steps.inputs.outputs.run == 'true'
         uses: actions/setup-node@v7
         with:
           cache: npm
-          node-version: "24.x"
-
-      - uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Install npm
-        run: npm install --global npm@11.18.0
+          node-version: '24.x'
 
       - name: Install dependencies
-        run: npm ci
-
-      - name: Run lint
-        id: textlint
-        run: npm run lint -- main.tex sections
-
-      # ↑のステップでtextlintが違反を検知した場合のみ実行
-      - name: Run reviewdog
-        if: failure() && steps.textlint.outcome == 'failure'
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.inputs.outputs.run == 'true'
         run: |
-          npm run --silent lint-style -- main.tex sections | reviewdog -f=checkstyle -name="textlint" -diff="Git diff HEAD^" -reporter=github-pr-review
+          npm install --global npm@11.18.0
+          npm ci
+
+      - name: Run textlint and update report
+        if: steps.inputs.outputs.run == 'true'
+        env:
+          INPUT_HASH: ${{ steps.inputs.outputs.hash }}
+        run: python3 .github/scripts/nightly-lint.py report

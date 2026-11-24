@@ -70,9 +70,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.inputs.outputs.run == 'true'
-        run: |
-          npm install --global npm@11.18.0
-          npm ci
+        run: npm ci
 
       - name: Run textlint
         if: steps.inputs.outputs.run == 'true'

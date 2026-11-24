@@ -17,7 +17,7 @@ jobs:
   lint:
     if: ${{ !github.event.repository.is_template || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_REPO: ${{ github.repository }}
@@ -37,8 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           # Include paths as well as content in the fingerprint.
-          digest=$(git ls-tree -r HEAD -- . \
-            | awk '/\.tex$/ || /\t(package(-lock)?\.json|\.github\/workflows\/lint\.yaml)$/' | sha256sum | cut -d' ' -f1)
+          digest=$(git ls-tree -r -z HEAD | sha256sum | cut -d' ' -f1)
           echo "hash=$digest" >> "$GITHUB_OUTPUT"
           # Use the Issues API rather than the eventually consistent search index.
           gh api --paginate --slurp \
@@ -147,6 +146,26 @@ jobs:
           fi
           echo "Found $count diagnostics"
 
+      - name: Check LaTeX citations and references
+        if: steps.inputs.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          # Reuse the project's existing Docker-backed make check.
+          status=0
+          make check FILE=main USE_DOCKER=yes > "$RUNNER_TEMP/reference-check.log" 2>&1 || status=$?
+          if [[ "$status" == 0 && -f build-check/reference-check.status ]] &&
+             [[ "$(cat build-check/reference-check.status)" == clean ]]; then
+            result=clean
+          elif [[ -f build-check/reference-check.status ]] &&
+               [[ "$(cat build-check/reference-check.status)" == findings ]]; then
+            result=findings
+          else
+            result=failed
+          fi
+          printf '%s\n' "$result" > "$RUNNER_TEMP/reference-status.txt"
+          # Only print the controlled status; the untrusted compiler output is an artifact.
+          echo "Reference check: $result"
+
       - name: Publish report
         if: steps.inputs.outputs.run == 'true'
         env:
@@ -154,7 +173,46 @@ jobs:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           set -euo pipefail
-          jq -r --arg root "$GITHUB_WORKSPACE/" --arg repo "$GH_REPO" \
+          reference_status=$(cat "$RUNNER_TEMP/reference-status.txt")
+          # A failed check must be retried on the next schedule, even without edits.
+          if [[ "$reference_status" == failed ]]; then INPUT_HASH=failed; fi
+          reference_text="$RUNNER_TEMP/reference-report.txt"
+          if [[ "$reference_status" == findings && -f build-check/reference-check.txt ]]; then
+            cp build-check/reference-check.txt "$reference_text"
+          else
+            : > "$reference_text"
+          fi
+          # Parse checkcites v2.8 summaries and keys, never its banner/progress output.
+          # Unknown formats remain visible as an incomplete check, not a false zero.
+          jq -Rn '
+            reduce inputs as $line
+              ({unused:null,undefined:null,unused_keys:[],undefined_keys:[],warnings:[],section:null};
+               if ($line | test("^\\s*Unused references in your TeX document: [0-9]+\\s*$")) then
+                 .unused = ($line | capture(": (?<n>[0-9]+)\\s*$").n | tonumber) | .section="unused"
+               elif ($line | test("^\\s*Undefined references in your TeX document: [0-9]+\\s*$")) then
+                 .undefined = ($line | capture(": (?<n>[0-9]+)\\s*$").n | tonumber) | .section="undefined"
+               elif ($line | test("^\\s*=>\\s*")) and .section != null then
+                 ($line | sub("^\\s*=>\\s*";"") | sub("\\s+$";"")) as $key |
+                 if .section == "unused" then .unused_keys += [$key]
+                 else .undefined_keys += [$key] end
+               elif ($line | test("^(Package refcheck Warning|LaTeX Warning:|Package biblatex Warning:)")) then
+                 .warnings += [$line] | .section=null
+               else . end)
+            | del(.section) | .warnings |= unique
+          ' < "$reference_text" > "$RUNNER_TEMP/reference-summary.json"
+          if [[ "$reference_status" == clean ]]; then
+            jq -n '{unused:0,undefined:0,unused_keys:[],undefined_keys:[],warnings:[]}' > "$RUNNER_TEMP/reference-summary.json"
+          elif [[ "$reference_status" == findings ]] && ! jq -e '
+            .unused != null and .undefined != null and
+            .unused == (.unused_keys|length) and .undefined == (.undefined_keys|length) and
+            (.unused + .undefined + (.warnings|length) > 0)
+          ' "$RUNNER_TEMP/reference-summary.json" >/dev/null; then
+            reference_status=incomplete
+            INPUT_HASH=failed
+            printf '%s\n' incomplete > "$RUNNER_TEMP/reference-status.txt"
+          fi
+          jq -r --arg reference_status "$reference_status" --slurpfile ref "$RUNNER_TEMP/reference-summary.json" \
+            --arg root "$GITHUB_WORKSPACE/" --arg repo "$GH_REPO" \
             --arg branch "$DEFAULT_BRANCH" --arg hash "$INPUT_HASH" --arg marker "$REPORT_MARKER" \
             --slurpfile unused "$RUNNER_TEMP/tex-unused.json" \
             --slurpfile uncertain "$RUNNER_TEMP/tex-uncertain.json" '
@@ -164,23 +222,46 @@ jobs:
               gsub("\\*"; "&#42;") | gsub("\u0060"; "&#96;") |
               gsub("\\|"; "&#124;") | gsub("\\\\"; "&#92;");
             def urlpath: split("/") | map(@uri) | join("/");
+            def n: if . == null then "未確認" else tostring end;
+            def keys_report($title; $count; $keys; $advice):
+              "### " + $title + "（" + ($count | n) + "件）\n\n" +
+              (if $count == null then "判定できませんでした。"
+               elif $count == 0 then "指摘事項はありません。"
+               else $advice + "\n\n" + ($keys | map("- " + (. | esc)) | join("\n")) end);
+            $ref[0] as $r |
             [ .[] | (.filePath | ltrimstr($root) | ltrimstr("./")) as $path |
               .messages[] | {path: $path, line, column, message, ruleId, severity} ] |
             sort_by(.path,.line,.column,.ruleId,.message) as $items |
             ($items | map(
-              "- [" + (.path | esc) + ":" + (.line | tostring) + ":" +
+              "| [" + (.path | esc) + ":" + (.line | tostring) + ":" +
               (.column | tostring) + "](https://github.com/" + $repo + "/blob/" +
               ($branch | @uri) + "/" + (.path | urlpath) + "#L" + (.line | tostring) +
-              ") — " + (.message | esc) + " (" + (.ruleId | esc) + ")"
+              ") | " + (.message | esc) + " | " + (.ruleId | esc) + " |"
             )) as $lines |
-            ($marker + "\n<!-- input:" + $hash + " -->\n\n## 未使用のTeXファイル\n\n" +
+            ($marker + "\n<!-- input:" + $hash + " -->\n\n## 検査結果\n\n" +
+             "| 検査項目 | 指摘件数 |\n|---|---:|\n" +
+             "| 未使用TeXファイル | " + (if ($uncertain[0]|length)>0 then "判定保留" else ($unused[0]|length|tostring) end) + " |\n" +
+             "| 未引用の参考文献 | " + ($r.unused|n) + " |\n" +
+             "| 未定義の文献引用 | " + ($r.undefined|n) + " |\n" +
+             "| LaTeX参照警告 | " + (if $reference_status == "failed" or $reference_status == "incomplete" then "判定保留" else ($r.warnings|length|tostring) end) + " |\n" +
+             "| 文章校正 | " + ($items|length|tostring) + " |\n\n## 未使用のTeXファイル\n\n" +
              (if ($uncertain[0] | length) > 0 then "参照の静的解析が不完全なため、未使用判定を保留します。参照を確認してください。\n\n" + ($uncertain[0] | map("- " + (. | esc)) | join("\n"))
               elif ($unused[0] | length) == 0 then "未使用ファイルはありません。"
               else "以下のファイルは main.tex から参照されていません。不要なテンプレート・原稿ファイルは削除してください。\n\n" + ($unused[0] | map("- [" + (. | esc) + "](https://github.com/" + $repo + "/blob/" + ($branch | @uri) + "/" + (. | urlpath) + ")") | join("\n")) end) +
+             "\n\n## 引用・参照チェック\n\n" +
+             (if $reference_status == "failed" or $reference_status == "incomplete" then
+                "検査の実行または結果の解析に失敗しました。Actionsのreference-check Artifactを確認してください。次回も検査します。"
+              else
+                keys_report("未引用の参考文献"; $r.unused; $r.unused_keys; "不要な参考文献は文献データベースから削除してください。") +
+                "\n\n" + keys_report("未定義の文献引用"; $r.undefined; $r.undefined_keys; "引用キーと参考文献データベースを確認してください。") +
+                "\n\n### 図表・数式等の参照警告（" + ($r.warnings|length|tostring) + "件）\n\n" +
+                (if ($r.warnings|length)==0 then "指摘事項はありません。"
+                 else ($r.warnings|map("- " + esc)|join("\n")) end)
+              end) +
              "\n\n## 文章校正結果\n\n検出件数: " +
              ($items | length | tostring) + "\n\n") +
             (if ($items | length) == 0 then "指摘事項はありません。"
-             else ($lines | join("\n")) end) |
+             else "| 場所 | 指摘内容 | ルール |\n|---|---|---|\n" + ($lines | join("\n")) end) |
             if length > 60000 then .[0:58000] +
               "\n\n（表示上限により省略。詳細はActionsのtextlint-result artifactを参照。）"
             else . end
@@ -190,7 +271,7 @@ jobs:
           state=open
           unused_count=$(jq length "$RUNNER_TEMP/tex-unused.json")
           uncertain_count=$(jq length "$RUNNER_TEMP/tex-uncertain.json")
-          if [[ "$count" == 0 && "$unused_count" == 0 && "$uncertain_count" == 0 ]]; then state=closed; fi
+          if [[ "$count" == 0 && "$unused_count" == 0 && "$uncertain_count" == 0 && "$reference_status" == clean ]]; then state=closed; fi
           number=$(jq -r '.[0].number // empty' "$RUNNER_TEMP/lint-issues.json")
           if [[ -n "$number" ]]; then
             if jq -e --rawfile body "$RUNNER_TEMP/lint-body.md" --arg state "$state" \
@@ -218,3 +299,22 @@ jobs:
           name: textlint-result
           path: ${{ runner.temp }}/textlint.json
           if-no-files-found: ignore
+
+      - name: Upload reference check result
+        if: always() && steps.inputs.outputs.run == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: reference-check
+          path: |
+            ${{ runner.temp }}/reference-check.log
+            build-check/reference-check.txt
+            build-check/main.log
+          if-no-files-found: ignore
+
+      - name: Fail on reference check execution errors
+        if: steps.inputs.outputs.run == 'true'
+        run: |
+          if [[ "$(cat "$RUNNER_TEMP/reference-status.txt")" =~ ^(failed|incomplete)$ ]]; then
+            echo "::error::LaTeX compilation or reference check failed; see report and artifact"
+            exit 1
+          fi

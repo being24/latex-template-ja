@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   lint:
+    if: ${{ !github.event.repository.is_template || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:

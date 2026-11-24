@@ -17,7 +17,7 @@ jobs:
   lint:
     if: ${{ !github.event.repository.is_template || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_REPO: ${{ github.repository }}
@@ -37,8 +37,7 @@ jobs:
         run: |
           set -euo pipefail
           # Include paths as well as content in the fingerprint.
-          digest=$(git ls-tree -r HEAD -- . \
-            | awk '/\.tex$/ || /\t(package(-lock)?\.json|\.github\/workflows\/lint\.yaml)$/' | sha256sum | cut -d' ' -f1)
+          digest=$(git ls-tree -r -z HEAD | sha256sum | cut -d' ' -f1)
           echo "hash=$digest" >> "$GITHUB_OUTPUT"
           # Use the Issues API rather than the eventually consistent search index.
           gh api --paginate --slurp \
@@ -147,6 +146,26 @@ jobs:
           fi
           echo "Found $count diagnostics"
 
+      - name: Check LaTeX citations and references
+        if: steps.inputs.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          # Reuse the project's existing Docker-backed make check.
+          status=0
+          make check FILE=main USE_DOCKER=yes > "$RUNNER_TEMP/reference-check.log" 2>&1 || status=$?
+          if [[ "$status" == 0 && -f build-check/reference-check.status ]] &&
+             [[ "$(cat build-check/reference-check.status)" == clean ]]; then
+            result=clean
+          elif [[ -f build-check/reference-check.status ]] &&
+               [[ "$(cat build-check/reference-check.status)" == findings ]]; then
+            result=findings
+          else
+            result=failed
+          fi
+          printf '%s\n' "$result" > "$RUNNER_TEMP/reference-status.txt"
+          # Only print the controlled status; the untrusted compiler output is an artifact.
+          echo "Reference check: $result"
+
       - name: Publish report
         if: steps.inputs.outputs.run == 'true'
         env:
@@ -154,7 +173,17 @@ jobs:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           set -euo pipefail
-          jq -r --arg root "$GITHUB_WORKSPACE/" --arg repo "$GH_REPO" \
+          reference_status=$(cat "$RUNNER_TEMP/reference-status.txt")
+          # A failed check must be retried on the next schedule, even without edits.
+          if [[ "$reference_status" == failed ]]; then INPUT_HASH=failed; fi
+          reference_text="$RUNNER_TEMP/reference-report.txt"
+          if [[ "$reference_status" == findings && -f build-check/reference-check.txt ]]; then
+            cp build-check/reference-check.txt "$reference_text"
+          else
+            : > "$reference_text"
+          fi
+          jq -r --arg reference_status "$reference_status" --rawfile reference_text "$reference_text" \
+            --arg root "$GITHUB_WORKSPACE/" --arg repo "$GH_REPO" \
             --arg branch "$DEFAULT_BRANCH" --arg hash "$INPUT_HASH" --arg marker "$REPORT_MARKER" \
             --slurpfile unused "$RUNNER_TEMP/tex-unused.json" \
             --slurpfile uncertain "$RUNNER_TEMP/tex-uncertain.json" '
@@ -177,6 +206,11 @@ jobs:
              (if ($uncertain[0] | length) > 0 then "参照の静的解析が不完全なため、未使用判定を保留します。参照を確認してください。\n\n" + ($uncertain[0] | map("- " + (. | esc)) | join("\n"))
               elif ($unused[0] | length) == 0 then "未使用ファイルはありません。"
               else "以下のファイルは main.tex から参照されていません。不要なテンプレート・原稿ファイルは削除してください。\n\n" + ($unused[0] | map("- [" + (. | esc) + "](https://github.com/" + $repo + "/blob/" + ($branch | @uri) + "/" + (. | urlpath) + ")") | join("\n")) end) +
+             "\n\n## 引用・参照チェック\n\n" +
+             (if $reference_status == "clean" then "指摘事項はありません。"
+              elif $reference_status == "failed" then "LaTeXのビルドまたは検査に失敗しました。Actionsのreference-check artifactを確認してください。引用・参照の判定は保留し、次回も検査します。"
+              else "引用・参照に指摘があります。以下の結果を確認してください。\n\n" +
+                ($reference_text | split("\n") | map(select(length > 0) | "- " + esc) | join("\n") | .[0:18000]) end) +
              "\n\n## 文章校正結果\n\n検出件数: " +
              ($items | length | tostring) + "\n\n") +
             (if ($items | length) == 0 then "指摘事項はありません。"
@@ -190,7 +224,7 @@ jobs:
           state=open
           unused_count=$(jq length "$RUNNER_TEMP/tex-unused.json")
           uncertain_count=$(jq length "$RUNNER_TEMP/tex-uncertain.json")
-          if [[ "$count" == 0 && "$unused_count" == 0 && "$uncertain_count" == 0 ]]; then state=closed; fi
+          if [[ "$count" == 0 && "$unused_count" == 0 && "$uncertain_count" == 0 && "$reference_status" == clean ]]; then state=closed; fi
           number=$(jq -r '.[0].number // empty' "$RUNNER_TEMP/lint-issues.json")
           if [[ -n "$number" ]]; then
             if jq -e --rawfile body "$RUNNER_TEMP/lint-body.md" --arg state "$state" \
@@ -218,3 +252,22 @@ jobs:
           name: textlint-result
           path: ${{ runner.temp }}/textlint.json
           if-no-files-found: ignore
+
+      - name: Upload reference check result
+        if: always() && steps.inputs.outputs.run == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: reference-check
+          path: |
+            ${{ runner.temp }}/reference-check.log
+            build-check/reference-check.txt
+            build-check/main.log
+          if-no-files-found: ignore
+
+      - name: Fail on reference check execution errors
+        if: steps.inputs.outputs.run == 'true'
+        run: |
+          if [[ "$(cat "$RUNNER_TEMP/reference-status.txt")" == failed ]]; then
+            echo "::error::LaTeX compilation or reference check failed; see report and artifact"
+            exit 1
+          fi

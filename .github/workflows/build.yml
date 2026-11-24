@@ -12,7 +12,7 @@ on:
     # .github内が変更されたときは実行しない
     paths-ignore:
       - .github/**
-    workflow-dispatch:
+  workflow_dispatch:
     
 env:
   # MakefileでDockerを使う機能を無効にする
@@ -48,6 +48,8 @@ jobs:
   # GitHubのReleaseを作成するジョブ
   # v1.0.0のようなタグがpushされた時のみ実行
   release:
+    permissions:
+      contents: write
     if: startsWith(github.ref, 'refs/tags/')
     needs: build
     runs-on: ubuntu-latest

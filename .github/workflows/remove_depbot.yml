@@ -20,7 +20,8 @@ jobs:
     if: github.event.repository.name != 'latex-template-ja'
 
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      contents: write
 
     steps:
       # get main branch repo contents

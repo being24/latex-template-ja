@@ -14,6 +14,9 @@ on:
 
 jobs:
   lint:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -24,21 +27,25 @@ jobs:
         uses: actions/setup-node@v7
         with:
           cache: npm
-          node-version: "22.x"
+          node-version: "24.x"
 
       - uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
 
-      # 依存関係の構築とtextlintの実行
+      - name: Install npm
+        run: npm install --global npm@11.18.0
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Run lint
-        run: |
-          npm ci
-          npm run lint -- main.tex sections
+        id: textlint
+        run: npm run lint -- main.tex sections
 
       # ↑のステップでtextlintが違反を検知した場合のみ実行
       - name: Run reviewdog
-        if: failure()
+        if: failure() && steps.textlint.outcome == 'failure'
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
